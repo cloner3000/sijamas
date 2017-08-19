@@ -1,12 +1,11 @@
-<?php
-
-namespace App\Http\Controllers\Backend;
+<?php namespace App\Http\Controllers\Backend\PageStatic;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Backend\TrinataController;
 use App\Models\NewsContent;
+use trinata;
 
 
 class ProfileController extends TrinataController
@@ -21,18 +20,20 @@ class ProfileController extends TrinataController
 
     public function getData()
     {
-        $model = $this->model->whereParentId(null)->whereType('profile')->first();
+        $model = $this->model->whereType('profile')->first();
 
-        $model = $this->model->whereParentId($data->id)->select('id' , 'title','description')->whereType('profile');
+        $model = $this->model->select('id' , 'title','description')->whereType('profile');
         
     }
 
     public function getIndex()
     {
-        $model = $this->model->whereParentId(null)->whereType('profile')->first();
+       
+        $model = $this->model->whereType('profile')->first();
 
+        // dd($model);
 
-    	return view('backend.profile.index',compact('model'));
+    	return view('backend.pagestatic.profile.index',compact('model'));
     }
 
     public function handleInsert($request)
@@ -46,23 +47,16 @@ class ProfileController extends TrinataController
 
     public function postIndex(Request $request)
     {
-        $inputs = $request->all();
+        // $inputs = $request->all();
         
-        $values = [
-            'title' => $request->title,
-            'description' => $request->description,
-            'type' => 'profile',
-        ];
+        $model = $request->id ? $this->model->find($request->id) : $this->model;
+        $model->title = $request->title;
+        $model->description = $request->description;
+        $model->owner_id = \Auth::user()->id;
+        $model->status = 'publish';
+        $model->type = 'profile';
 
-        if(!empty($request->id)){
-
-            $save = $this->model->whereId($request->id)->update($values);
-            $dataid=$save;
-        }else{
-
-            $save = $this->model->create($values);
-            $dataid=$save->id;
-        }
+        $model->save();
 
         return redirect(urlBackendAction('index'))->withSuccess('data has been saved');     
     }
@@ -70,7 +64,7 @@ class ProfileController extends TrinataController
     public function postCreate(Request $request)
     {
         
-        $data = $this->model->whereParentId(null)->whereType('profile')->first();
+        $data = $this->model->whereType('profile')->first();
 
         if(!empty($data->id)){
             $inputs = $request->all();
@@ -78,8 +72,8 @@ class ProfileController extends TrinataController
             $values = [
                 'title' => $request->title,
                 'description' => $request->description,
-                'status' => $request->status,
-                'category' => 'profile',
+                'status' => 'publish',
+                'type' => 'profile'
             ];
             
             $save = $this->model->create($values);
@@ -100,7 +94,8 @@ class ProfileController extends TrinataController
         $values = [
             'title' => $request->title,
             'description' => $request->description,
-            'status' => $request->status
+            'owner_id' => \Auth::user()->id,
+            'status' => 'publish'
         ];
 
         $update = $this->model->whereId($id)->update($values);
