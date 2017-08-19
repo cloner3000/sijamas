@@ -101,8 +101,10 @@ class BannerController extends TrinataController
 
         $inputs = $request->all();
 
-        $inputs['brief'] = $this->handleUpload($request,$model);
-
+        
+        $inputs['brief'] = $this->handleUpload($request,$model) ? $this->handleUpload($request,$model) : 'no image';
+        $inputs['owner_id'] = \Auth::user()->id;
+        
         $model->update($inputs);
 
         return redirect(urlBackendAction('index'))->withSuccess('data has been updated');
@@ -114,7 +116,7 @@ class BannerController extends TrinataController
 
         try
         {
-            @unlink(public_path('contents/'.$model->image));
+            @unlink(public_path('contents/'.$model->brief));
             $model->delete();
             return redirect(urlBackendAction('index'))->withSuccess('data has been deleted');
         
