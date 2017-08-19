@@ -8,10 +8,10 @@ class DatabaseSeeder extends Seeder
     {
         if(\DB::table('menus')->count() == 0)
         {
-            // $this->call('StarterSeed');
+            $this->call('StarterSeed');
             \DB::unprepared(file_get_contents(database_path('backup/core.sql')));
         }   
         
-        // $this->call('MenuSeed');   
+        $this->call('MenuSeed');   
     }   
 }
