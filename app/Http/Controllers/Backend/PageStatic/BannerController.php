@@ -76,7 +76,10 @@ class BannerController extends TrinataController
 
         $inputs = $request->all();
 
-        // $inputs['image'] = $this->handleUpload($request,$model);
+        $inputs['status'] = $request->status;
+        $inputs['brief'] = $this->handleUpload($request,$model) ? $this->handleUpload($request,$model) : 'no image';
+        $inputs['owner_id'] = \Auth::user()->id;
+        $inputs['type'] = 'banner';
 
         $model->create($inputs);
 
@@ -98,7 +101,7 @@ class BannerController extends TrinataController
 
         $inputs = $request->all();
 
-        // $inputs['image'] = $this->handleUpload($request,$model);
+        $inputs['brief'] = $this->handleUpload($request,$model);
 
         $model->update($inputs);
 

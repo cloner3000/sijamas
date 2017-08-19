@@ -18,7 +18,7 @@
 
                       <div class="form-group">
                         <label>Title</label>
-                        {!! Form::text('name' , null ,['class' => 'form-control']) !!}
+                        {!! Form::text('title' , null ,['class' => 'form-control']) !!}
                       </div>
 
                       <div class="form-group">
@@ -27,13 +27,13 @@
                           <a class="Wbutton" onclick = "return browseElfinder('image'  , 'image_tempel' , 'elfinder_browse1' , 'cancelBrowse')" >Browse</a>
                           Suggestion Image Size (max. 2MB)
                         </div>
-                        <input type = 'hidden' name = 'image' id = 'image' />
+                        <input type = 'hidden' name = 'brief' id = 'image' />
                         
                       </div>
                       
                       <div id="image_tempel" style = 'margin-top:30px;'>
                         @if(!empty($model->image))
-                          <img src="{{ asset('contents/banner/thumbnail').'/'.$model->image }}" width="200" height="200" />
+                          <img src="{{ asset('contents/banner/thumbnail').'/'.$model->brief }}" width="200" height="200" />
                         @endif
                       </div>
 
