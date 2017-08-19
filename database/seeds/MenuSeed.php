@@ -79,5 +79,29 @@ class MenuSeed extends Seeder
                 'order'         => '2'
                 ],['index','create','update','delete']
             ); 
+
+        \trinata::addMenu([ 
+                'parent_id'     => null,
+                'title'         => 'Kerjasama',
+                'controller'    => '#',
+                'slug'          => 'cooperation',
+                'order'         => 1,
+            ],[]);
+            \trinata::addMenu([
+                'parent_id'     => 'cooperation',
+                'title'         => 'Ketegori Kerjasama',
+                'controller'    => 'Kerjasama\CooperationController',
+                'slug'          => 'cooperation-category',
+                'order'         => '1'
+                ],['index','create','update','delete']
+            );
+            \trinata::addMenu([
+                'parent_id'     => 'cooperation',
+                'title'         => 'Tindak Lanjut Dokumen',
+                'controller'    => 'Kerjasama\FollowupController',
+                'slug'          => 'cooperation-followup',
+                'order'         => '2'
+                ],['index','create','update','delete']
+            );
     }
 }
