@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Backend\TrinataController;
-use App\Models\CooperationType;
+use App\Models\CooperationFocus;
 use Table;
 use Image;
 use trinata;
 
-class TypeController extends TrinataController
+class FocusController extends TrinataController
 {
-    public function __construct(CooperationType $model)
+    public function __construct(CooperationFocus $model)
     {
     	parent::__construct();
 
@@ -40,14 +40,14 @@ class TypeController extends TrinataController
 
     public function getIndex()
     {
-    	return view('backend.kerjasama.tipe.index');
+    	return view('backend.kerjasama.fokus.index');
     }
 
     public function getCreate()
     {
     	$model = $this->model;
 
-    	return view('backend.kerjasama.tipe._form',compact('model'));
+    	return view('backend.kerjasama.fokus._form',compact('model'));
     }
 
     public function handleUpload($request,$model)
@@ -91,7 +91,7 @@ class TypeController extends TrinataController
     {
         $model = $this->model->findOrFail($id);
 
-        return view('backend.kerjasama.tipe._form',compact('model'));
+        return view('backend.kerjasama.fokus._form',compact('model'));
     }
 
     public function postUpdate(Request $request,$id)
