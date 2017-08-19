@@ -66,7 +66,7 @@ class MenuSeed extends Seeder
             \trinata::addMenu([
                 'parent_id'     => 'page',
                 'title'         => 'Banner',
-                'controller'    => 'Static\BannerController',
+                'controller'    => 'PageStatic\BannerController',
                 'slug'          => 'static-banner',
                 'order'         => '1'
                 ],['index','create','update','delete']
@@ -74,7 +74,7 @@ class MenuSeed extends Seeder
             \trinata::addMenu([
                 'parent_id'     => 'page',
                 'title'         => 'Profile',
-                'controller'    => 'Static\ProfileController',
+                'controller'    => 'PageStatic\ProfileController',
                 'slug'          => 'static-profile',
                 'order'         => '2'
                 ],['index','create','update','delete']
