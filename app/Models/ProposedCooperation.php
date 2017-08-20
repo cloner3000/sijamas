@@ -15,7 +15,7 @@ class ProposedCooperation extends Model
 
 	public function proposedcooperationtype()
     {
-        return $this->belongsTo(ProposedCooperationType::class , 'proposed_cooperation_type_id');
+        return $this->belongsTo(new ProposedCooperationType , 'proposed_cooperation_type_id');
     }
 			
 	public function user()
