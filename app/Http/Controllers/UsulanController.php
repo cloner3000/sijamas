@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ProposedCooperation;
 use App\Models\ProposedCooperationType;
 use Illuminate\Http\Request;
+use trinata;
 
 class UsulanController extends Controller {
 
@@ -47,11 +48,14 @@ class UsulanController extends Controller {
 	public function postIndex(Request $request)
 	{
 		$inputs = $request->all();
-		$inputs['owner_id'] = '0';
+		$inputs['owner_id'] = '1';
 		
 		// dd($inputs);
+		$filename = trinata::globalUpload($request, 'filename');
+		// dd($filename);
+		$inputs['filename'] = $filename['filename'];
 		$this->model->create($inputs);
-		return redirect('usulan')->withSuccess('data has been saved');
+		return redirect('usulan-kerjasama')->withSuccess('data has been saved');
 	}
 
 
