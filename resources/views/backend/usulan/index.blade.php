@@ -82,13 +82,15 @@
                                 </tr>
                               </thead>
                               <tbody>
+                              @if($data['proposed'])
+                                @foreach($data['proposed'] as $proposed)
                                 <tr class="odd gradeX">
                                   <td>
                                     1
                                   </td>
-                                  <td>Andi</td>
-                                  <td class="center"><a href="{{urlBackend('usulan-kerjasama/update')}}"> Mou BSN - BNSP; Perkuat Personel Indonesia Hadapi MEA</a></td>
-                                  <td class="center">12-02-2017</td>
+                                  <td>{{$proposed->name}}</td>
+                                  <td class="center"><a href="{{urlBackend('usulan-kerjasama/update')}}">{{$proposed->title}}</a></td>
+                                  <td class="center">{{$proposed->created_at}}</td>
                                   <td class="center">
                                     <label for="switcher-rounded" class="switcher switcher-primary">&nbsp;
                                       <input type="checkbox" id="switcher-rounded" class="editData">
@@ -103,7 +105,9 @@
                                     <a href="#" class="btn btn-danger confirm"><i class="fa fa-trash"></i></a> 
                                   </td>
                                 </tr>
-                                
+
+                                @endforeach
+                              @endif 
                               </tbody>
                             </table>
                 </div>

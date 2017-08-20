@@ -14,12 +14,23 @@
               <div class="panel-body">
               <div class="row">
               <div class="col-md-8">
-                <form action="#" method="post" class="panel-body p-y-1">
+
+                @include('backend.common.errors')
+                {!! Form::model($model,['class'=>'panel-body p-y-1']) !!} 
+
                   <div class="form-group">
                     <div class="row">
                       <label class="col-sm-4 control-label">Nama Pengusul :</label>
                       <div class="col-sm-8">
-                        <input type="text" name="email" class="form-control" value="Nila" readonly="readonly">
+                        <input type="text" name="name" class="form-control" value="Nila" readonly="readonly">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <label class="col-sm-4 control-label">Judul Usulan :</label>
+                      <div class="col-sm-8">
+                        {!! Form::text('title' , null ,['class' => 'form-control']) !!}
                       </div>
                     </div>
                   </div>
@@ -27,7 +38,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Instansi :</label>
                       <div class="col-sm-8">
-                        <input type="text" name="email" class="form-control">
+                        {!! Form::text('institute' , null ,['class' => 'form-control']) !!}
                       </div>
                     </div>
                   </div>
@@ -35,7 +46,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Jabatan :</label>
                       <div class="col-sm-8">
-                        <input type="text" name="email" class="form-control">
+                        {!! Form::text('position' , null ,['class' => 'form-control']) !!}
                       </div>
                     </div>
                   </div>
@@ -51,7 +62,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Telepon * :</label>
                       <div class="col-sm-8">
-                        <input type="text" name="email" class="form-control">
+                        {!! Form::text('phone' , null ,['class' => 'form-control', 'onkeypress' => 'return isNumberKey(event)']) !!}
                       </div>
                     </div>
                   </div>
@@ -59,7 +70,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Email * :</label>
                       <div class="col-sm-8">
-                        <input type="text" name="email" class="form-control">
+                        {!! Form::email('email' , null ,['class' => 'form-control']) !!}
                       </div>
                     </div>
                   </div>
@@ -67,7 +78,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Isi Pesan :</label>
                       <div class="col-sm-8">
-                        <textarea class="form-control"></textarea> 
+                        {!! Form::textarea('message' , null ,['class' => 'form-control']) !!}
                       </div>
                     </div>
                   </div>
@@ -75,21 +86,18 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Jenis Naskah Kerjsama yang Diusulkan :</label>
                       <div class="col-sm-8">
-                        <label class="custom-control custom-radio radio-inline">
-                          <input type="radio" name="custom-radios-4" class="custom-control-input">
-                          <span class="custom-control-indicator"></span>
-                          Nota Kesapahaman (Payung Kerjasama)
-                        </label><br/>
-                        <label class="custom-control custom-radio radio-inline">
-                          <input type="radio" name="custom-radios-4" class="custom-control-input">
-                          <span class="custom-control-indicator"></span>
-                          Perjanjian Kerjasama
-                        </label><br/>
-                        <label class="custom-control custom-radio radio-inline">
-                          <input type="radio" name="custom-radios-4" class="custom-control-input">
-                          <span class="custom-control-indicator"></span>
-                          Lainnya
-                        </label>
+                        @if($data['type'])
+                          @foreach($data['type'] as $type)
+                          <!-- <div class="radio"> -->
+                            <label class="custom-control custom-radio radio-inline">
+                                <input type="radio" name="proposed_cooperation_type_id" class="custom-control-input" value="{{$type->id}}">
+                                <span class="custom-control-indicator"></span>
+                                {{$type->name}}
+                            </label><br/>
+                          <!-- </div> -->
+                          @endforeach
+                        @endif
+                        <br/>
                       </div>
                     </div>
                   </div>
@@ -100,6 +108,7 @@
                         <label class="custom-file px-file">
                           <input type="file" class="custom-file-input">
                           <span class="custom-file-control form-control">Choose file...</span>
+                          
                           <div class="px-file-buttons">
                             <button type="button" class="btn px-file-clear">Clear</button>
                             <button type="button" class="btn btn-primary px-file-browse">Upload</button>
@@ -112,14 +121,14 @@
                   <div class="form-group">
                     <div class="row">
                       <label class="col-sm-4 control-label">
-                        <button type="submit" class="btn btn-primary btn-3d">Save</button>
+                        <button type="submit" class="btn btn-primary btn-3d">{{ !empty($model->id) ? 'Update' : 'Save' }}</button>
                       </label>
                       <div class="col-sm-8">                  
                           &nbsp;
                       </div>
                     </div>
                   </div>
-                </form>
+                {!! Form::close() !!}
               </div>
             </div>
     </div>
