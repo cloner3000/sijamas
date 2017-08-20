@@ -13,6 +13,9 @@
               </div>
               <div class="panel-body">
               <div class="row">
+              <div class="col-md-12 fadeIn animated">
+                <a href="{{ urlBackend('usulan-kerjasama/create')}}" class="btn btn-info btn-3d"> <i class="fa fa-plus"></i> Tambah</a> 
+              </div>
               <div class="col-md-7 fadeIn animated">
                 <form action="#" method="post" class="panel-body p-y-1">
                   <div class="form-group">
