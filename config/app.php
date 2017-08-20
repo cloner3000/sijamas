@@ -149,6 +149,7 @@ return [
 		'yajra\Datatables\DatatablesServiceProvider',
         'Intervention\Image\ImageServiceProvider',
         'Oblagio\Highcharts\Provider',
+        'Maatwebsite\Excel\ExcelServiceProvider',
 	],
 
 	/*
@@ -202,6 +203,7 @@ return [
         'Table' 	=> 'yajra\Datatables\Datatables',
         'Image' 	=> 'Intervention\Image\Facades\Image',
         'Chart' 	=> 'Oblagio\Highcharts\Facade',
+        'Excel' 	=> 'Maatwebsite\Excel\Facades\Excel',
 	],
 
 ];
