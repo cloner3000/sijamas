@@ -28,6 +28,10 @@
 											{!! Form::text('name' , null ,['class' => 'form-control']) !!}
 										</div><!--end.form-group-->
 										<div class="form-group label-floating">
+											<label class="control-label">Judul Usulan*</label>
+											{!! Form::text('title' , null ,['class' => 'form-control']) !!}
+										</div><!--end.form-group-->
+										<div class="form-group label-floating">
 											<label class="control-label">Instansi*</label>
 											{!! Form::text('institute' , null ,['class' => 'form-control']) !!}
 										</div><!--end.form-group-->
@@ -41,7 +45,7 @@
 										</div><!--end.form-group-->
 										<div class="form-group label-floating">
 											<label class="control-label">Telepon*</label>
-											{!! Form::number('phone' , null ,['class' => 'form-control']) !!}
+											{!! Form::text('phone' , null ,['class' => 'form-control', 'onkeypress' => 'return isNumberKey(event)']) !!}
 										</div><!--end.form-group-->
 										<div class="form-group label-floating">
 											<label class="control-label">Email*</label>
@@ -82,7 +86,7 @@
 			                              <button type="submit" class="btn btn-default">Reset</button>
 			                              <button type="submit" class="btn btn-danger">Batal</button>
 
-			                              <button type="submit" class="btn btn-primary right">{{ !empty($model->id) ? 'Update' : 'Save' }}</button>
+			                              <button type="submit" class="btn btn-primary right">{{ !empty($model->id) ? 'Update' : 'Kirim' }}</button>
 			                            </div>
 
 			                            <div class="form-group">
