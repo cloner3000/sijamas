@@ -14,66 +14,63 @@
 ?>
 
 
-<div id="app_header_shadowing"></div>
-<div id="app_content">
-    <div id="content_header">
-        <h3 class="user"> {{ trinata::titleActionForm() }}</h3>
-    </div>
-        <div id="content_body">
+  <div class="px-content">
+        <div class="panel panel-info panel-dark">
+          <div class="panel-heading">
+            <div class="panel-title"><i class="fa fa-plus"></i> {{ trinata::titleActionForm() }}</div>
+          </div>
+          <div class="panel-body">
+          <div class="row">
+          <div class="col-md-7">
+           
+            @include('backend.common.errors')
+
+           {!! Form::model($model) !!} 
+
+              <div class="form-group">
+                <label>Role</label>
+                {!! Form::text('role' , null ,['class' => 'form-control','readonly']) !!}
+              </div>
             
-            <div class = 'row'>
+              <table class = 'table table-bordered'>
+                
+                  @foreach($menu->whereParentId(null)->orderBy('order','asc')->get() as $parent)
+                    @if($parent->childs->count() > 0)
+                      <thead>
+                        <tr class = 'danger'>
+                          <th >{{ $parent->title }}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach($parent->childs as $child)
 
-                <div class = 'col-md-6'>
+                            @foreach($child->actions as $action)
+                              
+                                
 
-                    @include('backend.common.errors')
+                                <tr class = 'success'>
+                                
+                                  <td><input <?= @$checked($action->pivot->id,$model->id) ?> name ='menu_action_id[]' value = '{{  $action->pivot->id }}' type = 'checkbox'> {{ $action->title }} {{ $child->title }}</td>
+                                
+                                </tr>
 
-                     {!! Form::model($model) !!} 
-
-                        <div class="form-group">
-                          <label>Role</label>
-                          {!! Form::text('role' , null ,['class' => 'form-control','readonly']) !!}
-                        </div>
-                      
-                        <table class = 'table table-bordered'>
-                          
-                            @foreach($menu->whereParentId(null)->orderBy('order','asc')->get() as $parent)
-                              @if($parent->childs->count() > 0)
-                                <thead>
-                                  <tr class = 'danger'>
-                                    <th >{{ $parent->title }}</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  @foreach($parent->childs as $child)
-
-                                      @foreach($child->actions as $action)
-                                        
-                                          
-
-                                          <tr class = 'success'>
-                                          
-                                            <td><input <?= @$checked($action->pivot->id,$model->id) ?> name ='menu_action_id[]' value = '{{  $action->pivot->id }}' type = 'checkbox'> {{ $action->title }} {{ $child->title }}</td>
-                                          
-                                          </tr>
-
-                                      @endforeach
-                                  
-                                  @endforeach
-                                </tbody>  
-                              @endif
                             @endforeach
-                          
                         
-                        </table>
+                        @endforeach
+                      </tbody>  
+                    @endif
+                  @endforeach
+                
+              
+              </table>
 
-                      <button type="submit" class="btn btn-primary">{{ !empty($model->id) ? 'Update' : 'Save' }}</button>
-                    
-                    {!! Form::close() !!}
+            <button type="submit" class="btn btn-primary">{{ !empty($model->id) ? 'Update' : 'Save' }}</button>
+          
+          {!! Form::close() !!}
 
-                </div>
-
-            </div>
-
+          </div>
         </div>
+      </div>
     </div>
+</div>
 @endsection

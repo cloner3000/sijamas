@@ -24,7 +24,7 @@ class Trinata
 		{
 			$url = urlBackendAction('update/'.$params);
 			
-			return '<a href = "'.$url.'" class = "btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>';	
+			return '<a href = "'.$url.'" class = "btn btn-info btn-sm"><i class="fa fa-pencil"></i></a>';	
 		}
 	}
 
@@ -34,7 +34,7 @@ class Trinata
 		{
 			$url = urlBackendAction('delete/'.$params);
 			
-			return '<a href = "'.$url.'" class = "btn btn-danger btn-sm" onclick = "return confirm(\'Are You sure want to delete this data?\')"><span class="glyphicon glyphicon-trash"></span></a>';	
+			return '<a href = "'.$url.'" class = "btn btn-danger btn-sm" onclick = "return confirm(\'Are You sure want to delete this data?\')"><i class="fa fa-trash"></i></a>';	
 		}
 	}
 
@@ -44,7 +44,7 @@ class Trinata
 		{
 			$url = urlBackendAction('view/'.$params);
 			
-			return '<a href = "'.$url.'" class = "btn btn-warning btn-sm"><span class="glyphicon glyphicon-search"></span></a>';	
+			return '<a href = "'.$url.'" class = "btn btn-warning btn-sm"><i class="fa fa-search"></i></a>';	
 		}
 	}
 
@@ -53,7 +53,7 @@ class Trinata
 		if($this->right('create') == 'true')
 		{
 			$url = urlBackendAction('create/'.$params);
-			return '<a href = "'.$url.'" class = "btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Add New</a>';
+			return '<a href = "'.$url.'" class = "btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add New</a>';
 		}
 	}
 
@@ -62,8 +62,8 @@ class Trinata
 		if($this->right('publish') == 'true')
 		{
 			$url = urlBackendAction('publish/'.$params);
-			$active =  '<a onclick = "return confirm(\'are you sure want to un publish this data ?\')" href = "'.$url.'" class = "btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span></a>';
-			$notActive =  '<a onclick = "return confirm(\'are you sure want to  publish this data ?\')" href = "'.$url.'" class = "btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-close"></span></a>';
+			$active =  '<a onclick = "return confirm(\'are you sure want to un publish this data ?\')" href = "'.$url.'" class = "btn btn-default btn-sm"><i class="fa fa-eye-open"></i></a>';
+			$notActive =  '<a onclick = "return confirm(\'are you sure want to  publish this data ?\')" href = "'.$url.'" class = "btn btn-default btn-sm"><i class="fa fa-eye-close"></i></a>';
 			
 			if($status == true)
 			{

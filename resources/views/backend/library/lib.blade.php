@@ -14,8 +14,9 @@
         </div>
 	</body>
 	<script type="text/javascript" charset="utf-8">
+      var validation_upload = "<?php echo sha1(date('Y-m-d').env('APP_SALT'))?>";
       $().ready(function() {
-          	function getUrlParam(paramName) {
+            function getUrlParam(paramName) {
                 var reParam = new RegExp('(?:[\?&]|&amp;)' + paramName + '=([^&]+)', 'i') ;
                 var match = window.location.search.match(reParam) ;
 
@@ -28,7 +29,7 @@
                     var urlImage = '{{ url("backend/elfinder/php/connector.minimal.php") }}';
                     var funcNum = getUrlParam('CKEditorFuncNum');
                     $('#elfinder').elfinder({
-                         url :  urlImage ,
+                         url :  urlImage + '?token='+validation_upload ,
                          uiOptions : {
                              toolbar : [
                                     ['upload' , 'mkdir'],
@@ -38,7 +39,7 @@
                            files  : ['getfile', '|'],
                            navbar : [],
                          },
-                         onlyMimes : ["image"],
+                         onlyMimes : ["image","application/pdf","video/mp4"],
                          resizable : false , 
                          getFileCallback : function(file) {
                             window.opener.CKEDITOR.tools.callFunction(funcNum, file.url);

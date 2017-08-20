@@ -39,25 +39,6 @@ INSERT INTO actions VALUES ('6', 'Create', 'create', '2016-03-22 08:52:49', '201
 INSERT INTO actions VALUES ('8', 'Publish UnPublish', 'publish', '2016-03-23 12:43:26', '2016-03-23 12:43:26');
 
 -- ----------------------------
--- Table structure for `cruds`
--- ----------------------------
-DROP TABLE IF EXISTS `cruds`;
-CREATE TABLE `cruds` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `description` text COLLATE utf8_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` enum('y','n') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'n',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- ----------------------------
--- Records of cruds
--- ----------------------------
-
--- ----------------------------
 -- Table structure for `menus`
 -- ----------------------------
 DROP TABLE IF EXISTS `menus`;
@@ -81,17 +62,20 @@ CREATE TABLE `menus` (
 -- ----------------------------
 -- Records of menus
 -- ----------------------------
-INSERT INTO menus VALUES ('1', null, 'Dashboard', 'DashboardController', 'dashboard', '1', '', null, null);
-INSERT INTO menus VALUES ('2', null, 'Development', '#', 'development', '22', '', null, '2016-03-22 09:48:49');
-INSERT INTO menus VALUES ('3', '2', 'Menu', 'MenuController', 'menu', '1', '', null, null);
+INSERT INTO menus VALUES ('1', null, 'Dashboard', 'DashboardController', 'dashboard', '1', 'fa-home', null, null);
 INSERT INTO menus VALUES ('9', '2', 'Action', 'ActionController', 'action', '2', '', '2016-03-22 07:47:57', '2016-03-22 07:47:57');
-INSERT INTO menus VALUES ('10', null, 'User', '#', 'user', '2', '', '2016-03-22 09:48:39', '2016-03-22 09:48:39');
+INSERT INTO menus VALUES ('10', null, 'User', '#', 'user', '6', 'fa-user', '2016-03-22 09:48:39', '2016-03-22 09:48:39');
 INSERT INTO menus VALUES ('11', '10', 'Role', 'RoleController', 'role', '1', '', '2016-03-22 09:49:40', '2016-03-22 09:49:40');
 INSERT INTO menus VALUES ('12', '10', 'Manage User', 'UserController', 'manage-user', '3', '', '2016-03-22 12:10:31', '2016-03-22 12:10:31');
 INSERT INTO menus VALUES ('13', '10', 'Profile', 'ProfileController', 'profile', '9', '', '2016-03-23 07:49:10', '2016-03-23 07:49:10');
-INSERT INTO menus VALUES ('14', null, 'Media Library', '#', 'media-library', '10', '', '2016-03-23 09:40:57', '2016-03-23 09:40:57');
-INSERT INTO menus VALUES ('15', '14', 'Image', 'ImageController', 'image', '1', '', '2016-03-23 09:41:14', '2016-03-23 09:41:14');
-INSERT INTO menus VALUES ('16', '2', 'Crud', 'CrudController', 'crud', '7', '', '2016-03-23 10:13:58', '2016-03-23 10:13:58');
+INSERT INTO menus VALUES ('17', NULL, 'Kategori Kerjasama', 'KategoriController', 'kategori-kerjasama', '2', 'fa-clipboard', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO menus VALUES ('18', NULL, 'Usulan Kerjasama', 'UsulanController', 'usulan-kerjasama', '3', 'fa-calendar', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO menus VALUES ('19', NULL, 'Laporan', 'LaporanController', 'laporan-kerjasama', '4', 'fa-file-excel-o', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO menus VALUES ('20', NULL, 'Konten Website', '#', 'konten', '5', '', '2017-08-19 20:46:16', '2017-08-19 20:46:16');
+INSERT INTO menus VALUES ('21', '20', 'Slideshow', 'SlideshowController', 'slideshow', '1', '', '2017-08-19 22:10:24', '2017-08-19 22:10:24');
+INSERT INTO menus VALUES ('22', '20', 'Page', 'PageController', 'page', '2', '', '2017-08-19 22:10:24', '2017-08-19 22:10:24');
+INSERT INTO menus VALUES ('23', '20', 'Social Media', 'SocialController', 'social', '3', '', '2017-08-19 22:15:14', '2017-08-19 22:15:14');
+
 
 -- ----------------------------
 -- Table structure for `menu_actions`
@@ -113,15 +97,6 @@ CREATE TABLE `menu_actions` (
 -- ----------------------------
 -- Records of menu_actions
 -- ----------------------------
-INSERT INTO menu_actions VALUES ('12', '9', '2', '2016-03-22 09:46:45', '2016-03-22 09:46:45');
-INSERT INTO menu_actions VALUES ('13', '9', '3', '2016-03-22 09:46:45', '2016-03-22 09:46:45');
-INSERT INTO menu_actions VALUES ('14', '9', '4', '2016-03-22 09:46:45', '2016-03-22 09:46:45');
-INSERT INTO menu_actions VALUES ('15', '9', '6', '2016-03-22 09:46:45', '2016-03-22 09:46:45');
-INSERT INTO menu_actions VALUES ('16', '3', '2', '2016-03-22 09:47:20', '2016-03-22 09:47:20');
-INSERT INTO menu_actions VALUES ('17', '3', '3', '2016-03-22 09:47:20', '2016-03-22 09:47:20');
-INSERT INTO menu_actions VALUES ('18', '3', '4', '2016-03-22 09:47:20', '2016-03-22 09:47:20');
-INSERT INTO menu_actions VALUES ('19', '3', '5', '2016-03-22 09:47:20', '2016-03-22 09:47:20');
-INSERT INTO menu_actions VALUES ('20', '3', '6', '2016-03-22 09:47:20', '2016-03-22 09:47:20');
 INSERT INTO menu_actions VALUES ('27', '11', '2', '2016-03-22 11:15:59', '2016-03-22 11:15:59');
 INSERT INTO menu_actions VALUES ('28', '11', '3', '2016-03-22 11:15:59', '2016-03-22 11:15:59');
 INSERT INTO menu_actions VALUES ('29', '11', '4', '2016-03-22 11:15:59', '2016-03-22 11:15:59');
@@ -132,12 +107,35 @@ INSERT INTO menu_actions VALUES ('33', '12', '3', '2016-03-22 12:10:49', '2016-0
 INSERT INTO menu_actions VALUES ('34', '12', '4', '2016-03-22 12:10:49', '2016-03-22 12:10:49');
 INSERT INTO menu_actions VALUES ('35', '12', '6', '2016-03-22 12:10:49', '2016-03-22 12:10:49');
 INSERT INTO menu_actions VALUES ('36', '13', '2', '2016-03-23 07:49:23', '2016-03-23 07:49:23');
-INSERT INTO menu_actions VALUES ('37', '15', '2', '2016-03-23 09:49:42', '2016-03-23 09:49:42');
-INSERT INTO menu_actions VALUES ('42', '16', '2', '2016-03-23 12:45:37', '2016-03-23 12:45:37');
-INSERT INTO menu_actions VALUES ('43', '16', '3', '2016-03-23 12:45:37', '2016-03-23 12:45:37');
-INSERT INTO menu_actions VALUES ('44', '16', '4', '2016-03-23 12:45:37', '2016-03-23 12:45:37');
-INSERT INTO menu_actions VALUES ('45', '16', '6', '2016-03-23 12:45:37', '2016-03-23 12:45:37');
-INSERT INTO menu_actions VALUES ('46', '16', '8', '2016-03-23 12:45:38', '2016-03-23 12:45:38');
+INSERT INTO menu_actions VALUES ('47', '17', '2', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO menu_actions VALUES ('48', '17', '6', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO menu_actions VALUES ('49', '17', '4', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO menu_actions VALUES ('50', '17', '3', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO menu_actions VALUES ('51', '18', '2', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO menu_actions VALUES ('52', '18', '6', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO menu_actions VALUES ('53', '18', '4', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO menu_actions VALUES ('54', '18', '3', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO menu_actions VALUES ('55', '19', '2', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO menu_actions VALUES ('56', '19', '6', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO menu_actions VALUES ('57', '19', '4', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO menu_actions VALUES ('58', '19', '3', '2017-08-19 20:46:16', '2017-08-19 20:46:16');
+INSERT INTO menu_actions VALUES ('59', '20', '2', '2017-08-19 20:46:16', '2017-08-19 20:46:16');
+INSERT INTO menu_actions VALUES ('60', '20', '6', '2017-08-19 20:46:16', '2017-08-19 20:46:16');
+INSERT INTO menu_actions VALUES ('61', '20', '4', '2017-08-19 20:46:16', '2017-08-19 20:46:16');
+INSERT INTO menu_actions VALUES ('62', '20', '3', '2017-08-19 20:46:16', '2017-08-19 20:46:16');
+INSERT INTO menu_actions VALUES ('63', '21', '2', '2017-08-19 22:10:24', '2017-08-19 22:10:24');
+INSERT INTO menu_actions VALUES ('64', '21', '6', '2017-08-19 22:10:24', '2017-08-19 22:10:24');
+INSERT INTO menu_actions VALUES ('65', '21', '4', '2017-08-19 22:10:24', '2017-08-19 22:10:24');
+INSERT INTO menu_actions VALUES ('66', '21', '3', '2017-08-19 22:10:24', '2017-08-19 22:10:24');
+INSERT INTO menu_actions VALUES ('67', '22', '2', '2017-08-19 22:10:24', '2017-08-19 22:10:24');
+INSERT INTO menu_actions VALUES ('68', '22', '6', '2017-08-19 22:10:24', '2017-08-19 22:10:24');
+INSERT INTO menu_actions VALUES ('69', '22', '4', '2017-08-19 22:10:24', '2017-08-19 22:10:24');
+INSERT INTO menu_actions VALUES ('70', '22', '3', '2017-08-19 22:10:24', '2017-08-19 22:10:24');
+INSERT INTO menu_actions VALUES ('71', '23', '2', '2017-08-19 22:15:15', '2017-08-19 22:15:15');
+INSERT INTO menu_actions VALUES ('72', '23', '6', '2017-08-19 22:15:15', '2017-08-19 22:15:15');
+INSERT INTO menu_actions VALUES ('73', '23', '4', '2017-08-19 22:15:15', '2017-08-19 22:15:15');
+INSERT INTO menu_actions VALUES ('74', '23', '3', '2017-08-19 22:15:15', '2017-08-19 22:15:15');
+
 
 
 -- ----------------------------
@@ -176,7 +174,6 @@ CREATE TABLE `rights` (
 -- ----------------------------
 -- Records of rights
 -- ----------------------------
-INSERT INTO rights VALUES ('225', '4', '12', '2016-03-23 09:29:40', '2016-03-23 09:29:40');
 INSERT INTO rights VALUES ('270', '1', '27', '2016-03-23 12:46:53', '2016-03-23 12:46:53');
 INSERT INTO rights VALUES ('271', '1', '28', '2016-03-23 12:46:53', '2016-03-23 12:46:53');
 INSERT INTO rights VALUES ('272', '1', '29', '2016-03-23 12:46:53', '2016-03-23 12:46:53');
@@ -187,21 +184,35 @@ INSERT INTO rights VALUES ('276', '1', '33', '2016-03-23 12:46:53', '2016-03-23 
 INSERT INTO rights VALUES ('277', '1', '34', '2016-03-23 12:46:53', '2016-03-23 12:46:53');
 INSERT INTO rights VALUES ('278', '1', '35', '2016-03-23 12:46:53', '2016-03-23 12:46:53');
 INSERT INTO rights VALUES ('279', '1', '36', '2016-03-23 12:46:53', '2016-03-23 12:46:53');
-INSERT INTO rights VALUES ('280', '1', '37', '2016-03-23 12:46:53', '2016-03-23 12:46:53');
-INSERT INTO rights VALUES ('281', '1', '16', '2016-03-23 12:46:53', '2016-03-23 12:46:53');
-INSERT INTO rights VALUES ('282', '1', '17', '2016-03-23 12:46:53', '2016-03-23 12:46:53');
-INSERT INTO rights VALUES ('283', '1', '18', '2016-03-23 12:46:53', '2016-03-23 12:46:53');
-INSERT INTO rights VALUES ('284', '1', '19', '2016-03-23 12:46:53', '2016-03-23 12:46:53');
-INSERT INTO rights VALUES ('285', '1', '20', '2016-03-23 12:46:53', '2016-03-23 12:46:53');
-INSERT INTO rights VALUES ('286', '1', '12', '2016-03-23 12:46:53', '2016-03-23 12:46:53');
-INSERT INTO rights VALUES ('287', '1', '13', '2016-03-23 12:46:53', '2016-03-23 12:46:53');
-INSERT INTO rights VALUES ('288', '1', '14', '2016-03-23 12:46:53', '2016-03-23 12:46:53');
-INSERT INTO rights VALUES ('289', '1', '15', '2016-03-23 12:46:53', '2016-03-23 12:46:53');
-INSERT INTO rights VALUES ('290', '1', '42', '2016-03-23 12:46:53', '2016-03-23 12:46:53');
-INSERT INTO rights VALUES ('291', '1', '43', '2016-03-23 12:46:53', '2016-03-23 12:46:53');
-INSERT INTO rights VALUES ('292', '1', '44', '2016-03-23 12:46:53', '2016-03-23 12:46:53');
-INSERT INTO rights VALUES ('293', '1', '45', '2016-03-23 12:46:53', '2016-03-23 12:46:53');
-INSERT INTO rights VALUES ('294', '1', '46', '2016-03-23 12:46:53', '2016-03-23 12:46:53');
+INSERT INTO rights VALUES ('295', '1', '47', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO rights VALUES ('296', '1', '48', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO rights VALUES ('297', '1', '49', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO rights VALUES ('298', '1', '50', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO rights VALUES ('299', '1', '51', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO rights VALUES ('300', '1', '52', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO rights VALUES ('301', '1', '53', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO rights VALUES ('302', '1', '54', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO rights VALUES ('303', '1', '55', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO rights VALUES ('304', '1', '56', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO rights VALUES ('305', '1', '57', '2017-08-19 20:46:15', '2017-08-19 20:46:15');
+INSERT INTO rights VALUES ('306', '1', '58', '2017-08-19 20:46:16', '2017-08-19 20:46:16');
+INSERT INTO rights VALUES ('307', '1', '59', '2017-08-19 20:46:16', '2017-08-19 20:46:16');
+INSERT INTO rights VALUES ('308', '1', '60', '2017-08-19 20:46:16', '2017-08-19 20:46:16');
+INSERT INTO rights VALUES ('309', '1', '61', '2017-08-19 20:46:16', '2017-08-19 20:46:16');
+INSERT INTO rights VALUES ('310', '1', '62', '2017-08-19 20:46:16', '2017-08-19 20:46:16');
+INSERT INTO rights VALUES ('311', '1', '63', '2017-08-19 22:10:24', '2017-08-19 22:10:24');
+INSERT INTO rights VALUES ('312', '1', '64', '2017-08-19 22:10:24', '2017-08-19 22:10:24');
+INSERT INTO rights VALUES ('313', '1', '65', '2017-08-19 22:10:24', '2017-08-19 22:10:24');
+INSERT INTO rights VALUES ('314', '1', '66', '2017-08-19 22:10:24', '2017-08-19 22:10:24');
+INSERT INTO rights VALUES ('315', '1', '67', '2017-08-19 22:10:24', '2017-08-19 22:10:24');
+INSERT INTO rights VALUES ('316', '1', '68', '2017-08-19 22:10:24', '2017-08-19 22:10:24');
+INSERT INTO rights VALUES ('317', '1', '69', '2017-08-19 22:10:24', '2017-08-19 22:10:24');
+INSERT INTO rights VALUES ('318', '1', '70', '2017-08-19 22:10:24', '2017-08-19 22:10:24');
+INSERT INTO rights VALUES ('319', '1', '71', '2017-08-19 22:15:15', '2017-08-19 22:15:15');
+INSERT INTO rights VALUES ('320', '1', '72', '2017-08-19 22:15:15', '2017-08-19 22:15:15');
+INSERT INTO rights VALUES ('321', '1', '73', '2017-08-19 22:15:15', '2017-08-19 22:15:15');
+INSERT INTO rights VALUES ('322', '1', '74', '2017-08-19 22:15:15', '2017-08-19 22:15:15');
+
 
 -- ----------------------------
 -- Table structure for `roles`
@@ -248,7 +259,7 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO users VALUES ('6', 'TRINATA', 'reza.wikrama3@gmail.com', '$2y$10$dD6TjxbMYcfKIyBGXkvyV.jXZwtST0i5JcZAi0QEUu1mtfiUdbePG', 'AOUOrsaslxxjnc2JIw8AHKKidXkawhSWBVcWaRXzhn5zWm43yFPPhft5w2l3', '2016-03-22 13:07:29', '2016-03-24 16:16:08', '1', 'pria', '', '0', 'superadmin');
+INSERT INTO users VALUES ('6', 'TRINATA', 'superadmin@gmail.com', '$2y$10$.Hu3gSD6sdEtvqX7uN7w7eJXo6e.SFZwvppK.8RtdlqjIQ1f2bwGy', 'AclreK3rt4UOpBPwP8j9DPnW6abfPL5OpqsOj9JOA0G475QqTtjYIUIUVX2T', '2016-03-22 13:07:29', '2016-03-24 16:16:08', '1', 'pria', '', '0', 'superadmin');
 INSERT INTO users VALUES ('7', 'admin', 'ultramantigar@gmail.com', '$2y$10$gPafGNqLHVtVtPgO7/KqjeqGwLhBr/ZSe1G3YnZWp80Yo8GcpdYRG', 'AsrSmU1PESaINwJGI1pH1KQgrYetdGz0QyQO5y02Ix0rfOGVIIOvh1ugrwgD', '2016-03-22 13:08:00', '2016-03-23 09:51:11', '4', 'pria', '', '0', 'admin');
 
 -- ----------------------------

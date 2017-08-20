@@ -1,18 +1,15 @@
 @include('backend.layouts.header')
 
-    <div id="app_navigation">
-        <link type="text/css" href="{{ asset(null) }}backend/css/style.css" rel="stylesheet"/>
-        <script type="text/javascript" src="{{ asset(null) }}backend/js/script.js"></script>
-        <div id="slick-navigation">
-            @include('backend.layouts.menu')
-            <div style="height: 40px;background-color:#fff;width:100%">&nbsp;</div>
+@stack('style-css')
+
+</head>
+<body class="pace-done px-navbar-fixed">
+
+@include('backend.layouts.sidebar')
+@include('backend.layouts.navbar')
+
             @yield('content')
-            <div id="app_footer">
-                <div class="logo">Copyright &COPY; 2016 TRINATA</div>
-                <div class="clear"></div>
-            </div>
-        </div>
-        </body>
+
 @if(Session::has('infos'))
 <script type="text/javascript">
     swal({
@@ -23,5 +20,6 @@
 </script>
 
 @endif
-@yield('script')
+@include('backend.layouts.footer')
+@stack('script-js')
 </html>

@@ -30,5 +30,12 @@ class MenuSeed extends Seeder
     public function run()
     {
         //
+        \trinata::addMenu([ 
+                'parent_id'     => 'konten',
+                'title'         => 'Social Media',
+                'controller'    => 'SocialController',
+                'slug'          => 'social',
+                'order'         => 3,
+            ],['index','create','update','delete']);
     }
 }

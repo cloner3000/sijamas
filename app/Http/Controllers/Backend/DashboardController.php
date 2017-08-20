@@ -18,67 +18,20 @@ class DashboardController extends TrinataController
 	}
 
 
-	public function range($type)
-	{
-		$dates = [];
-	    
-	    $data = [];
-
-	    for($a=-4;$a<=0;$a++)
-	    {
-	    	$minus = Carbon::now()->addDays($a);
-
-	    	$dates[] = $minus->toFormattedDateString();
-
-	    	$count = UserActivity::whereRaw('DATE(created_at) = "'.$minus->toDateString().'"')->count();
-
-	    	$data[] = $count;
-	    }
-
-	    if($type == 'dates')
-	    {
-	    	return $dates;
-	    }elseif($type == 'data'){
-	    	return $data;
-	    }
-	    	
-	}
-
-	public function chart()
-	{
-
-		
-
-		$charts = [
-
-		    'chart' => ['type' => 'column'],
-		    'title' => ['text' => 'User Activities'],
-		    'xAxis' => [
-		        'categories' => $this->range('dates'),
-		    ],
-		    'credits' => [
-		    	'enabled'	=> false,
-		    ],
-		    'yAxis' => [
-		        'title' => [
-		            'text' => 'Total'
-		        ]
-		    ],
-		    'series' => [
-		        [
-		            'name' => 'User Activities',
-		            'data' => $this->range('data'),
-		        ],
-		    ]
-		];
-
-		return $charts;
-	}
-
 	public function getIndex()
 	{	
-		$charts = $this->chart();
-		$last = UserActivity::orderBy('created_at','desc')->limit(5)->get();
-	   	return view('backend.dashboard' ,compact('charts','last'));
+	   	return view('backend.dashboard.index');
+	}
+
+	public function getUsulan()
+	{	
+
+	   	return view('backend.dashboard.usulan');
+	}
+
+	public function getUpdate()
+	{
+		
+	   	return view('backend.dashboard.update');
 	}
 }

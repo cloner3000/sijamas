@@ -1,49 +1,103 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-<meta name="author" content="TRINATA"/>
-<meta name="keywords" content="WCMS Version 1.0.0"/>
-<meta name="description" content="WCMS Version 1.0.0 Laravel 5.2"/>
-<meta name="_token" id = 'csrf-token' content="{{ csrf_token() }}"/>
-<link type="text/css" href="{{ asset(null) }}backend/css/reset.css" rel="stylesheet" media="screen,projection"/>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <title>BSN CPanel</title>
 
-<link type="text/css" href="{{ asset(null) }}backend/css/function.css" rel="stylesheet" media="screen,projection"/>
-<link type="text/css" href="{{ asset(null) }}backend/css/login/style.css" rel="stylesheet"/>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
+  <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-<link rel="stylesheet" type="text/css" href="{{ asset(null) }}backend/sweetalert/dist/sweetalert.css">
-<script type="text/javascript" src="{{ asset(null) }}backend/js/1.8.0.js"></script>
-<script src="{{ asset(null) }}backend/sweetalert/dist/sweetalert.min.js"></script>
+  <link href="{{ asset(null) }}backend/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" class="px-demo-stylesheet-bs">
+  <link href="{{ asset(null) }}backend/assets/css/admin.min.css" rel="stylesheet" type="text/css" class="px-demo-stylesheet-core">
+  <link href="{{ asset(null) }}backend/assets/css/widgets.min.css" rel="stylesheet" type="text/css" class="px-demo-stylesheet-widgets">
 
+  <link href="{{ asset(null) }}backend/assets/css/themes/white.min.css" rel="stylesheet" type="text/css" class="px-demo-stylesheet-theme">
 
-<title>{{ $title }}</title>
+  <link href="{{ asset(null) }}backend/assets/demo/demo.css" rel="stylesheet" type="text/css">
+  <link href="{{ asset(null) }}backend/assets/demo/demo.css" rel="stylesheet" type="text/css">
+  <link href="{{ asset(null) }}backend/assets/css/sweetalert.css" rel="stylesheet" type="text/css">
+  <link href="{{ asset(null) }}backend/assets/css/style.css" rel="stylesheet" type="text/css">
+  <link href="{{ asset(null) }}backend/assets/css/animate.css" rel="stylesheet" type="text/css">
+
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/holder/2.9.0/holder.js"></script>
+
+  <!-- Pace.js -->
+  <script src="{{ asset(null) }}backend/assets/pace/pace.min.js"></script>
+
+  <script src="{{ asset(null) }}backend/assets/demo/demo.js"></script>
+  <script src="{{ asset(null) }}backend/assets/js/sweetalert.min.js"></script>
+
+  <!-- Custom styling -->
+  <style>
+    .page-header-form .input-group-addon,
+    .page-header-form .form-control {
+      background: rgba(0,0,0,.05);
+    }
+  </style>
+  <!-- / Custom styling -->
+
+    @stack('style-css')
+
 </head>
 <body>
-<div id="body-wrapper">
-    <div id="wrapper-content">
-        <div id="wg-user-admin-trinata-login" class="normal" style="margin-top:10%;">
-            <div class="wg-header header-left">
-                <div class="wg-header header-right">
-                    <div class="wg-header header-center">
-                        <div id="inner-header-right">
-                            <div class="logo-client">
-                                &nbsp;
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             @yield('content')
-            <div class="wg-footer">
-                <div class="wording">TRINATA Content Management System</div>
-            </div>
-            <div class="break10"></div>
-            <div class="logo-trinata">Copyright &copy; 2016</div>
-        </div>
-    </div>
-</div>
-</div>
+
+  <!-- ==============================================================================
+  |
+  |  SCRIPTS
+  |
+  =============================================================================== -->
+
+  <!-- jQuery -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+  <script src="{{ asset(null) }}assets/js/bootstrap.min.js"></script>
+  <script src="{{ asset(null) }}assets/js/admin.min.js"></script>
+
+  <script type="text/javascript">
+    // -------------------------------------------------------------------------
+    // Initialize DEMO
+
+    $(function() {
+      var file = String(document.location).split('/').pop();
+
+      // Remove unnecessary file parts
+      file = file.replace(/(\.html).*/i, '$1');
+
+      if (!/.html$/i.test(file)) {
+        file = 'index.html';
+      }
+
+      // Activate current nav item
+      $('body > .px-nav')
+        .find('.px-nav-item > a[href="' + file + '"]')
+        .parent()
+        .addClass('active');
+
+      $('body > .px-nav').pxNav();
+      $('body > .px-footer').pxFooter();
+
+      $('#navbar-notifications').perfectScrollbar();
+      $('#navbar-messages').perfectScrollbar();
+    });
+  </script>
+
+  <script>
+
+
+    $(function() {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+    $(function() {
+      $('#support-tickets').perfectScrollbar();
+      $('#comments').perfectScrollbar();
+      $('#threads').perfectScrollbar();
+    });
+  </script>
+    @stack('script-js')
 </body>
-@yield('script')
 </html>

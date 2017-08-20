@@ -14,6 +14,11 @@
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
+Route::get('profile', 'ProfileController@index');
+Route::get('usulan-kerjasama', 'UsulanController@index');
+Route::get('kategori-kerjasama', 'KategoriController@index');
+Route::get('kategori-kerjasama/read/{id?}', 'KategoriController@read');
+Route::get('kontak-kami', 'KontakController@index');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
