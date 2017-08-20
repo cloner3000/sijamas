@@ -335,4 +335,47 @@ class Trinata
         }
     }
 
+    public function globalUpload($request, $tmpname=false, $customPath=false, $sourceServer=false, $typefile=false, $dimension=false)
+	{
+		ini_set('memory_limit', '-1');
+		
+		if ($customPath) $folderPath = public_path('contents'). '/'.$customPath."/" ;
+		else $folderPath = public_path('contents/file'). "/" ;
+		
+		if (!\File::isDirectory($folderPath)) \File::makeDirectory($folderPath, 0775, true);
+		
+		if ($sourceServer) {
+			$tmpPath =  public_path() . str_replace("%20", " ", $request->image);
+			$ext = pathinfo($tmpPath, PATHINFO_EXTENSION);
+			$filename = ($tmpname) ? $tmpname . '.' .$ext : 'ori-'.rand() . ".".$ext ;
+			\File::copy($tmpPath, $folderPath . "/" . 'ori-'.rand());
+		} else {
+			
+			if ($typefile =='image') {
+				
+				$thumbnail = $folderPath . 'preview/';
+				if (!\File::isDirectory($thumbnail)) \File::makeDirectory($thumbnail, 0775, true);
+				$image = $request->file($tmpname);
+				$filename = rand(1,1000) . '-'. str_replace(' ', '_', $image->getClientOriginalName());
+				
+				if (is_array($dimension)) {
+					
+					\Image::make($image)->resize($dimension['width'], $dimension['height'])->save($thumbnail. '/' .$filename);
+
+				} else {
+					\Image::make($image)->resize(300, 300)->save($thumbnail. '/' .$filename);
+				}
+				
+			} else {
+				$file = $request->file($tmpname);
+				$filename = rand(1,1000) . '-'. str_replace(' ', '_', $file->getClientOriginalName());
+				$saveFile = $request->file($tmpname)->move($folderPath, $filename);
+			}
+			
+		}
+		
+		return array('filename'=>$filename);
+		
+	}
+
 }
