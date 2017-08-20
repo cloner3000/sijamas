@@ -23,12 +23,11 @@
 
                       <div class="form-group">
                         <label>Image File</label>
-                        <div>
-                          <a class="Wbutton" onclick = "return browseElfinder('image'  , 'image_tempel' , 'elfinder_browse1' , 'cancelBrowse')" >Browse</a>
-                          Suggestion Image Size (max. 2MB)
-                        </div>
-                        <input type = 'hidden' name = 'brief' id = 'image' />
-                        
+                          <div>
+                            <a class="Wbutton" onclick = "return browseElfinder('image'  , 'image_tempel' , 'elfinder_browse1' , 'cancelBrowse')" >Browse</a>
+                            Suggestion Image Size (max. 2MB)
+                          </div>
+                          <input type = 'hidden' name = 'brief' id = 'image' />
                       </div>
                       
                       <div id="image_tempel" style = 'margin-top:30px;'>
