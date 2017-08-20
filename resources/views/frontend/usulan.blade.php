@@ -57,7 +57,7 @@
                            							@foreach($data['type'] as $type)
 													<div class="radio">
 														<label>
-																<input type="radio" name="proposed_cooperation_type_id">
+																<input type="radio" name="proposed_cooperation_type_id" value="{{$type->id}}">
 																{{$type->name}}
 														</label>
 													</div>
@@ -69,7 +69,7 @@
 											<label>Draft file kerjasama*</label>
 											<input type="file" id="file-input" name="filename">
 											<input type="text" class="form-control inputFile">
-											<div class="browse-img"><img src="images/material/browse.png"></div>
+											<div class="browse-img"><img src="frontend/images/material/browse.png"></div>
 											<p class="help-block">Jenis file yang di upload: .pdf, .doc, .docs</p>
 										</div><!--end.form-group-->
 										<div class="form-group">
