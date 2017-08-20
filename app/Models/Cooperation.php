@@ -20,32 +20,32 @@ class Cooperation extends Model
 
 	public function cooperationtype()
     {
-		return $this->belongsTo(CooperationType::class, 'cooperation_type_id');
+		return $this->belongsTo(new CooperationType, 'cooperation_type_id');
     }
 	
 	public function province()
     {
-    	return $this->belongsTo(CooperationProvince::class , 'cooperation_province_id');
+    	return $this->belongsTo(new CooperationProvince , 'cooperation_province_id');
     }
 
     public function city()
     {
-        return $this->belongsTo(CooperationCity::class , 'cooperation_city_id');
+        return $this->belongsTo(new CooperationCity , 'cooperation_city_id');
     }
 	
 	public function cooperationimplementation()
     {
-        return $this->hasMany(CooperationImplementation::class , 'cooperation_id');
+        return $this->hasMany(new CooperationImplementation , 'cooperation_id');
     }
 	
 	public function cooperationfocus()
     {
-        return $this->belongsTo(CooperationFocus::class , 'cooperation_focus_id');
+        return $this->belongsTo(new CooperationFocus , 'cooperation_focus_id');
     }
 	
 	public function cooperationfile()
     {
-        return $this->hasMany(CooperationFile::class , 'cooperation_id');
+        return $this->hasMany(new CooperationFile , 'cooperation_id');
     }
 		
 	public function user()

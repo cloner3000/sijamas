@@ -1,0 +1,81 @@
+
+cooperations
+	- id 						| inc
+	- slug 						| string
+	- cooperation_number 		| string
+	- cooperation_category 		| enum (dn,ln)
+	- cooperation_status 		| enum (baru, lanjutan)
+	- cooperation_type_id		| int
+	- about						| text
+	- partners					| text
+	- address					| text
+	- scope						| text
+	- cooperation_provice_id	| int
+	- cooperation_city_id		| int
+	- cooperation_signed		| date
+	- cooperation_ended			| date
+	- cooperation_focus_id		| int
+	- approval					| enum (draft, approve, rejected, delete)
+	- owner_id					| int
+
+cooperation_provinces
+	- id 						| inc
+	- name						| string
+
+cooperation_types
+	- id 						| inc
+	- name						| string
+
+cooperation_city
+	- id 						| inc
+	- name						| string
+	- cooperation_province_id	| int
+
+cooperation_files
+	- id 						| inc
+	- cooperation_id 			| int
+	- filename					| string
+	- type 						| enum (document, photo)
+
+cooperation_focuses
+	- id 						| inc
+	- name						| string
+
+cooperation_implementations
+	- id 						| inc
+	- cooperation_id 			| int
+	- activity_type 			| text
+	- description 				| date
+
+news_contents
+	- id 						| inc
+	- title 					| string
+	- brief 					| string
+	- description				| text
+	- type 						| enum (news, profile)
+	- status 					| string
+	- owner_id 					| int 
+
+news_content_repo
+	- id 						| inc
+	- title 					| string
+	- filename 					| string
+	- news_content_id			| int
+
+proposed_cooperations
+	- id 						| inc
+	- owner_id					| int
+	- name						| string
+	- institute					| string
+	- position					| string
+	- address					| text
+	- phone						| string
+	- email						| string
+	- message					| text
+	- filename					| string
+	- proposed_cooperation_type_id		| int
+	- approval					| enum (draft, approved, rejected, deleted)
+
+proposed_cooperation_types
+	- id 						| inc
+	- name						| string

@@ -21,7 +21,7 @@ class NewsContent extends Model
 	
 	public function repo()
     {
-    	return $this->hasMany(NewsContentRepo::class , 'news_content_id');
+    	return $this->hasMany(new NewsContentRepo , 'news_content_id');
     }
 	
 }

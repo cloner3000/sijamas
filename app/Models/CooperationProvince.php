@@ -21,7 +21,7 @@ class CooperationProvince extends Model
 	
 	public function city()
     {
-        return $this->hasMany(CooperationFile::class , 'cooperation_province_id');
+        return $this->hasMany(new CooperationFile , 'cooperation_province_id');
     }
 
 }
