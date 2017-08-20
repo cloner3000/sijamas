@@ -46,6 +46,7 @@
 
 <script src="{{ asset(null) }}frontend/js/js_lib.js"></script>
 <script src="{{ asset(null) }}frontend/js/js_run.js"></script>
+<script src="{{ asset(null) }}frontend/js/apps.js"></script>
 </head>
 <body>
 <!--[if lt IE 7]>
