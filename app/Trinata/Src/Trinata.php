@@ -52,8 +52,9 @@ class Trinata
 	{
 		if($this->right('create') == 'true')
 		{
+
 			$url = urlBackendAction('create/'.$params);
-			return '<a href = "'.$url.'" class = "btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add New</a>';
+			return '<a href = "'.$url.'" class = "btn btn-info btn-3d"><i class="fa fa-plus"></i> Tambah</a>';
 		}
 	}
 
@@ -68,6 +69,31 @@ class Trinata
 			if($status == true)
 			{
 				return $active;
+			}else{
+				return $notActive;
+			}
+		}
+	}
+
+	public function buttonApprove($params,$status = true)
+	{
+		if($this->right('publish') == 'true')
+		{
+			$url = urlBackendAction('publish/'.$params);
+			// $active =  '<a onclick = "return confirm(\'are you sure want to un publish this data ?\')" href = "'.$url.'" class = "btn btn-default btn-sm"><i class="fa fa-eye-open"></i></a>';
+			$notActive =  '<a onclick = "return confirm(\'are you sure want to  publish this data ?\')" href = "'.$url.'" class = "btn btn-default btn-sm"><i class="fa fa-eye-close"></i></a>';
+			
+			$active = '<label for="switcher-rounded" class="switcher switcher-primary">&nbsp;
+              <input type="checkbox" id="switcher-rounded" class="editData">
+              <div class="switcher-indicator">
+                <div class="switcher-yes">Yes</div>
+                <div class="switcher-no">No</div>
+              </div>
+            </label>';
+
+			if($status == true)
+			{
+				return $html;
 			}else{
 				return $notActive;
 			}
@@ -285,6 +311,71 @@ class Trinata
 	public function deleteMenu($slug)
 	{
 		$model = injectModel('Menu')->whereSlug($slug)->first()->delete();
+	}
+
+	public function handleUpload($request,$model)
+    {
+       $image = $request->file('image');
+
+        if(!empty($image))
+        {
+             if(!empty($model->image))
+                {
+                    @unlink(public_path('contents/'.$model->image));
+                }
+
+            $imageName = randomImage().'.'.$image->getClientOriginalExtension();
+
+            \Image::make($image)->save(public_path('contents/'.$imageName));
+
+            return $imageName;
+        }else{
+
+            return $model->image;
+        }
+    }
+
+    public function globalUpload($request, $tmpname=false, $customPath=false, $sourceServer=false, $typefile=false, $dimension=false)
+	{
+		ini_set('memory_limit', '-1');
+		
+		if ($customPath) $folderPath = public_path('contents'). '/'.$customPath."/" ;
+		else $folderPath = public_path('contents/file'). "/" ;
+		
+		if (!\File::isDirectory($folderPath)) \File::makeDirectory($folderPath, 0775, true);
+		
+		if ($sourceServer) {
+			$tmpPath =  public_path() . str_replace("%20", " ", $request->image);
+			$ext = pathinfo($tmpPath, PATHINFO_EXTENSION);
+			$filename = ($tmpname) ? $tmpname . '.' .$ext : 'ori-'.rand() . ".".$ext ;
+			\File::copy($tmpPath, $folderPath . "/" . 'ori-'.rand());
+		} else {
+			
+			if ($typefile =='image') {
+				
+				$thumbnail = $folderPath . 'preview/';
+				if (!\File::isDirectory($thumbnail)) \File::makeDirectory($thumbnail, 0775, true);
+				$image = $request->file($tmpname);
+				$filename = rand(1,1000) . '-'. str_replace(' ', '_', $image->getClientOriginalName());
+				
+				if (is_array($dimension)) {
+					
+					\Image::make($image)->resize($dimension['width'], $dimension['height'])->save($thumbnail. '/' .$filename);
+
+				} else {
+					\Image::make($image)->resize(300, 300)->save($thumbnail. '/' .$filename);
+				}
+				
+			} else {
+				$file = $request->file($tmpname);
+				$filename = rand(1,1000) . '-'. str_replace(' ', '_', $file->getClientOriginalName());
+				$saveFile = $request->file($tmpname)->move($folderPath, $filename);
+			}
+			
+		}
+		
+		return array('filename'=>$filename);
+		
 	}
 
 }

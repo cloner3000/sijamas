@@ -18,63 +18,58 @@
 					<div class="left-content">
 						<div class="form-content">
 							<h3>Form Usulan Kerjasama</h3>
+							
+							{!! Form::model($data['model'],['files' => true, 'class'=>'panel-body p-y-1']) !!} 
 							<div class="row">
 								<div class=" col-lg-8 col-md-8 col-md-offset-1 col-lg-offset-1">
 									<div class="inner-form">
 										<div class="form-group label-floating">
 											<label class="control-label">Nama Pengusul*</label>
-											<input type="text" class="form-control">
+											{!! Form::text('name' , null ,['class' => 'form-control']) !!}
 										</div><!--end.form-group-->
 										<div class="form-group label-floating">
 											<label class="control-label">Instansi*</label>
-											<input type="text" class="form-control">
+											{!! Form::text('institute' , null ,['class' => 'form-control']) !!}
 										</div><!--end.form-group-->
 										<div class="form-group label-floating">
 											<label class="control-label">Jabatan*</label>
-											<input type="text" class="form-control">
+											{!! Form::text('position' , null ,['class' => 'form-control']) !!}
 										</div><!--end.form-group-->
 										<div class="form-group label-floating">
 											<label class="control-label">Alamat*</label>
-											<textarea class="form-control"  rows="5"></textarea>
+											{!! Form::textarea('address' , null ,['class' => 'form-control']) !!}
 										</div><!--end.form-group-->
 										<div class="form-group label-floating">
 											<label class="control-label">Telepon*</label>
-											<input type="text" class="form-control">
+											{!! Form::number('phone' , null ,['class' => 'form-control']) !!}
 										</div><!--end.form-group-->
 										<div class="form-group label-floating">
 											<label class="control-label">Email*</label>
-											<input type="email" class="form-control">
+											{!! Form::email('email' , null ,['class' => 'form-control']) !!}
 										</div><!--end.form-group-->
 										<div class="form-group label-floating">
 											<label class="control-label">Isi Pesan*</label>
-											<textarea class="form-control"  rows="5"></textarea>
+											{!! Form::textarea('message' , null ,['class' => 'form-control']) !!}
 										</div><!--end.form-group-->
 										<div class="form-group">
 											<label>Jenis naskah kerjasama yang diusulkan*</label>
-											<div class="radio">
-												<label>
-													<input type="radio" name="optionsRadios">
-													Nota Kesepahaman (Payung Kerjasama)
-												</label>
-											</div>
-											<div class="radio">
-												<label>
-													<input type="radio" name="optionsRadios">
-													Perjanjian Kerjasama
-												</label>
-											</div>
-											<div class="radio">
-												<label>
-													<input type="radio" name="optionsRadios">
-													Lainnya
-												</label>
-											</div>
+												@if($data['type'])
+                           							@foreach($data['type'] as $type)
+													<div class="radio">
+														<label>
+																<input type="radio" name="proposed_cooperation_type_id" value="{{$type->id}}">
+																{{$type->name}}
+														</label>
+													</div>
+													@endforeach
+												@endif
+											
 										</div><!--end.form-group-->
 										<div class="form-group">
 											<label>Draft file kerjasama*</label>
-											<input type="file" id="file-input" name="file">
+											<input type="file" id="file-input" name="filename">
 											<input type="text" class="form-control inputFile">
-											<div class="browse-img"><img src="images/material/browse.png"></div>
+											<div class="browse-img"><img src="frontend/images/material/browse.png"></div>
 											<p class="help-block">Jenis file yang di upload: .pdf, .doc, .docs</p>
 										</div><!--end.form-group-->
 										<div class="form-group">
@@ -87,14 +82,16 @@
 			                              <button type="submit" class="btn btn-default">Reset</button>
 			                              <button type="submit" class="btn btn-danger">Batal</button>
 
-			                              <button type="submit" class="btn btn-primary right">Kirim</button>
+			                              <button type="submit" class="btn btn-primary right">{{ !empty($model->id) ? 'Update' : 'Save' }}</button>
 			                            </div>
+
 			                            <div class="form-group">
 			                            	<span class="red-help">*Wajib diisi</span>
 			                            </div>
 									</div><!--end.inner-form-->
 								</div>
 							</div><!--end.row-->
+							{!! Form::close() !!}
 						</div>
 					</div>
 				</div><!--end. col-lg-9 col-md-9-->

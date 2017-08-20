@@ -20,6 +20,8 @@ Route::get('kategori-kerjasama', 'KategoriController@index');
 Route::get('kategori-kerjasama/read/{id?}', 'KategoriController@read');
 Route::get('kontak-kami', 'KontakController@index');
 
+Route::controller('usulan-kerjasama','UsulanController');
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

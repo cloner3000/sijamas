@@ -1,5 +1,11 @@
 <?php namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Models\ProposedCooperation;
+use App\Models\ProposedCooperationType;
+use Illuminate\Http\Request;
+use trinata;
+
 class UsulanController extends Controller {
 
 	/*
@@ -18,9 +24,10 @@ class UsulanController extends Controller {
 	 *
 	 * @return void
 	 */
-	public function __construct()
+	public function __construct(ProposedCooperation $proposed)
 	{
 		$this->middleware('auth');
+		$this->model = $proposed;
 	}
 
 	/**
@@ -30,7 +37,27 @@ class UsulanController extends Controller {
 	 */
 	public function index()
 	{
-		return view('frontend.usulan');
+		// dd('aaa');
+
+		$data = ['model' => $this->model, 'type'=> ProposedCooperationType::get()];
+
+		// dd($data);
+		return view('frontend.usulan', compact('data'));
 	}
+
+	public function postIndex(Request $request)
+	{
+		$inputs = $request->all();
+		$inputs['owner_id'] = '1';
+		
+		// dd($inputs);
+		$filename = trinata::globalUpload($request, 'filename');
+		// dd($filename);
+		$inputs['filename'] = $filename['filename'];
+		$this->model->create($inputs);
+		return redirect('usulan-kerjasama')->withSuccess('data has been saved');
+	}
+
+
 
 }
