@@ -1,14 +1,13 @@
 @extends('backend.layouts.layout')
 @section('content')
 
-<div id="app_header_shadowing"></div>
-<div id="app_content">
-    <div id="content_header">
-        <h3 class="user"> Menu</h3>
-    </div>
-        <div id="content_body">
-            
-            <div class = 'row'>
+  <div class="px-content">
+        <div class="panel panel-info panel-dark">
+          <div class="panel-heading">
+            <div class="panel-title"><i class="fa fa-plus"></i> {{ trinata::titleActionForm() }}</div>
+          </div>
+          <div class="panel-body">
+          <div class = 'row p-a-3'>
 
                 <div class = 'col-md-6'>
 
@@ -48,7 +47,7 @@
                 </div>
 
             </div>
-
-        </div>
+      </div>
     </div>
+</div>
 @endsection
