@@ -29,6 +29,8 @@ class MenuSeed extends Seeder
          
     public function run()
     {
+        //
+        
         \trinata::addMenu([ 
                 'parent_id'     => null,
                 'title'         => 'Referensi Kerjasama',
@@ -103,5 +105,63 @@ class MenuSeed extends Seeder
                 'order'         => '2'
                 ],['index','create','update','delete']
             );
+
+
+
+        \trinata::addMenu([ 
+                'parent_id'     => null,
+                'title'         => 'Kategory Kerjasama',
+                'controller'    => 'KategoryController',
+                'slug'          => 'kategori-kerjasama',
+                'order'         => 2,
+            ],['index','create','update','delete']);
+
+        \trinata::addMenu([ 
+                'parent_id'     => null,
+                'title'         => 'Usulan Kerjasama',
+                'controller'    => 'UsulanController',
+                'slug'          => 'usulan-kerjasama',
+                'order'         => 3,
+            ],['index','create','update','delete']);
+
+        \trinata::addMenu([ 
+                'parent_id'     => null,
+                'title'         => 'Laporan',
+                'controller'    => 'LaporanController',
+                'slug'          => 'laporan-kerjasama',
+                'order'         => 4,
+            ],['index','create','update','delete']);
+
+        \trinata::addMenu([ 
+                'parent_id'     => null,
+                'title'         => 'Konten Website',
+                'controller'    => 'KontenController',
+                'slug'          => 'konten',
+                'order'         => 5,
+            ],['index','create','update','delete']);
+
+
+        \trinata::addMenu([ 
+                'parent_id'     => 'konten',
+                'title'         => 'Slideshow',
+                'controller'    => 'SlideshowController',
+                'slug'          => 'slideshow',
+                'order'         => 1,
+            ],['index','create','update','delete']);
+        \trinata::addMenu([ 
+                'parent_id'     => 'konten',
+                'title'         => 'Page',
+                'controller'    => 'PageController',
+                'slug'          => 'page',
+                'order'         => 2,
+            ],['index','create','update','delete']);
+            
+        \trinata::addMenu([ 
+                'parent_id'     => 'konten',
+                'title'         => 'Social Media',
+                'controller'    => 'SocialController',
+                'slug'          => 'social',
+                'order'         => 3,
+            ],['index','create','update','delete']);
     }
 }
