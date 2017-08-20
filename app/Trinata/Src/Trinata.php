@@ -52,8 +52,9 @@ class Trinata
 	{
 		if($this->right('create') == 'true')
 		{
+
 			$url = urlBackendAction('create/'.$params);
-			return '<a href = "'.$url.'" class = "btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add New</a>';
+			return '<a href = "'.$url.'" class = "btn btn-info btn-3d"><i class="fa fa-plus"></i> Tambah</a>';
 		}
 	}
 
@@ -68,6 +69,31 @@ class Trinata
 			if($status == true)
 			{
 				return $active;
+			}else{
+				return $notActive;
+			}
+		}
+	}
+
+	public function buttonApprove($params,$status = true)
+	{
+		if($this->right('publish') == 'true')
+		{
+			$url = urlBackendAction('publish/'.$params);
+			// $active =  '<a onclick = "return confirm(\'are you sure want to un publish this data ?\')" href = "'.$url.'" class = "btn btn-default btn-sm"><i class="fa fa-eye-open"></i></a>';
+			$notActive =  '<a onclick = "return confirm(\'are you sure want to  publish this data ?\')" href = "'.$url.'" class = "btn btn-default btn-sm"><i class="fa fa-eye-close"></i></a>';
+			
+			$active = '<label for="switcher-rounded" class="switcher switcher-primary">&nbsp;
+              <input type="checkbox" id="switcher-rounded" class="editData">
+              <div class="switcher-indicator">
+                <div class="switcher-yes">Yes</div>
+                <div class="switcher-no">No</div>
+              </div>
+            </label>';
+
+			if($status == true)
+			{
+				return $html;
 			}else{
 				return $notActive;
 			}
@@ -286,5 +312,27 @@ class Trinata
 	{
 		$model = injectModel('Menu')->whereSlug($slug)->first()->delete();
 	}
+
+	public function handleUpload($request,$model)
+    {
+       $image = $request->file('image');
+
+        if(!empty($image))
+        {
+             if(!empty($model->image))
+                {
+                    @unlink(public_path('contents/'.$model->image));
+                }
+
+            $imageName = randomImage().'.'.$image->getClientOriginalExtension();
+
+            \Image::make($image)->save(public_path('contents/'.$imageName));
+
+            return $imageName;
+        }else{
+
+            return $model->image;
+        }
+    }
 
 }
