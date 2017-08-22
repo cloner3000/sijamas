@@ -80,11 +80,10 @@
                   <table class="table table-striped table-bordered" id="datatables">
                               <thead>
                                 <tr>
-                                  <th>Judul</th>
-                                  <th>No Kerjasama</th>
-                                  <th>Kerjasama Kategori</th>
-                                  <th>Kerjasama Status</th>
-                                  <th>Status</th>
+                                  <th>Judul Kerjasama</th>
+                                  <th>Tanggal</th>
+                                  <th>Tipe</th>
+                                  <th>Deskripsi</th>
                                   <th>Aksi</th>
                                 </tr>
                               </thead>
@@ -112,11 +111,10 @@
         serverSide: true,
         ajax: '{{ urlBackendAction("data") }}',
         columns: [
-            { data: 'title', name: 'title' },
-            { data: 'cooperation_number', name: 'cooperation_number' },
-            { data: 'cooperation_category', name: 'cooperation_category' },
-            { data: 'cooperation_status', name: 'cooperation_status' },
-            { data: 'approval', name: 'approval' },
+            { data: 'title', name: 'cooperations.title' },
+            { data: 'implementation_date', name: 'implementation_date' },
+            { data: 'activity_type', name: 'activity_type' },
+            { data: 'description', name: 'description' },
             // { data: 'moderation', name: 'moderation' , searchable: false, "orderable":false},
             { data: 'action', name: 'action' , searchable: false, "orderable":false},
             

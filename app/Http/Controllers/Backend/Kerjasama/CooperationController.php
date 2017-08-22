@@ -30,7 +30,7 @@ class CooperationController extends TrinataController
     public function getData(Request $request)
     {
 
-    	$model = $this->model->select('id','title','cooperation_number','cooperation_category','cooperation_status');
+    	$model = $this->model->select('id','title','cooperation_number','cooperation_category','cooperation_status', 'approval');
         if ($request->approval) $model->where('approval', $request->approval);
         if ($request->cooperation_category) $model->where('cooperation_category', $request->cooperation_category);
         if ($request->start) $model->where('cooperation_signed', $request->start);
