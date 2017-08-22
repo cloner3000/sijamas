@@ -32,6 +32,7 @@
 
   <script src="{{ asset(null) }}backend/assets/demo/demo.js"></script>
   <script src="{{ asset(null) }}backend/assets/js/sweetalert.min.js"></script>
+  <script src="{{ asset(null) }}backend/assets/js/apps.js"></script>
   <!-- ==============================================================================
   |
   |  SCRIPTS

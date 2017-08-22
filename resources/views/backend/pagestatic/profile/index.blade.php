@@ -1,60 +1,61 @@
 @extends('backend.layouts.layout')
 @section('content')
 
-<div class="inner" style="min-height: 700px;">
+  <div class="px-content">
     <div class="row">
-        <div class="col-lg-12">
-            
-        </div>
-    </div>
-      <hr />
+      <div class="col-md-12 fadeIn animated">   
+        <div class="panel panel-info panel-dark">
+          <div class="panel-heading">
+            <span class="panel-title"><i class="panel-title-icon fa fa-list"></i>{{ trinata::titleActionForm() }}</span>
+          </div>   
+          
+          <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                       Data Company Profile
+                    </div>
+                    <div class="panel-body">
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                   Data Company Profile
-                </div>
-                <div class="panel-body">
+                        @include('backend.common.errors')
 
-                    @include('backend.common.errors')
+                         {!! Form::model($model,['files' => true]) !!} 
 
-                     {!! Form::model($model,['files' => true]) !!} 
-
-                    {!! Form::hidden('id' , null ,['class' => 'form-control']) !!}
+                        {!! Form::hidden('id' , null ,['class' => 'form-control']) !!}
+                        
+                           <div class="form-group">
+                            <label>Title</label>
+                            {!! Form::text('title' , null ,['class' => 'form-control']) !!}
+                          </div>
                            
-					
-                      
-					  
-					             <div class="form-group">
-                        <label>Title</label>
-                        {!! Form::text('title' , null ,['class' => 'form-control']) !!}
-                      </div>
-					             
-                      
-					             <div class="form-group">
-                        <label>Description</label>
-                        {!! Form::textarea('description' , null ,['class' => 'form-control','id'=>'description']) !!}
-                      </div>
-           					  
+                          
+                           <div class="form-group">
+                            <label>Description</label>
+                            {!! Form::textarea('description' , null ,['class' => 'form-control','id'=>'description']) !!}
+                          </div>
+                          
 
-                      <div class="form-group">
+                          <div class="form-group">
 
-                        <label>&nbsp;</label>
-                          <button type="submit" class="btn btn-primary">{{ !empty($model->id) ? 'Update' : 'Create' }}</button>
-                      </div>
+                            <label>&nbsp;</label>
+                              <button type="submit" class="btn btn-primary">{{ !empty($model->id) ? 'Update' : 'Create' }}</button>
+                          </div>
 
-                    {!! Form::hidden('id' , null ,['class' => 'form-control']) !!}
-                    {!! Form::close() !!}
+                        {!! Form::hidden('id' , null ,['class' => 'form-control']) !!}
+                        {!! Form::close() !!}
+                    </div>
+                    @if(!empty($model->id))
+                    
+            
+                    @endif
                 </div>
-                @if(!empty($model->id))
-                
-				
-                @endif
             </div>
+          </div>
         </div>
+      </div>
+
     </div>
-</div>
+  </div>
 
 @endsection
 
