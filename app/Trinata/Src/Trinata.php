@@ -81,19 +81,19 @@ class Trinata
 		{
 			$url = urlBackendAction('publish/'.$params);
 			// $active =  '<a onclick = "return confirm(\'are you sure want to un publish this data ?\')" href = "'.$url.'" class = "btn btn-default btn-sm"><i class="fa fa-eye-open"></i></a>';
-			$notActive =  '<a onclick = "return confirm(\'are you sure want to  publish this data ?\')" href = "'.$url.'" class = "btn btn-default btn-sm"><i class="fa fa-eye-close"></i></a>';
+			// $notActive =  '<a onclick = "return confirm(\'are you sure want to  publish this data ?\')" href = "'.$url.'" class = "btn btn-default btn-sm"><i class="fa fa-eye-close"></i></a>';
 			
 			$active = '<label for="switcher-rounded" class="switcher switcher-primary">&nbsp;
               <input type="checkbox" id="switcher-rounded" class="editData">
               <div class="switcher-indicator">
-                <div class="switcher-yes">Yes</div>
-                <div class="switcher-no">No</div>
+                <div class="switcher-yes" onclick = "return moderation()">Yes</div>
+                <div class="switcher-no" onclick = "return confirm(\'are you sure want to  unpublish this data ?\')">No</div>
               </div>
             </label>';
 
 			if($status == true)
 			{
-				return $html;
+				return $active;
 			}else{
 				return $notActive;
 			}
@@ -124,7 +124,7 @@ class Trinata
 			}elseif($button == 'publish'){
 				
 
-				$str .= $this->buttonPublish($id,$status).' ';
+				// $str .= $this->buttonPublish($id,$status).' ';
 			
 			}
 		}

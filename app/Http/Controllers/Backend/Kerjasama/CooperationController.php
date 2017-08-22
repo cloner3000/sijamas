@@ -31,7 +31,10 @@ class CooperationController extends TrinataController
     	$model = $this->model->select('id','title','cooperation_number','cooperation_category','cooperation_status');
 
     	$data = Table::of($model)
-    		
+    		->addColumn('moderation',function($model){
+                $status = true;
+                return trinata::buttonApprove($model->id, $status);
+            })
     		->addColumn('action',function($model){
                 $status = true;
     			return trinata::buttons($model->id , [] , $status);
@@ -44,6 +47,7 @@ class CooperationController extends TrinataController
 
     public function getIndex()
     {
+        // return view('backend.kategori.index');
     	return view('backend.kerjasama.daftar.index');
     }
 

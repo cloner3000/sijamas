@@ -50,6 +50,7 @@
   <script type="text/javascript">
     // -------------------------------------------------------------------------
     // Initialize DEMO
+    var basedomain = "{{ urlBackend('/') }}";
 
     $(function() {
       var file = String(document.location).split('/').pop();
