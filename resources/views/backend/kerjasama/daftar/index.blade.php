@@ -17,17 +17,13 @@
                 {!! trinata::buttonCreate() !!}
               </div>
               <div class="col-md-7 fadeIn animated">
-                <form action="#" method="post" class="panel-body p-y-1">
+                {!! Form::open(['class'=>'panel-body p-y-1', 'url'=>urlBackend('cooperation-category/index'), 'method'=>'get']) !!} 
+
                   <div class="form-group">
                     <div class="row">
                       <label class="col-sm-4 control-label">Status Data Kerjasama :</label>
                       <div class="col-sm-8">
-                        <select class="form-control select2-example" style="width: 100%" data-allow-clear="true">
-                          <option>Pilih Status Data</option>
-                          <option value="AK">Approved</option>
-                          <option value="AK">Reject</option>
-                          <option value="AK">Draft</option>
-                        </select>
+                        {!! Form::select('approval', [''=>'Pilih Status Kerjasama', 'draft'=>'Draft', 'approved'=>'Approved', 'rejected'=>'Rejected', 'deleted'=>'Deleted'], null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!} 
                       </div>
                     </div>
                   </div>
@@ -35,11 +31,9 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Kategory Kerjasama :</label>
                       <div class="col-sm-8">
-                        <select class="form-control select2-example" style="width: 100%" data-allow-clear="true">
-                          <option>Pilih Kategory Kerjasama</option>
-                          <option value="AK">Dalam Negeri</option>
-                          <option value="AK">Luar Negeri</option>
-                        </select>
+                        
+                        {!! Form::select('cooperation_category', ['' => 'Pilih Kategori Kerjasama','dn'=>'Dalam Negeri', 'ln'=>'Luar Negeri'], null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!} 
+                        
                       </div>
                     </div>
                   </div>
@@ -73,9 +67,11 @@
                   </div>
 
               <div class="col-md-12 fadeIn animated">
-                <a href="tambah-event-calendar.php" class="btn btn-primary btn-3d"> <i class="fa fa-eye"></i> Lihat</a> <a href="#" class="btn btn-danger btn-3d confirm"> <i class="fa fa-download"></i> Ekspor</a>
+               
+                <button type="submit" class="btn btn-primary btn-3d"><i class="fa fa-eye"></i>Lihat</button>
+                {{--<a href="#" class="btn btn-danger btn-3d confirm"> <i class="fa fa-download"></i> Ekspor</a>--}}
               </div>
-                </form>
+              {!! Form::close() !!}
               </div>
             </div>
             <div class="row">
@@ -84,38 +80,15 @@
                   <table class="table table-striped table-bordered" id="datatables">
                               <thead>
                                 <tr>
-                                  <th>No</th>
-                                  <th>Jenis Data</th>
                                   <th>Judul</th>
-                                  <th>Tanggal Upload</th>
+                                  <th>No Kerjasama</th>
+                                  <th>Kerjasama Kategori</th>
+                                  <th>Kerjasama Status</th>
                                   <th>Approved/Reject</th>
                                   <th>Aksi</th>
                                 </tr>
                               </thead>
-                              <!--<tbody>
-                                <tr class="odd gradeX">
-                                  <td>
-                                    1
-                                  </td>
-                                  <td>Kerjasama Luar Negeri</td>
-                                  <td class="center"><a href="{{ urlBackend('kategori-kerjasama/update')}}"> Mou BSN - BNSP; Perkuat Personel Indonesia Hadapi MEA</a></td>
-                                  <td class="center">12-02-2017</td>
-                                  <td class="center">
-                                    <label for="switcher-rounded" class="switcher switcher-primary">&nbsp;
-                                      <input type="checkbox" id="switcher-rounded" class="editData">
-                                      <div class="switcher-indicator">
-                                        <div class="switcher-yes">Yes</div>
-                                        <div class="switcher-no">No</div>
-                                      </div>
-                                    </label>   
-                                  </td>
-                                  <td class="center">
-                                    <a href="{{ urlBackend('kategori-kerjasama/update')}}" class="btn btn-success"><i class="fa fa-pencil"></i></a> 
-                                    <a href="#" class="btn btn-danger confirm"><i class="fa fa-trash"></i></a> 
-                                  </td>
-                                </tr>
-                                
-                              </tbody>-->
+                              
                             </table>
                 </div>
 
@@ -150,7 +123,9 @@
     });
 
     // $('#datatables').dataTable();    
-    $('#datepicker-range').datepicker();
+    $('#datepicker-range').datepicker({
+      format:'dd/mm/yy'
+    });
     $('#datatables_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
    
     $('a.confirm').on('click',function() {

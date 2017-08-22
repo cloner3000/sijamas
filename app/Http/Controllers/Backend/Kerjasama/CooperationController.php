@@ -13,6 +13,7 @@ use App\Models\CooperationType;
 use App\Models\CooperationFocus;
 use App\Models\CooperationProvince;
 use App\Models\CooperationCity;
+use App\Models\CooperationFile;
 use Table;
 use Image;
 use trinata;
@@ -26,9 +27,14 @@ class CooperationController extends TrinataController
     	$this->model = $model;
     }
 
-    public function getData()
+    public function getData(Request $request)
     {
+
     	$model = $this->model->select('id','title','cooperation_number','cooperation_category','cooperation_status');
+        if ($request->approval) $model->where('approval', $request->approval);
+        if ($request->cooperation_category) $model->where('cooperation_category', $request->cooperation_category);
+        if ($request->start) $model->where('cooperation_signed', $request->start);
+        if ($request->end) $model->where('cooperation_ended', $request->end);
 
     	$data = Table::of($model)
     		->addColumn('moderation',function($model){
@@ -45,10 +51,12 @@ class CooperationController extends TrinataController
     	return $data;
     }
 
-    public function getIndex()
+    public function getIndex(Request $request)
     {
         // return view('backend.kategori.index');
-    	return view('backend.kerjasama.daftar.index');
+        // dd($request->all());
+        $model = $this->model;
+    	return view('backend.kerjasama.daftar.index', compact('model'));
     }
 
     public function getCreate()
@@ -91,16 +99,33 @@ class CooperationController extends TrinataController
     {
         $model = $this->model;
 
-        // $this->validate($request,$model->rules());
+        $inputs = $request->except('file', 'image');
+        $inputsCoop = $request->all();
 
-        $inputs = $request->all();
-
-        // $inputs['image'] = $this->handleUpload($request,$model);
         $inputs['cooperation_signed'] = \Carbon\Carbon::createFromFormat('d/m/Y', $request->cooperation_signed)->format('Y-m-d');
         $inputs['cooperation_ended'] = \Carbon\Carbon::createFromFormat('d/m/Y', $request->cooperation_ended)->format('Y-m-d');
         $inputs['owner_id'] = \Auth::user()->id;
-        // dd($inputs);
-        $model->create($inputs); 
+        
+        
+        $lastId = $model->create($inputs); 
+        
+        if ($inputsCoop['file']) {
+            $repo = new CooperationFile;
+            $repo->cooperation_id = $lastId->id;
+            $repo->filename = trinata::globalUpload($request, 'file')['filename'];
+            $repo->type = 'document';
+
+            $repo->save();
+        } 
+
+        if ($inputsCoop['image']) {
+            $repo = new CooperationFile;
+            $repo->cooperation_id = $lastId->id;
+            $repo->filename = trinata::globalUpload($request, 'image')['filename'];
+            $repo->type = 'photo';
+
+            $repo->save();
+        } 
 
         return redirect(urlBackendAction('index'))->withSuccess('data has been saved');
     }
@@ -120,17 +145,45 @@ class CooperationController extends TrinataController
 
     public function postUpdate(Request $request,$id)
     {
-        $model = $this->model->findOrFail($id);
+        $model = $this->model->findOrFail($request->id);
 
-        // $this->validate($request,$model->rules());
 
         $inputs = $request->all();
-
-        // $inputs['image'] = $this->handleUpload($request,$model);
-        $inputs['cooperation_signed'] = \Carbon\Carbon::createFromFormat('d/m/Y', $request->cooperation_signed)->format('Y-m-d');
-        $inputs['cooperation_ended'] = \Carbon\Carbon::createFromFormat('d/m/Y', $request->cooperation_ended)->format('Y-m-d');
+        $model->title = $request->title;
+        $model->cooperation_number = $request->cooperation_number;
+        $model->cooperation_category = $request->cooperation_category;
+        $model->cooperation_status = $request->cooperation_status;
+        $model->cooperation_type_id = $request->cooperation_type_id;
+        $model->about = $request->about;
+        $model->partners = $request->partners;
+        $model->cooperation_province_id = $request->cooperation_province_id;
+        $model->cooperation_city_id = $request->cooperation_city_id;
+        $model->address = $request->address;
+        $model->address = $request->address;
+        $model->cooperation_signed = \Carbon\Carbon::createFromFormat('d/m/Y', $request->cooperation_signed)->format('Y-m-d');
+        $model->cooperation_ended = \Carbon\Carbon::createFromFormat('d/m/Y', $request->cooperation_ended)->format('Y-m-d');
+        $model->cooperation_focus_id = $request->cooperation_focus_id;
+        $model->scope = $request->scope;
+        $model->approval = $request->approval;
+        $model->save(); 
         
-        $model->update($inputs);
+        if (isset($inputs['file'])) {
+            $repo = new CooperationFile;
+            $repo->cooperation_id = $model->id;
+            $repo->filename = trinata::globalUpload($request, 'file')['filename'];
+            $repo->type = 'document';
+
+            $repo->save();
+        } 
+
+        if (isset($inputs['image'])) {
+            $repo = new CooperationFile;
+            $repo->cooperation_id = $model->id;
+            $repo->filename = trinata::globalUpload($request, 'image')['filename'];
+            $repo->type = 'photo';
+
+            $repo->save();
+        } 
 
         return redirect(urlBackendAction('index'))->withSuccess('data has been updated');
     }
@@ -141,7 +194,13 @@ class CooperationController extends TrinataController
 
         try
         {
-            @unlink(public_path('contents/'.$model->image));
+            $repo = CooperationFile::whereCooperationId($model->id);
+            if ($repo) {
+                foreach ($repo as $key => $value) {
+                    @unlink(public_path('contents/'.$value->filename));
+                }
+            }
+            
             $model->delete();
             return redirect(urlBackendAction('index'))->withSuccess('data has been deleted');
         
