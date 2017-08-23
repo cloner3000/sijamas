@@ -1,16 +1,17 @@
 @extends('backend.layouts.layout')
 @section('content')
 
-<div id="app_header_shadowing"></div>
-<div id="app_content">
-    <div id="content_header">
-        <h3 class="user">Recent Activity</h3>
-    </div>
-    <div id="content_body">
+  <div class="px-content">
+    <div class="row">
+      <div class="col-md-12 fadeIn animated">   
+        <div class="panel panel-info panel-dark">
+          <div class="panel-heading">
+            <span class="panel-title"><i class="panel-title-icon fa fa-list"></i>{{ trinata::titleActionForm() }}</span>
+          </div>   
+          
+          @include('backend.common.flashes')
 
-        @include('backend.common.flashes')
-
-        <div class = 'row'>
+        <div class = 'row p-a-3'>
            <div class = 'col-md-12'>
 
                     {!! trinata::buttonCreate() !!}
@@ -35,9 +36,11 @@
 
         
 
+        </div>
+      </div>
 
     </div>
-</div>
+  </div>
 @endsection
 
 @section('script')
