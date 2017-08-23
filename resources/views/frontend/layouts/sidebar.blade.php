@@ -4,7 +4,7 @@
 		<div class="rows">
 			<div class="widget-title"><h4>Kerjasama Terbaru</h4><hr></div>
 			<div class="rows-berita big-side-news">
-				<div class="box-news bg-green">
+				<div class="box-news bg-green" style="background-color: #068B59">
   					<div class="title-h-news">
   						<h3><a href="#">Lorem Ipsum is simply dummy text </a></h3>
   						<span class="date-h">Selasa, 12 Juli 2017 09:34 WIB</span>

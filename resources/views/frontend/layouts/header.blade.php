@@ -66,9 +66,9 @@
       </div><!--end.left-->
       <div class="right text-right search-top">
         <div class="right-head">
-          <div class="search-row">
-            <input type="text" id="search" class="form-control" name="" placeholder="Search">
-            <a href="#" class="searchTrigger"><i class="fa fa-search" aria-hidden="true"></i></a>
+          <div class="search-row" style="height: 50px">
+            <!-- <input type="text" id="search" class="form-control" name="" placeholder="Search">
+            <a href="#" class="searchTrigger"><i class="fa fa-search" aria-hidden="true"></i></a> -->
           </div>
           <div class="login-mn-row">
             <a href="admin/index.php" class="login popup">Login</a>

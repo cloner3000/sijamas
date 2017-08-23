@@ -18,7 +18,7 @@
 					<div class="left-content">
 						<div class="kerjasama-page">
 							<h3>Kategori Kerjasama</h3>
-							<div class="rows">
+							<div class="rows" style="display: none">
 								<div class="box-form">
 									<form>
 										<div class="row">
