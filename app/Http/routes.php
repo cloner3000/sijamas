@@ -21,6 +21,7 @@ Route::get('kategori-kerjasama/read/{id?}', 'KategoriController@read');
 Route::get('kontak-kami', 'KontakController@index');
 
 Route::controller('usulan-kerjasama','UsulanController');
+Route::controller('kategori-kerjasama','KategoriController');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

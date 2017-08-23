@@ -90,8 +90,8 @@
           <li class="sub-menu-parent">
             <a href="#" class="{{(Request::segment(1)=='kategori-kerjasama') ? 'active' : '' }}">Kategori Kerjasama</a>
             <ul class="sub-menu">
-                 <li><a href="{{url('/kategori-kerjasama')}}">Kerjasama Dalam Negeri</a></li>
-                 <li><a href="{{url('/kategori-kerjasama')}}">Kerjasama Luar Negeri</a></li>
+                 <li><a href="{{url('/kategori-kerjasama/dalam-negeri')}}">Kerjasama Dalam Negeri</a></li>
+                 <li><a href="{{url('/kategori-kerjasama/luar-negeri')}}">Kerjasama Luar Negeri</a></li>
                </ul>
           </li>
           <li><a href="{{url('/kontak-kami')}}" class="{{(Request::segment(1)=='kontak-kami') ? 'active' : '' }}">Kontak Kami</a></li>
@@ -105,8 +105,8 @@
           <li class="sub-menu-parent">
             <a href="#">Kategori Kerjasama</a>
             <ul class="sub-menu">
-                 <li><a href="{{url('/kategori-kerjasama')}}">Kerjasama Dalam Negeri</a></li>
-                 <li><a href="{{url('/kategori-kerjasama')}}">Kerjasama Luar Negeri</a></li>
+                 <li><a href="{{url('/kategori-kerjasama/dalam-negeri')}}">Kerjasama Dalam Negeri</a></li>
+                 <li><a href="{{url('/kategori-kerjasama/luar-negeri')}}">Kerjasama Luar Negeri</a></li>
                </ul>
           </li>
           <li><a href="{{url('/kontak-kami')}}">Kontak Kami</a></li>

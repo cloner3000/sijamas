@@ -1,5 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+
+use App\Models\NewsContent;
+
 class ProfileController extends Controller {
 
 	/*
@@ -18,9 +21,10 @@ class ProfileController extends Controller {
 	 *
 	 * @return void
 	 */
-	public function __construct()
+	public function __construct(NewsContent $model)
 	{
 		// $this->middleware('auth');
+		$this->model = $model;
 	}
 
 	/**
@@ -30,6 +34,8 @@ class ProfileController extends Controller {
 	 */
 	public function index()
 	{
+		$model = 
+
 		return view('frontend.profile');
 	}
 

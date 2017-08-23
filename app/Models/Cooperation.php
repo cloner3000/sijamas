@@ -45,7 +45,7 @@ class Cooperation extends Model
 	
 	public function cooperationfile()
     {
-        return $this->hasMany(new CooperationFile , 'cooperation_id');
+        return $this->hasMany(new CooperationFile);
     }
 		
 	public function user()

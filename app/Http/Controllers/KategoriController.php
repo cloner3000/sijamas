@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\Cooperation;
+
 class KategoriController extends Controller {
 
 	/*
@@ -18,9 +20,10 @@ class KategoriController extends Controller {
 	 *
 	 * @return void
 	 */
-	public function __construct()
+	public function __construct(Cooperation $model)
 	{
 		// $this->middleware('auth');
+		$this->model = $model;
 	}
 
 	/**
@@ -30,7 +33,23 @@ class KategoriController extends Controller {
 	 */
 	public function index()
 	{
-		return view('frontend.kategori');
+		$model = $this->model->whereApproval('approved')->get();
+		// dd($model[1]->cooperationfile);
+		return view('frontend.kategori', compact('model'));
+	}
+
+	public function getLuarNegeri()
+	{
+		$model = $this->model->whereApproval('approved')->whereCooperationCategory('ln')->get();
+		// dd($model[1]->cooperationfile);
+		return view('frontend.kategori', compact('model'));
+	}
+
+	public function getDalamNegeri()
+	{
+		$model = $this->model->whereApproval('approved')->whereCooperationCategory('dn')->get();
+		// dd($model[1]->cooperationfile);
+		return view('frontend.kategori', compact('model'));
 	}
 
 	public function read()

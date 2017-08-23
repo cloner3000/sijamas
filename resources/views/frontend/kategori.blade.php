@@ -126,32 +126,49 @@
 							</div>
 							<div class="rows">
 								<div class="list-berita">
+									@if($model)
+									@foreach($model as $val)
 									<div class="rows-berita inline-news">
 										<div class="box-news">
 						  					<div class="title-h-news">
-						  						<h3><a href="{{url('kategori-kerjasama/read/1')}}">Lorem Ipsum is simply dummy text </a></h3>
-						  						<span class="date-h">Selasa, 12 Juli 2017 09:34 WIB</span>
+						  						<h3><a href="{{url('kategori-kerjasama/read/1')}}">{{ $val->title }}</a></h3>
+						  						<span class="date-h">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $val->created_at)->format('j F Y')}}</span>
 						  					</div>
 						  					<div class="isi-h-news">
 						  						<div class="media">
+												  @if($val->cooperationfile)
+												  @foreach($val->cooperationfile as $file)
+												  @if($file->type == 'photo')
 												  <div class="media-left">
 												    <a href="#">
-												      <img class="media-object" src="images/content/thumb1.jpg" alt="berita">
+												      <img class="media-object" src="{{ asset('contents/file/'.$file->filename)}}" alt="berita">
 												    </a>
 												  </div>
+												  @endif
+												  @endforeach
+												  @endif
 												  <div class="media-body">
-												  	<span class="fontBlue">Kerjasama Luar Negeri</span><br>
-												  	<span class="fontGreen">Payung Kerjasama</span><br>
-												  	<span class="fontBlue">Bidang Teknologi dan Informasi</span><br>
-												  	<span class="fontGreen">Status: Baru</span><br>
-												  	<span class="fontGreen">Tahun Penandatanganan : 2010</span><br>
-												  	<span class="fontGreen">Tahun Berakhir : 2010</span><br><br>
-												    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.</p>
+												  	<span class="fontBlue">
+												  		@if($val->cooperation_category == 'ln')
+												  		Kerjasama Luar negeri
+												  		@else
+												  		Kerjasama Dalam negeri
+												  		@endif
+												  	</span><br>
+												  	<span class="fontGreen">{{ $val->cooperation_number}}</span><br>
+												  	<span class="fontBlue">{{ $val->cooperationtype->name }}</span><br>
+												  	<span class="fontGreen">Status: {{ $val->cooperation_status }}</span><br>
+												  	<span class="fontGreen">Tahun Penandatanganan : {{ \Carbon\Carbon::createFromFormat('Y-m-d', $val->cooperation_signed)->format('Y')}}</span><br>
+												  	<span class="fontGreen">Tahun Berakhir : {{ \Carbon\Carbon::createFromFormat('Y-m-d', $val->cooperation_ended)->format('Y')}}</span><br><br>
+												    <p>{!! $val->scope !!}</p>
 												  </div>
 												</div>
 						  					</div><!--en.isi-h-news-->
 						  				</div><!--end.box-news-->
 									</div><!--end.rows-berita-->
+									@endforeach
+									@endif
+									<!--
 									<div class="rows-berita inline-news no-image">
 										<div class="box-news">
 						  					<div class="title-h-news">
@@ -170,56 +187,12 @@
 												    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.</p>
 												  </div>
 												</div>
-						  					</div><!--en.isi-h-news-->
-						  				</div><!--end.box-news-->
-									</div><!--end.rows-berita-->
-									<div class="rows-berita inline-news">
-										<div class="box-news">
-						  					<div class="title-h-news">
-						  						<h3><a href="{{url('kategori-kerjasama/read/1')}}">Lorem Ipsum is simply dummy text </a></h3>
-						  						<span class="date-h">Selasa, 12 Juli 2017 09:34 WIB</span>
 						  					</div>
-						  					<div class="isi-h-news">
-						  						<div class="media">
-												  <div class="media-left">
-												    <a href="#">
-												      <img class="media-object" src="images/content/thumb1.jpg" alt="berita">
-												    </a>
-												  </div>
-												  <div class="media-body">
-												  	<span class="fontBlue">Kerjasama Luar Negeri</span><br>
-												  	<span class="fontGreen">Payung Kerjasama</span><br>
-												  	<span class="fontBlue">Bidang Teknologi dan Informasi</span><br>
-												  	<span class="fontGreen">Status: Baru</span><br>
-												  	<span class="fontGreen">Tahun Penandatanganan : 2010</span><br>
-												  	<span class="fontGreen">Tahun Berakhir : 2010</span><br><br>
-												    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.</p>
-												  </div>
-												</div>
-						  					</div><!--en.isi-h-news-->
-						  				</div><!--end.box-news-->
-									</div><!--end.rows-berita-->
-									<div class="rows-berita inline-news no-image">
-										<div class="box-news">
-						  					<div class="title-h-news">
-						  						<h3><a href="{{url('kategori-kerjasama/read/1')}}">Lorem Ipsum is simply dummy text </a></h3>
-						  						<span class="date-h">Selasa, 12 Juli 2017 09:34 WIB</span>
-						  					</div>
-						  					<div class="isi-h-news">
-						  						<div class="media">
-												  <div class="media-body">
-												  	<span class="fontBlue">Kerjasama Luar Negeri</span><br>
-												  	<span class="fontGreen">Payung Kerjasama</span><br>
-												  	<span class="fontBlue">Bidang Teknologi dan Informasi</span><br>
-												  	<span class="fontGreen">Status: Baru</span><br>
-												  	<span class="fontGreen">Tahun Penandatanganan : 2010</span><br>
-												  	<span class="fontGreen">Tahun Berakhir : 2010</span><br><br>
-												    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.</p>
-												  </div>
-												</div>
-						  					</div><!--en.isi-h-news-->
-						  				</div><!--end.box-news-->
-									</div><!--end.rows-berita-->
+						  				</div>
+									</div>
+									-->
+									
+
 									<div class="text-center paging">
 										<ul class="pagination pagination-info">
 											<li><a href="#"><</a></li>
