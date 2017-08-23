@@ -26,7 +26,7 @@ class UsulanController extends Controller {
 	 */
 	public function __construct(ProposedCooperation $proposed)
 	{
-		$this->middleware('auth');
+		// $this->middleware('auth');
 		$this->model = $proposed;
 	}
 
