@@ -2,9 +2,6 @@
 
 @stack('style-css')
 
-</head>
-<body class="pace-done px-navbar-fixed">
-
 
             @yield('content')
 

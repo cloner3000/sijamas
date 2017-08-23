@@ -5,16 +5,11 @@
   <section id="banner-home" class="section">
   	 <div class="camera_wrap camera_magenta_skin" id="camera_wrap_2">
   	 	<div data-src="{{ asset(null) }}frontend/images/content/banner-home.png">
-			<div class="camera_caption fadeFromBottom">
-	            <a href="#"><p> Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like.</p></a>
-      		</div><!---end.caption-->
-		</div><!--end.banner-->
-		<div data-src="{{ asset(null) }}frontend/images/content/banner-home.png">
-			<div class="camera_caption fadeFromBottom">
-	            <a href="#"><p> Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like.</p></a>
-      		</div><!---end.caption-->
-		</div><!--end.banner-->
-  	 </div>
+  			<div class="camera_caption fadeFromBottom">
+    	     <a href="#"><p> Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like.</p></a>
+        </div><!---end.caption-->
+    	</div><!--end.banner-->
+    </div>
   </section>
   <section id="bsn-middle" class="section">
   	<div class="wrapper">
@@ -73,3 +68,28 @@
   </section>
 </div>
 @endsection
+@push('script-js')
+
+<script type="text/javascript" src="{{ asset(null) }}frontend/js/camera.min.js"></script> 
+<script>
+$(function(){
+  var 
+    headheight = $( 'header' ).outerHeight(), 
+    banner_height= $(window).height() - headheight ;
+  jQuery('#camera_wrap_2').camera({
+    loader: 'none',
+    pagination: true,
+    height: banner_height+"px",
+    thumbnails: false,
+    playPause: false,
+    pauseOnClick: true,
+    hover: true,
+    time: 5000
+  });
+})
+$(document).ready(function(){
+  //$('.list-h-news').generate_height();
+});
+</script>
+
+@endpush
