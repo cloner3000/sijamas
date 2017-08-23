@@ -34,9 +34,9 @@ class ProfileController extends Controller {
 	 */
 	public function index()
 	{
-		$model = 
+		$model = $this->model->whereType('profile')->first();
 
-		return view('frontend.profile');
+		return view('frontend.profile', compact('model'));
 	}
 
 }
