@@ -3,26 +3,36 @@
 
 		<div class="rows">
 			<div class="widget-title"><h4>Kerjasama Terbaru</h4><hr></div>
+			@if($kerjasama)
+			@foreach($kerjasama as $val)
 			<div class="rows-berita big-side-news">
 				<div class="box-news bg-green" style="background-color: #068B59">
   					<div class="title-h-news">
-  						<h3><a href="#">Lorem Ipsum is simply dummy text </a></h3>
-  						<span class="date-h">Selasa, 12 Juli 2017 09:34 WIB</span>
+  						<h3><a href="#">{{ $val->title }} </a></h3>
+  						<span class="date-h">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $val->created_at)->format('j F Y')}}</span>
   					</div>
   					<div class="isi-h-news">
   						<div class="media">
+						@if($val->cooperationfile)
+						  @foreach($val->cooperationfile as $file)
+						  @if($file->type == 'photo')
 						  <div class="media-left">
 						    <a href="#">
-						      <img class="media-object" src="images/content/thumb1.jpg" alt="berita">
+						      <img class="media-object" src="{{ asset('contents/file/'.$file->filename)}}" alt="berita">
 						    </a>
 						  </div>
+						   @endif
+						  @endforeach
+						  @endif
 						  <div class="media-body">
-						    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.	
+						    {!! $val->scope !!}	
 						  </div>
 						</div>
   					</div><!--en.isi-h-news-->
   				</div><!--end.box-news-->
-				</div><!--end.rows-->
+			</div><!--end.rows-->
+			@endforeach
+			@endif
 		</div><!--end.rows-->
 	</div>
 </div><!--end.col-3-->

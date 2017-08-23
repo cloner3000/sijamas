@@ -2,6 +2,8 @@
 
 
 use App\Models\NewsContent;
+use App\Models\Cooperation;
+use View;
 
 class ProfileController extends Controller {
 
@@ -25,6 +27,9 @@ class ProfileController extends Controller {
 	{
 		// $this->middleware('auth');
 		$this->model = $model;
+		
+		$kerjasama = Cooperation::whereApproval('approved')->get();
+		View::share('kerjasama', $kerjasama);
 	}
 
 	/**

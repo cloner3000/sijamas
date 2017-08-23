@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\Controller;
 use App\Models\ProposedCooperation;
+use App\Models\Cooperation;
 use App\Models\ProposedCooperationType;
 use Illuminate\Http\Request;
 use trinata;
-
+use View;
 class UsulanController extends Controller {
 
 	/*
@@ -28,6 +29,8 @@ class UsulanController extends Controller {
 	{
 		// $this->middleware('auth');
 		$this->model = $proposed;
+		$kerjasama = Cooperation::whereApproval('approved')->get();
+		View::share('kerjasama', $kerjasama);
 	}
 
 	/**

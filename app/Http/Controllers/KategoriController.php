@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Models\Cooperation;
-
+use View;
 class KategoriController extends Controller {
 
 	/*
@@ -24,6 +24,8 @@ class KategoriController extends Controller {
 	{
 		// $this->middleware('auth');
 		$this->model = $model;
+		$kerjasama = Cooperation::whereApproval('approved')->get();
+		View::share('kerjasama', $kerjasama);
 	}
 
 	/**
