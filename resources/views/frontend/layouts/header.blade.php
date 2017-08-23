@@ -57,18 +57,18 @@
   <div class="top-header">
     <div class="wrapper">
       <div class="left logo-top">
-        <div class="main-logo"><a href="index.php"><img  src="images/material/logo.png"></a></div>
-        <div class="text-logo">
+        <div class="main-logo"><a href="{{url('/')}}"><img src="{{ asset(null) }}frontend/images/material/logo.png"></a></div>
+        <!-- <div class="text-logo">
           <span class="text-l1">Sistem Informasi Kerjasama Standarisasi dan Penilaian Kesesuaian (SIJAMAS)</span>
           <span class="text-l2">Badan Strandarisasi Nasional</span>
-          <span class="text-l3">National Standardization Agency of Indonesia</span>
-        </div>
+          <span class="text-l3">National Standardization Agency of Indonesia</span><img src="{{ asset(null) }}frontend/images/material/logo.png">
+        </div> -->
       </div><!--end.left-->
       <div class="right text-right search-top">
         <div class="right-head">
-          <div class="search-row">
-            <input type="text" id="search" class="form-control" name="" placeholder="Search">
-            <a href="#" class="searchTrigger"><i class="fa fa-search" aria-hidden="true"></i></a>
+          <div class="search-row" style="height: 50px">
+            <!-- <input type="text" id="search" class="form-control" name="" placeholder="Search">
+            <a href="#" class="searchTrigger"><i class="fa fa-search" aria-hidden="true"></i></a> -->
           </div>
           <div class="login-mn-row">
             <a href="admin/index.php" class="login popup">Login</a>
