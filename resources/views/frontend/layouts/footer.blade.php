@@ -9,13 +9,13 @@
 					<span class="text-l2">Badan Strandarisasi Nasional</span>
 					<span class="text-l3">National Standardization Agency of Indonesia</span>
 				</div>
-				<ul class="nav nav-pills">
+				<!-- <ul class="nav nav-pills">
 				  <li role="presentation" ><a href="{{url('/')}}">Home</a></li>
 				  <li role="presentation" ><a href="{{url('/profile')}}">Profile</a></li>
 				  <li role="presentation" ><a href="{{url('/usulan-kerjasama')}}">Usulan Kerjasama</a></li>
 				  <li role="presentation" ><a href="{{url('/kategori-kerjasama')}}">Bentuk Kerjasama</a></li>
 				  <li role="presentation" ><a href="{{url('/kontak-kami')}}">Kontak Kami</a></li>
-				</ul>
+				</ul> -->
 			</div><!--end.col-md-6-->
 
 			<div class="col-md-6">
