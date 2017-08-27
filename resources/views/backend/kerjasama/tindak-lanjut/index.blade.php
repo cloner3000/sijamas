@@ -14,7 +14,7 @@
               <div class="panel-body">
               <div class="row">
               <div class="col-md-12 fadeIn animated">
-                {!! trinata::buttonCreate() !!}
+                <!-- {!! trinata::buttonCreate() !!} -->
               </div>
               <div class="col-md-7 fadeIn animated">
                 {!! Form::open(['class'=>'panel-body p-y-1', 'url'=>urlBackend('cooperation-category/index'), 'method'=>'get']) !!} 
