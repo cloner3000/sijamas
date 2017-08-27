@@ -99,13 +99,20 @@ class MenuSeed extends Seeder
             );
             \trinata::addMenu([
                 'parent_id'     => 'cooperation',
-                'title'         => 'Tindak Lanjut Dokumen',
+                'title'         => 'Tindak Lanjut Perencanaan Kerjasama',
                 'controller'    => 'Kerjasama\FollowupController',
                 'slug'          => 'cooperation-followup',
                 'order'         => '2'
                 ],['index','create','update','delete']
             );
-
+            \trinata::addMenu([
+                'parent_id'     => 'cooperation',
+                'title'         => 'Tindak Lanjut Implementasi Kerjasama',
+                'controller'    => 'Kerjasama\ImplementationController',
+                'slug'          => 'cooperation-implementation',
+                'order'         => '3'
+                ],['index','create','update','delete']
+            );
 
 
         \trinata::addMenu([ 
@@ -117,10 +124,10 @@ class MenuSeed extends Seeder
             ],['index','create','update','delete']);
 
         \trinata::addMenu([ 
-                'parent_id'     => null,
+                'parent_id'     => 'kategori-kerjasama',
                 'title'         => 'Usulan Kerjasama',
                 'controller'    => 'UsulanController',
-                'slug'          => 'usulan-kerjasama',
+                'slug'          => 'usulan-kerjasama-1',
                 'order'         => 3,
             ],['index','create','update','delete']);
 

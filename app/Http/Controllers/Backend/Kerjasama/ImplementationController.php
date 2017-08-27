@@ -19,20 +19,20 @@ use Table;
 use Image;
 use trinata;
 
-class FollowupController extends TrinataController
+class ImplementationController extends TrinataController
 {
     public function __construct(CooperationImplementation $model, Cooperation $cooperation)
     {
-        parent::__construct();
+    	parent::__construct();
 
         $this->model = $model;
-        $this->cooperation = $cooperation;
+    	$this->cooperation = $cooperation;
     }
 
     public function getData(Request $request)
     {
 
-        $model = $this->cooperation->select('id','title','cooperation_number','cooperation_category','cooperation_status', 'approval');
+    	$model = $this->cooperation->select('id','title','cooperation_number','cooperation_category','cooperation_status', 'approval');
         if ($request->approval) $model->where('approval', $request->approval);
         if ($request->cooperation_category) $model->where('cooperation_category', $request->cooperation_category);
         if ($request->start) $model->where('cooperation_signed', $request->start);
@@ -58,13 +58,13 @@ class FollowupController extends TrinataController
         // return view('backend.kategori.index');
         // dd($request->all());
         $model = $this->cooperation;
-        return view('backend.kerjasama.tindak-lanjut.perencanaan.index', compact('model'));
+        return view('backend.kerjasama.tindak-lanjut.implementasi.index', compact('model'));
     }
 
     public function getDataimplementation(Request $request)
     {
 
-       $model = $this->model->whereCategory('perencanaan');
+       $model = $this->model->whereCategory('implementation');
 
 
         $data = Table::of($model)
@@ -87,12 +87,12 @@ class FollowupController extends TrinataController
         $model = $this->model;
         $cooperation_id = $id;
 
-        return view('backend.kerjasama.tindak-lanjut.perencanaan.perencanaan', compact('model', 'cooperation_id'));
+        return view('backend.kerjasama.tindak-lanjut.implementasi.implementasi', compact('model', 'cooperation_id'));
     }
 
     public function getCreate($id=false)
     {
-        $model = $this->model;
+    	$model = $this->model;
         $data = [
                     'cooperation' => Cooperation::lists('title','id'),
                 ];
@@ -100,7 +100,7 @@ class FollowupController extends TrinataController
         // dd($cooperationType);
         $cooperation_id = $id;
 
-        return view('backend.kerjasama.tindak-lanjut.perencanaan._form',compact('model', 'data', 'cooperation_id'));
+    	return view('backend.kerjasama.tindak-lanjut.implementasi._form',compact('model', 'data', 'cooperation_id'));
     }
 
     public function handleUpload($request,$model)
@@ -133,7 +133,7 @@ class FollowupController extends TrinataController
         
         $inputs['implementation_date'] = \Carbon\Carbon::createFromFormat('d/m/Y', $request->implementation_date)->format('Y-m-d');
         $inputs['description'] = $request->description;
-        $inputs['category'] = 'perencanaan';
+        $inputs['category'] = 'implementation';
         
         // dd($inputs);
         $model->create($inputs); 
@@ -149,7 +149,7 @@ class FollowupController extends TrinataController
                 ];
         
             
-        return view('backend.kerjasama.tindak-lanjut.perencanaan._form',compact('model', 'data'));
+        return view('backend.kerjasama.tindak-lanjut.implementasi._form',compact('model', 'data'));
     }
 
     public function postUpdate(Request $request,$id)
