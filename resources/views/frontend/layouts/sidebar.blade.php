@@ -6,7 +6,7 @@
 			@if($kerjasama)
 			@foreach($kerjasama as $val)
 			<div class="rows-berita big-side-news">
-				<div class="box-news bg-green" style="background-color: #068B59">
+				<div class="box-news bg-green">
   					<div class="title-h-news">
   						<h3><a href="#">{{ $val->title }} </a></h3>
   						<span class="date-h">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $val->created_at)->format('j F Y')}}</span>

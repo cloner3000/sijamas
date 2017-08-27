@@ -57,8 +57,10 @@ class UsulanController extends TrinataController
 
 		//$filename = trinata::globalUpload($request, 'filename');
 		// dd($filename);
-		//$inputs['filename'] = $filename['filename'];
+        // dd($inputs);
+		// $inputs['proposed_cooperation_type_id'] = 1;
 		$this->model->create($inputs);
+        
 		return redirect(urlBackendAction('index'))->withSuccess('data has been updated');
     }
 

@@ -220,7 +220,7 @@
 <script type="text/javascript">  
     $(function() {
       $('#datepicker-range').datepicker({
-        format:'dd/mm/yy'
+        format:'dd/mm/yyyy'
       });
 
       $('.datepicker').datepicker({

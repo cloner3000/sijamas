@@ -43,7 +43,7 @@
   </div>
 @endsection
 
-@section('script')
+@push('script-js')
     
     <script type="text/javascript">
         
@@ -63,4 +63,4 @@
 
     </script>
 
-@endsection
+@endpush

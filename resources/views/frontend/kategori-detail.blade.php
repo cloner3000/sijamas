@@ -143,13 +143,27 @@
 												<span>2. Data Implementasi</span>
 											</div>
 										</div><!--.profile-info-row-->
-										<div class="profile-info-row">
+										
+										<div class="profile-info-row full-row">
 											<div class="profile-info-name"> Tindak Lanjut Implementasi :</div>
 
 											<div class="profile-info-value">
-												<span><strong>Tanggal Implementasi:</strong> 28 April 2018</span><br>
-												<span><strong>Jenis Kegiatan:</strong> Lorem Ipsum is simply dummy text</span><br>
-												<span><strong>Keterangan:</strong> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
+												<table class="table">
+													<thead>
+														<tr>
+															<th>Tangal Implementasi</th>
+															<th>Jenis Kegiatan</th>
+															<th>Keterangan</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>28 April 2018</td>
+															<td>Lorem Ipsum is simply dummy text</td>
+															<td>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</td>
+														</tr>
+													</tbody>
+												</table>
 											</div>
 										</div><!--.profile-info-row-->
 									</div><!--.profile-user-info-->
