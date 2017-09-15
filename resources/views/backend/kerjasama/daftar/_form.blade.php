@@ -198,7 +198,7 @@
                             <button type="button" class="btn btn-primary px-file-browse">Upload</button>
                           </div>
                            @if($model->cooperationfile)
-                          @foreach($model->cooperationfile as $file)
+                          @foreach($model->cooperationfoto as $file)
                             @if ($file->type == 'photo') <label class="file_{{$file->id}}">{{ $file->filename }}</label> 
                             <button type="button" class="btn btn-danger px-file-browse deleteFile file_{{$file->id}}" data-id="{{$file->id}}">Hapus</button>
                             <br>

@@ -248,8 +248,8 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO users VALUES ('6', 'TRINATA', 'trinata@gmail.com', 'AOUOrsaslxxjnc2JIw8AHKKidXkawhSWBVcWaRXzhn5zWm43yFPPhft5w2l3', 'AOUOrsaslxxjnc2JIw8AHKKidXkawhSWBVcWaRXzhn5zWm43yFPPhft5w2l3', '2016-03-22 13:07:29', '2016-03-24 16:16:08', '1', 'pria', '', '0', 'superadmin');
-INSERT INTO users VALUES ('7', 'admin', 'admin@gmail.com', 'AOUOrsaslxxjnc2JIw8AHKKidXkawhSWBVcWaRXzhn5zWm43yFPPhft5w2l3', 'AsrSmU1PESaINwJGI1pH1KQgrYetdGz0QyQO5y02Ix0rfOGVIIOvh1ugrwgD', '2016-03-22 13:08:00', '2016-03-23 09:51:11', '4', 'pria', '', '0', 'admin');
+INSERT INTO users VALUES ('6', 'TRINATA', 'trinata@gmail.com', '$2y$10$KA/5L0OU3oFZyMXF8Sb5juLMD1wSVt6DTlmf3MlmL/oLAKyp0rjfO', 'AOUOrsaslxxjnc2JIw8AHKKidXkawhSWBVcWaRXzhn5zWm43yFPPhft5w2l3', '2016-03-22 13:07:29', '2016-03-24 16:16:08', '1', 'pria', '', '0', 'superadmin');
+INSERT INTO users VALUES ('7', 'admin', 'admin@gmail.com', '$2y$10$KA/5L0OU3oFZyMXF8Sb5juLMD1wSVt6DTlmf3MlmL/oLAKyp0rjfO', 'AsrSmU1PESaINwJGI1pH1KQgrYetdGz0QyQO5y02Ix0rfOGVIIOvh1ugrwgD', '2016-03-22 13:08:00', '2016-03-23 09:51:11', '4', 'pria', '', '0', 'admin');
 
 -- ----------------------------
 -- Table structure for `user_activities`

@@ -6,7 +6,8 @@
 		{
 			foreach(injectModel('Menu')->where('controller','!=','#')->get() as $row)
 			{	
-				$path = app_path('Http/Controllers/Backend/'.$row->controller.'.php');
+				$controllerFile = str_replace("\\", "/", $row->controller).'.php';
+				$path = app_path('Http/Controllers/Backend/'.$controllerFile);
 
 				if(file_exists($path))
 				{
