@@ -39,7 +39,7 @@
 
                       <div class="form-group">
                         <label>Status</label>
-                        {!! Form::select('status' , ['y' => 'Publish' , 'n' => 'Un Publish'] , null ,['class' => 'form-control']) !!}
+                        {!! Form::select('status' , ['publish' => 'Publish' , 'unpublish' => 'Un Publish'] , null ,['class' => 'form-control']) !!}
                       </div>
 
                       <button type="submit" class="btn btn-primary">{{ !empty($model->id) ? 'Update' : 'Save' }}</button>

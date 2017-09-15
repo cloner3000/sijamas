@@ -1,5 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\Cooperation;
+use App\Models\NewsContent;
+
 class HomeController extends Controller {
 
 	/*
@@ -30,7 +33,11 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('frontend.home');
+		$data['cooperation'] = Cooperation::whereIn('approval', ['approved'])->get();
+		$data['banner'] = NewsContent::whereType('banner')->whereIn('status', ['publish'])->get();
+
+		// dd($data);
+		return view('frontend.home', compact('data'));
 	}
 
 }

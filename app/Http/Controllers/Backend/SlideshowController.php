@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Backend\TrinataController;
-use App\Models\Crud;
+use App\Models\NewsContent;
 use Table;
 use Image;
 use trinata;
 
 class SlideshowController extends TrinataController
 {
-    public function __construct(Crud $model)
+    public function __construct(NewsContent $model)
     {
     	parent::__construct();
 
@@ -24,7 +24,7 @@ class SlideshowController extends TrinataController
 
     public function getData()
     {
-    	$model = $this->model->select('id','title','status');
+    	$model = $this->model->select('id','title','status')->whereType('banner');
 
     	$data = Table::of($model)
     		
@@ -76,11 +76,13 @@ class SlideshowController extends TrinataController
     {
         $model = $this->model;
 
-        $this->validate($request,$model->rules());
+        // $this->validate($request,$model->rules());
 
         $inputs = $request->all();
 
-        $inputs['image'] = $this->handleUpload($request,$model);
+        if ($request->image) $inputs['image'] = $this->handleUpload($request,$model);
+        $inputs['type'] = 'banner';
+        $inputs['owner_id'] = \Auth::user()->id;
 
         $model->create($inputs);
 
@@ -98,11 +100,11 @@ class SlideshowController extends TrinataController
     {
         $model = $this->model->findOrFail($id);
 
-        $this->validate($request,$model->rules());
+        // $this->validate($request,$model->rules());
 
         $inputs = $request->all();
 
-        $inputs['image'] = $this->handleUpload($request,$model);
+        if ($request->image) $inputs['image'] = $this->handleUpload($request,$model);
 
         $model->update($inputs);
 

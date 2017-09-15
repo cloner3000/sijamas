@@ -85,11 +85,11 @@ INSERT INTO menus VALUES ('1', null, 'Dashboard', 'DashboardController', 'dashbo
 INSERT INTO menus VALUES ('2', null, 'Development', '#', 'development', '22', '', null, '2016-03-22 09:48:49');
 INSERT INTO menus VALUES ('3', '2', 'Menu', 'MenuController', 'menu', '1', '', null, null);
 INSERT INTO menus VALUES ('9', '2', 'Action', 'ActionController', 'action', '2', '', '2016-03-22 07:47:57', '2016-03-22 07:47:57');
-INSERT INTO menus VALUES ('10', null, 'User', '#', 'user', '2', '', '2016-03-22 09:48:39', '2016-03-22 09:48:39');
+INSERT INTO menus VALUES ('10', null, 'User', '#', 'user', '10', '', '2016-03-22 09:48:39', '2016-03-22 09:48:39');
 INSERT INTO menus VALUES ('11', '10', 'Role', 'RoleController', 'role', '1', '', '2016-03-22 09:49:40', '2016-03-22 09:49:40');
 INSERT INTO menus VALUES ('12', '10', 'Manage User', 'UserController', 'manage-user', '3', '', '2016-03-22 12:10:31', '2016-03-22 12:10:31');
 INSERT INTO menus VALUES ('13', '10', 'Profile', 'ProfileController', 'profile', '9', '', '2016-03-23 07:49:10', '2016-03-23 07:49:10');
-INSERT INTO menus VALUES ('14', null, 'Media Library', '#', 'media-library', '10', '', '2016-03-23 09:40:57', '2016-03-23 09:40:57');
+INSERT INTO menus VALUES ('14', null, 'Media Library', '#', 'media-library', '15', '', '2016-03-23 09:40:57', '2016-03-23 09:40:57');
 INSERT INTO menus VALUES ('15', '14', 'Image', 'ImageController', 'image', '1', '', '2016-03-23 09:41:14', '2016-03-23 09:41:14');
 INSERT INTO menus VALUES ('16', '2', 'Crud', 'CrudController', 'crud', '7', '', '2016-03-23 10:13:58', '2016-03-23 10:13:58');
 
@@ -248,8 +248,8 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO users VALUES ('6', 'TRINATA', 'reza.wikrama3@gmail.com', '$2y$10$dD6TjxbMYcfKIyBGXkvyV.jXZwtST0i5JcZAi0QEUu1mtfiUdbePG', 'AOUOrsaslxxjnc2JIw8AHKKidXkawhSWBVcWaRXzhn5zWm43yFPPhft5w2l3', '2016-03-22 13:07:29', '2016-03-24 16:16:08', '1', 'pria', '', '0', 'superadmin');
-INSERT INTO users VALUES ('7', 'admin', 'ultramantigar@gmail.com', '$2y$10$gPafGNqLHVtVtPgO7/KqjeqGwLhBr/ZSe1G3YnZWp80Yo8GcpdYRG', 'AsrSmU1PESaINwJGI1pH1KQgrYetdGz0QyQO5y02Ix0rfOGVIIOvh1ugrwgD', '2016-03-22 13:08:00', '2016-03-23 09:51:11', '4', 'pria', '', '0', 'admin');
+INSERT INTO users VALUES ('6', 'TRINATA', 'trinata@gmail.com', 'AOUOrsaslxxjnc2JIw8AHKKidXkawhSWBVcWaRXzhn5zWm43yFPPhft5w2l3', 'AOUOrsaslxxjnc2JIw8AHKKidXkawhSWBVcWaRXzhn5zWm43yFPPhft5w2l3', '2016-03-22 13:07:29', '2016-03-24 16:16:08', '1', 'pria', '', '0', 'superadmin');
+INSERT INTO users VALUES ('7', 'admin', 'admin@gmail.com', 'AOUOrsaslxxjnc2JIw8AHKKidXkawhSWBVcWaRXzhn5zWm43yFPPhft5w2l3', 'AsrSmU1PESaINwJGI1pH1KQgrYetdGz0QyQO5y02Ix0rfOGVIIOvh1ugrwgD', '2016-03-22 13:08:00', '2016-03-23 09:51:11', '4', 'pria', '', '0', 'admin');
 
 -- ----------------------------
 -- Table structure for `user_activities`

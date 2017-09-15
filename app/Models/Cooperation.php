@@ -45,7 +45,12 @@ class Cooperation extends Model
 	
 	public function cooperationfile()
     {
-        return $this->hasMany(new CooperationFile);
+        return $this->hasMany(new CooperationFile)->whereType('document');
+    }
+
+    public function cooperationFoto()
+    {
+        return $this->hasMany(new CooperationFile)->whereType('photo');
     }
 		
 	public function user()

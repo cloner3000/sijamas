@@ -4,11 +4,15 @@
 <div id="middle-content">
   <section id="banner-home" class="section">
   	 <div class="camera_wrap camera_magenta_skin" id="camera_wrap_2">
-  	 	<div data-src="{{ asset(null) }}frontend/images/content/banner-home.png">
+  	 	@if($data['banner'])
+      @foreach($data['banner'] as $banner)
+      <div data-src="{{ asset(null) }}contents/{{$banner->image}}">
   			<div class="camera_caption fadeFromBottom">
-    	     <a href="#"><p> Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like.</p></a>
+    	     <a href="#"><p> {{ $banner->title }}</p></a>
         </div><!---end.caption-->
     	</div><!--end.banner-->
+      @endforeach
+      @endif
     </div>
   </section>
   <section id="bsn-middle" class="section">
@@ -30,25 +34,32 @@
   		<div class="row list-h-news">
   			<div class="col-md-6">
   				<div class="widget-title"><h4>Kerjasama Terbaru</h4><hr></div>
-  				<div class="box-news whitebox">
+  				@if($data['cooperation'])
+          @foreach($data['cooperation'] as $cooperation)
+          <div class="box-news whitebox">
   					<div class="title-h-news">
-  						<h3><a href="detail-berita.php">Lorem Ipsum is simply dummy text </a></h3>
+            <?php
+            $link = $cooperation->cooperation_category == 'dn' ? 'dalam-negeri' : 'luar-negeri';
+            ?>
+  						<h3><a href="{{ url('kategori-kerjasama/'. $link)}}">{{ $cooperation->title}} </a></h3>
   						<span class="date-h">Selasa, 12 Juli 2017 09:34 WIB</span>
   					</div>
   					<div class="isi-h-news">
   						<div class="media">
 						  <div class="media-left">
-						    <a href="detail-berita.php">
-						      <img class="media-object" src="{{ asset(null) }}frontend/images/content/thumb1.jpg" alt="berita">
+						    <a href="{{ url('kategori-kerjasama/'. $link)}}">
+						      <img class="media-object" src="{{ asset(null) }}contents/file/{{$cooperation->cooperationFoto[0]->filename}}" alt="berita">
 						    </a>
 						  </div>
 						  <div class="media-body">
-						    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+						    {!! $cooperation->about !!}
 						  </div>
-						  <a href="indeks-berita.php" class="btn btn-success right">INDEX</a>
+						  <a href="{{ url('kategori-kerjasama/'. $link)}}" class="btn btn-success right">INDEX</a>
 						</div>
   					</div><!--en.isi-h-news-->
   				</div><!--end.box-news-->
+          @endforeach
+          @endif
   			</div><!--end.col-md-4-->
   			
   			<div class="col-md-6">
