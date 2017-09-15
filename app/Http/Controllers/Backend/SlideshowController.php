@@ -79,11 +79,13 @@ class SlideshowController extends TrinataController
         // $this->validate($request,$model->rules());
 
         $inputs = $request->all();
+        if ($inputs['image']) {
+            $inputs['image'] = trinata::globalUpload($request, 'image')['filename'];
+        } 
 
-        if ($request->image) $inputs['image'] = $this->handleUpload($request,$model);
         $inputs['type'] = 'banner';
         $inputs['owner_id'] = \Auth::user()->id;
-
+        // dd($inputs);
         $model->create($inputs);
 
         return redirect(urlBackendAction('index'))->withSuccess('data has been saved');
@@ -104,7 +106,9 @@ class SlideshowController extends TrinataController
 
         $inputs = $request->all();
 
-        if ($request->image) $inputs['image'] = $this->handleUpload($request,$model);
+        if ($inputs['image']) {
+            $inputs['image'] = trinata::globalUpload($request, 'image')['filename'];
+        } 
 
         $model->update($inputs);
 

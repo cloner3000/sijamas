@@ -32,7 +32,7 @@
 
                         <div class="form-group">
                           <label>Old Image</label><br/>
-                          <img src = '{{ asset("contents/".$model->image) }}' width = '200' height = '100'/>
+                          <img src = '{{ asset("contents/file/".$model->image) }}' width = '200' height = '100'/>
                         </div>
 
                       @endif

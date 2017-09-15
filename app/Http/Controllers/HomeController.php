@@ -33,7 +33,7 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		$data['cooperation'] = Cooperation::whereIn('approval', ['approved'])->get();
+		$data['cooperation'] = Cooperation::whereIn('approval', ['approved'])->orderBy('created_at', 'desc')->take(1)->get();
 		$data['banner'] = NewsContent::whereType('banner')->whereIn('status', ['publish'])->get();
 
 		// dd($data);

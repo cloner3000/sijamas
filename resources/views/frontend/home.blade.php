@@ -6,7 +6,7 @@
   	 <div class="camera_wrap camera_magenta_skin" id="camera_wrap_2">
   	 	@if($data['banner'])
       @foreach($data['banner'] as $banner)
-      <div data-src="{{ asset(null) }}contents/{{$banner->image}}">
+      <div data-src="{{ asset(null) }}contents/file/{{$banner->image}}">
   			<div class="camera_caption fadeFromBottom">
     	     <a href="#"><p> {{ $banner->title }}</p></a>
         </div><!---end.caption-->
@@ -23,7 +23,7 @@
 	  	<div class="box-border text-center">
 	  		<div class="rows"><img src="{{ asset(null) }}frontend/images/material/logo.png"></div>
 	  		<div class="rows">
-	  			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+	  			<p>Sejalan dengan perkembangan kemampuan nasional di bidang standardisasi dan dalam mengantisipasi era globlalisasi perdagangan dunia, AFTA (2003) dan APEC (2010/2020), kegiatan standardisasi yang meliputi standar dan penilaian kesesuaian (conformity assessment) secara terpadu perlu dikembangkan secara berkelanjutan khususnya dalam memantapkan dan meningkatkan daya saing produk nasional, memperlancar arus perdagangan dan melindungi kepentingan umum. Untuk membina, mengembangkan serta mengkoordinasikan kegiatan di bidang standardisasi secara nasional menjadi tanggung jawab Badan Standardisasi Nasional (BSN).</p>
 	  			<!--<button class="btn btn-primary">SELENGKAPNYA</button>-->
 	  		</div>
 	  	</div>
@@ -42,7 +42,7 @@
             $link = $cooperation->cooperation_category == 'dn' ? 'dalam-negeri' : 'luar-negeri';
             ?>
   						<h3><a href="{{ url('kategori-kerjasama/'. $link)}}">{{ $cooperation->title}} </a></h3>
-  						<span class="date-h">Selasa, 12 Juli 2017 09:34 WIB</span>
+  						<span class="date-h">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $cooperation->created_at)->format('j F Y')}}</span>
   					</div>
   					<div class="isi-h-news">
   						<div class="media">
@@ -67,9 +67,9 @@
   				<div class="box-news whitebox">
   					<div class="isi-h-news">
 						  <div class="media-body">
-						    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+						    Ini merupakan fasilitas untuk mengajukan tawaran kerjasama dengan BSN. Isi form berikut dengan jelas, dan data yang benar.
 						  </div>
-						  <a href="#" class="btn btn-primary right">Isi Form Usulan Kerjasama</a>
+						  <a href="{{url('usulan-kerjasama')}}" class="btn btn-primary right">Isi Form Usulan Kerjasama</a>
 						</div>
   					</div><!--en.isi-h-news-->
   				</div><!--end.box-news-->
