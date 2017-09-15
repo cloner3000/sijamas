@@ -18,12 +18,12 @@
               </div>
               <div class="col-md-7 fadeIn animated">
                 {!! Form::open(['class'=>'panel-body p-y-1', 'url'=>urlBackend('cooperation-category/index'), 'method'=>'get']) !!} 
-
+                
                   <div class="form-group">
                     <div class="row">
                       <label class="col-sm-4 control-label">Status Data Kerjasama :</label>
                       <div class="col-sm-8">
-                        {!! Form::select('approval', [''=>'Pilih Status Kerjasama', 'draft'=>'Draft', 'approved'=>'Approved', 'rejected'=>'Rejected', 'deleted'=>'Deleted'], null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!} 
+                        {!! Form::select('approval', [''=>'Pilih Status Kerjasama', 'draft'=>'Draft', 'approved'=>'Approved', 'rejected'=>'Rejected', 'deleted'=>'Deleted'], $request->approval ? $request->approval : null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!} 
                       </div>
                     </div>
                   </div>
@@ -32,7 +32,7 @@
                       <label class="col-sm-4 control-label">Kategory Kerjasama :</label>
                       <div class="col-sm-8">
                         
-                        {!! Form::select('cooperation_category', ['' => 'Pilih Kategori Kerjasama','dn'=>'Dalam Negeri', 'ln'=>'Luar Negeri'], null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!} 
+                        {!! Form::select('cooperation_category', ['' => 'Pilih Kategori Kerjasama','dn'=>'Dalam Negeri', 'ln'=>'Luar Negeri'], $request->cooperation_category ? $request->cooperation_category : null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!} 
                         
                       </div>
                     </div>
@@ -43,7 +43,7 @@
                         <label class="col-sm-4 control-label">Dari Tanggal :</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                              <input type="text" class="form-control" name="start">
+                              {!! Form::text('start' , $request->start ? $request->start : null ,['class' => 'form-control']) !!}
                               <span class="input-group-btn">
                                 <button type="button" class="btn"><i class="fa fa-calendar"></i></button>
                               </span>
@@ -56,7 +56,7 @@
                         <label class="col-sm-4 control-label">Sampai Tanggal :</label>
                         <div class="col-sm-8">                  
                             <div class="input-group m-b-2">
-                              <input type="text" class="form-control" name="end">
+                              {!! Form::text('end' , $request->end ? $request->end : null ,['class' => 'form-control']) !!}
                               <span class="input-group-btn">
                                 <button type="button" class="btn"><i class="fa fa-calendar"></i></button>
                               </span>
@@ -110,7 +110,7 @@
     $('#datatables').DataTable({
         processing: true,
         serverSide: true,
-        ajax: '{{ urlBackendAction("data") }}',
+        ajax: '{!! urlBackendAction($url) !!}',
         columns: [
             { data: 'title', name: 'title' },
             { data: 'cooperation_number', name: 'cooperation_number' },
@@ -125,7 +125,7 @@
 
     // $('#datatables').dataTable();    
     $('#datepicker-range').datepicker({
-      format:'dd/mm/yy'
+      format:'dd/mm/yyyy'
     });
     $('#datatables_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
    

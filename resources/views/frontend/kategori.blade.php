@@ -192,8 +192,8 @@
 									</div>
 									-->
 									
-
-									<div class="text-center paging">
+									{!! $model->setPath('')->render() !!}
+									<!-- <div class="text-center paging">
 										<ul class="pagination pagination-info">
 											<li><a href="#"><</a></li>
 											<li><a href="#">1</a></li>
@@ -203,7 +203,7 @@
 											<li><a href="#">5</a></li>
 											<li><a href="#">></a></li>
 										</ul>
-									</div>
+									</div> -->
 								</div><!--end.list-berita-->
 							</div>
 						</div>

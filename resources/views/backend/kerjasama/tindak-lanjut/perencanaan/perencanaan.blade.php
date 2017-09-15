@@ -17,7 +17,7 @@
                 {!! trinata::buttonCreate($cooperation_id) !!}
               </div>
               <div class="col-md-7 fadeIn animated">
-                {!! Form::open(['class'=>'panel-body p-y-1', 'url'=>urlBackend('cooperation-category/index'), 'method'=>'get']) !!} 
+                {!! Form::open(['class'=>'panel-body p-y-1', 'url'=>urlBackend('cooperation-followup/view/'.$id), 'method'=>'get']) !!} 
                 <!--
                   <div class="form-group">
                     <div class="row">
@@ -109,7 +109,7 @@
     $('#datatables').DataTable({
         processing: true,
         serverSide: true,
-        ajax: '{{ urlBackendAction("dataimplementation") }}',
+        ajax: '{!! urlBackendAction($url) !!}',
         columns: [
             { data: 'implementation_date', name: 'implementation_date' },
             { data: 'activity_type', name: 'activity_type' },
@@ -122,7 +122,7 @@
 
     // $('#datatables').dataTable();    
     $('#datepicker-range').datepicker({
-      format:'dd/mm/yy'
+      format:'dd/mm/yyyy'
     });
     $('#datatables_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
    

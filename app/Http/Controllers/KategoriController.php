@@ -26,6 +26,7 @@ class KategoriController extends Controller {
 		$this->model = $model;
 		$kerjasama = Cooperation::whereApproval('approved')->get();
 		View::share('kerjasama', $kerjasama);
+		$this->paging = 1;
 	}
 
 	/**
@@ -42,14 +43,15 @@ class KategoriController extends Controller {
 
 	public function getLuarNegeri()
 	{
-		$model = $this->model->whereApproval('approved')->whereCooperationCategory('ln')->get();
+		$model = $this->model->whereApproval('approved')->whereCooperationCategory('ln')->paginate($this->paging);
 		// dd($model[1]->cooperationfile);
 		return view('frontend.kategori', compact('model'));
 	}
 
 	public function getDalamNegeri()
 	{
-		$model = $this->model->whereApproval('approved')->whereCooperationCategory('dn')->get();
+		$model = $this->model->whereApproval('approved')->whereCooperationCategory('dn')->paginate($this->paging);
+		// dd($model);
 		// dd($model[1]->cooperationfile);
 		return view('frontend.kategori', compact('model'));
 	}

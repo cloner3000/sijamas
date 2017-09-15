@@ -58,14 +58,18 @@ class FollowupController extends TrinataController
         // return view('backend.kategori.index');
         // dd($request->all());
         $model = $this->cooperation;
+
+
         return view('backend.kerjasama.tindak-lanjut.perencanaan.index', compact('model'));
     }
 
     public function getDataimplementation(Request $request)
     {
 
-       $model = $this->model->whereCategory('perencanaan');
-
+        $model = $this->model->whereCategory('perencanaan');
+        if ($request->id) $model->where('cooperation_id', $request->id);
+        if ($request->start) $model->where('cooperation_signed', $request->start);
+        if ($request->end) $model->where('cooperation_ended', $request->end);
 
         $data = Table::of($model)
             ->addColumn('moderation',function($model){
@@ -82,12 +86,22 @@ class FollowupController extends TrinataController
         return $data;
     }
 
-    public function getView($id)
+    public function getView($id, Request $request)
     {
         $model = $this->model;
         $cooperation_id = $id;
 
-        return view('backend.kerjasama.tindak-lanjut.perencanaan.perencanaan', compact('model', 'cooperation_id'));
+        $param = [];
+        $url = 'dataimplementation';
+        if ($id) $param[] = 'id='.$id;
+        if ($request->start) $param[] = 'start='.$request->start;
+        if ($request->end) $param[] = 'end='.$request->end;
+
+        if (count($param) > 0) {
+            $url = $url.'?'.implode('&', $param);
+        }
+
+        return view('backend.kerjasama.tindak-lanjut.perencanaan.perencanaan', compact('model', 'cooperation_id', 'url', 'id'));
     }
 
     public function getCreate($id=false)

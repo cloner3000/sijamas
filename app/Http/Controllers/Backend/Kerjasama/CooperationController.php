@@ -33,9 +33,9 @@ class CooperationController extends TrinataController
     	$model = $this->model->select('id','title','cooperation_number','cooperation_category','cooperation_status', 'approval');
         if ($request->approval) $model->where('approval', $request->approval);
         if ($request->cooperation_category) $model->where('cooperation_category', $request->cooperation_category);
-        if ($request->start) $model->where('cooperation_signed', $request->start);
-        if ($request->end) $model->where('cooperation_ended', $request->end);
-
+        if ($request->start) $model->where('cooperation_signed', '>=',\Carbon\Carbon::CreateFromFormat('d/m/Y', $request->start)->format('Y-m-d'));
+        if ($request->end) $model->where('cooperation_signed', '<=',\Carbon\Carbon::CreateFromFormat('d/m/Y', $request->end)->format('Y-m-d'));
+        // dd($model->toSql());
     	$data = Table::of($model)
     		->addColumn('moderation',function($model){
                 $status = true;
@@ -53,10 +53,20 @@ class CooperationController extends TrinataController
 
     public function getIndex(Request $request)
     {
-        // return view('backend.kategori.index');
-        // dd($request->all());
+        $param = [];
+        $url = 'data';
         $model = $this->model;
-    	return view('backend.kerjasama.daftar.index', compact('model'));
+
+        if ($request->approval) $param[] = 'approval='.$request->approval;
+        if ($request->cooperation_category) $param[] = 'cooperation_category='.$request->cooperation_category;
+        if ($request->start) $param[] = 'start='.$request->start;
+        if ($request->end) $param[] = 'end='.$request->end;
+        // dd($model);
+        if (count($param) > 0) {
+            $url = $url.'?'.implode('&', $param);
+        }
+        // dd($url);
+    	return view('backend.kerjasama.daftar.index', compact('model', 'url', 'request'));
     }
 
     public function getCreate()
@@ -229,5 +239,21 @@ class CooperationController extends TrinataController
         ]);
 
         return redirect(urlBackendAction('index'))->withSuccess($msg);
+    }
+
+    public function getDeleteFile(Request $request)
+    {
+        $status = false;
+        $model = CooperationFile::findOrFail($request->id);
+        try
+        {
+            $model->delete();
+            $status = true;    
+        }catch(\Exception $e){
+        
+        
+        }
+
+        return response()->json(['status' => $status]);
     }
 }

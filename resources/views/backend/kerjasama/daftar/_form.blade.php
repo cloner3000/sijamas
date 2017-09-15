@@ -164,11 +164,21 @@
                       <div class="col-sm-8">
                         <label class="custom-file px-file">
                           <input type="file" class="custom-file-input" name="file">
-                          <span class="custom-file-control form-control">Choose file...</span>
+                          <span class="custom-file-control form-control">
+                          Choose file...
+                          </span>
                           <div class="px-file-buttons">
                             <button type="button" class="btn px-file-clear">Clear</button>
                             <button type="button" class="btn btn-primary px-file-browse">Upload</button>
                           </div>
+                          @if($model->cooperationfile)
+                          @foreach($model->cooperationfile as $file)
+                            @if ($file->type == 'document') <label class="file_{{$file->id}}">{{ $file->filename }}</label> 
+                            <button type="button" class="btn btn-danger px-file-browse deleteFile file_{{$file->id}}" data-id="{{$file->id}}">Hapus</button>
+                            <br>
+                             @endif
+                          @endforeach
+                          @endif
                         </label>
                       </div>
                     </div>
@@ -179,11 +189,22 @@
                       <div class="col-sm-8">
                         <label class="custom-file px-file">
                           <input type="file" class="custom-file-input" name="image">
-                          <span class="custom-file-control form-control">Choose file...</span>
+                          <span class="custom-file-control form-control">
+                          Choose file...
+                          </span>
+
                           <div class="px-file-buttons">
                             <button type="button" class="btn px-file-clear">Clear</button>
                             <button type="button" class="btn btn-primary px-file-browse">Upload</button>
                           </div>
+                           @if($model->cooperationfile)
+                          @foreach($model->cooperationfile as $file)
+                            @if ($file->type == 'photo') <label class="file_{{$file->id}}">{{ $file->filename }}</label> 
+                            <button type="button" class="btn btn-danger px-file-browse deleteFile file_{{$file->id}}" data-id="{{$file->id}}">Hapus</button>
+                            <br>
+                            @endif
+                          @endforeach
+                          @endif 
                         </label>
                       </div>
                     </div>
@@ -243,5 +264,35 @@
         ],
       });
     });
+
+    $('.deleteFile').click(function(){
+
+      var r = confirm("Hapus Data?");
+      if (r == true) {
+          txt = "You pressed OK!";
+      } else {
+          return false;
+      }
+
+      var id = $(this).attr('data-id');
+
+      // console.log(id);
+      $.ajax({
+        type : 'get',
+        url : '{{ urlBackendAction("delete-file") }}',
+        data : {
+          id : id,
+        },
+        success : function(data){
+          if (data.status == true) {
+            $('.file_'+id).remove();
+            swal("Hapus File !", "File Anda telah dihapus!", "success");
+          } else {
+            swal("Maaf", "File Anda tidak dapat dihapus!", "info");
+          }
+          
+        },
+      });
+    })
 </script>
 @endpush
