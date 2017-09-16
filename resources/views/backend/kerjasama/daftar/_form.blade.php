@@ -165,12 +165,8 @@
                         <label class="custom-file px-file">
                           <input type="file" class="custom-file-input" name="file">
                           <span class="custom-file-control form-control">
-                          Choose file...
+                          Pilih File Dokumen...
                           </span>
-                          <div class="px-file-buttons">
-                            <button type="button" class="btn px-file-clear">Clear</button>
-                            <button type="button" class="btn btn-primary px-file-browse">Upload</button>
-                          </div>
                           @if($model->cooperationfile)
                           @foreach($model->cooperationfile as $file)
                             @if ($file->type == 'document') <label class="file_{{$file->id}}">{{ $file->filename }}</label> 
@@ -190,13 +186,8 @@
                         <label class="custom-file px-file">
                           <input type="file" class="custom-file-input" name="image">
                           <span class="custom-file-control form-control">
-                          Choose file...
+                          Pilih Foto Dokumen...
                           </span>
-
-                          <div class="px-file-buttons">
-                            <button type="button" class="btn px-file-clear">Clear</button>
-                            <button type="button" class="btn btn-primary px-file-browse">Upload</button>
-                          </div>
                            @if($model->cooperationfile)
                           @foreach($model->cooperationfoto as $file)
                             @if ($file->type == 'photo') <label class="file_{{$file->id}}">{{ $file->filename }}</label> 
