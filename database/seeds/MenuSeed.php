@@ -152,6 +152,14 @@ class MenuSeed extends Seeder
                 'order'         => 2
                 ],['index','create','update','delete']
             ); 
+            \trinata::addMenu([
+                'parent_id'     => 'ref-kerjasama',
+                'title'         => 'Jenis Naskah Kerjasama',
+                'controller'    => 'UsulanTypeController',
+                'slug'          => 'usulan-type',
+                'order'         => 3
+                ],['index','create','update','delete']
+            ); 
 
          \trinata::addMenu([ 
                 'parent_id'     => null,

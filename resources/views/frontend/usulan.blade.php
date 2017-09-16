@@ -84,7 +84,7 @@
 											<div class="captcha-row">
 												<!-- <img src="images/material/captcha.gif" width="200">
 												<input type="text" class="form-control " id="captchaInput" placeholder="type the character you see"> -->
-												<div class="g-recaptcha" data-sitekey="6Ld33zAUAAAAAEDZ-pq6TK5Dt3Uqw0Z9zWzGF0zn"></div>
+												<!-- <div class="g-recaptcha" data-sitekey="6Ld33zAUAAAAAEDZ-pq6TK5Dt3Uqw0Z9zWzGF0zn"></div> -->
 											</div>
 										</div><!--end.form-group-->
 										<div class="rows">

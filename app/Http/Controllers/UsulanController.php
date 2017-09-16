@@ -46,7 +46,7 @@ class UsulanController extends Controller {
 	{
 		// dd('aaa');
 
-		$data = ['model' => $this->model, 'type'=> ProposedCooperationType::get()];
+		$data = ['model' => $this->model, 'type'=> ProposedCooperationType::orderBy('sort')->get()];
 
 		// dd($data);
 		return view('frontend.usulan', compact('data'));
@@ -54,8 +54,8 @@ class UsulanController extends Controller {
 
 	public function postIndex(Request $request)
 	{
-		$inputs = $request->all();
-		$inputs['owner_id'] = '1';
+		$inputs = $request->except('g-recaptcha-response');
+		$inputs['owner_id'] = \App\User::whereRoleId(1)->first()->id;
 		
 		// dd($inputs);
 		$filename = trinata::globalUpload($request, 'filename');
