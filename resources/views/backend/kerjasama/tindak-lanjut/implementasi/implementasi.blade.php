@@ -109,7 +109,7 @@
     $('#datatables').DataTable({
         processing: true,
         serverSide: true,
-        ajax: '{{ urlBackendAction("dataimplementation") }}',
+        ajax: '{{ urlBackendAction($url) }}',
         columns: [
             { data: 'implementation_date', name: 'implementation_date' },
             { data: 'activity_type', name: 'activity_type' },

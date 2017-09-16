@@ -64,8 +64,10 @@ class ImplementationController extends TrinataController
     public function getDataimplementation(Request $request)
     {
 
-       $model = $this->model->whereCategory('implementation');
-
+        $model = $this->model->whereCategory('implementation');
+        if ($request->id) $model->where('cooperation_id', $request->id);
+        if ($request->start) $model->where('cooperation_signed', $request->start);
+        if ($request->end) $model->where('cooperation_ended', $request->end);
 
         $data = Table::of($model)
             ->addColumn('moderation',function($model){
@@ -82,12 +84,22 @@ class ImplementationController extends TrinataController
         return $data;
     }
 
-    public function getView($id)
+    public function getView($id, Request $request)
     {
         $model = $this->model;
         $cooperation_id = $id;
 
-        return view('backend.kerjasama.tindak-lanjut.implementasi.implementasi', compact('model', 'cooperation_id'));
+        $param = [];
+        $url = 'dataimplementation';
+        if ($id) $param[] = 'id='.$id;
+        if ($request->start) $param[] = 'start='.$request->start;
+        if ($request->end) $param[] = 'end='.$request->end;
+
+        if (count($param) > 0) {
+            $url = $url.'?'.implode('&', $param);
+        }
+
+        return view('backend.kerjasama.tindak-lanjut.implementasi.implementasi', compact('model', 'cooperation_id',  'url', 'id'));
     }
 
     public function getCreate($id=false)

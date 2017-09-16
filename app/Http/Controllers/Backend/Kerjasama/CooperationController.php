@@ -115,6 +115,7 @@ class CooperationController extends TrinataController
         $inputs['cooperation_signed'] = \Carbon\Carbon::createFromFormat('d/m/Y', $request->cooperation_signed)->format('Y-m-d');
         $inputs['cooperation_ended'] = \Carbon\Carbon::createFromFormat('d/m/Y', $request->cooperation_ended)->format('Y-m-d');
         $inputs['owner_id'] = \Auth::user()->id;
+        $inputs['slug'] = str_slug($request->title);
         
         
         $lastId = $model->create($inputs); 
@@ -160,6 +161,7 @@ class CooperationController extends TrinataController
 
         $inputs = $request->all();
         $model->title = $request->title;
+        $model->slug = str_slug($request->title);
         $model->cooperation_number = $request->cooperation_number;
         $model->cooperation_category = $request->cooperation_category;
         $model->cooperation_status = $request->cooperation_status;
