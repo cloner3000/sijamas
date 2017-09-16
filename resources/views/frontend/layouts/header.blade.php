@@ -55,8 +55,8 @@
             <a href="#" class="searchTrigger"><i class="fa fa-search" aria-hidden="true"></i></a> -->
           </div>
           <div class="login-mn-row">
-            <a href="admin/index.php" class="login popup">Login</a>
-            <a href="#forgot" class="blue_ref popup">Lupa Password?</a>
+            <!-- <a href="admin/index.php" class="login popup">Login</a>
+            <a href="#forgot" class="blue_ref popup">Lupa Password?</a> -->
             <a href="#pencarianLanjut" class="blue_ref popup">Pencarian Sijamas</a>
           </div>
         </div>

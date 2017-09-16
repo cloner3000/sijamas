@@ -547,6 +547,9 @@ section {
 	position: relative;
 	display: block;
 }
+
+.help-block-error{background:#ca262d;color:#FFF;padding:5px;display:inline-block;margin:8px 0 0;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px}
+
 #file-input {
     display: none;
 }

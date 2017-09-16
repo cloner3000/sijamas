@@ -31,6 +31,10 @@ class UsulanController extends Controller {
 		$this->model = $proposed;
 		$kerjasama = Cooperation::whereApproval('approved')->take(3)->get();
 		View::share('kerjasama', $kerjasama);
+
+		$this->recaptcha = ['key'=>'6Ld33zAUAAAAAEDZ-pq6TK5Dt3Uqw0Z9zWzGF0zn',
+							'secret'=>'6Ld33zAUAAAAABLLDaOyH4nawdgWcPFyDm2UTcja'];
+
 	}
 
 	/**

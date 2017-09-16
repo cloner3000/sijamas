@@ -19,14 +19,15 @@
 						<div class="form-content">
 							<h3>Form Usulan Kerjasama</h3>
 							
-							{!! Form::model($data['model'],['files' => true, 'class'=>'panel-body p-y-1', 'id'=>'usulan-kerjasama']) !!} 
+            
+							{!! Form::open([null, null, 'files' => true, 'class'=>'panel-body p-y-1', 'id'=>'usulan-kerjasama']) !!} 
 							<div class="row">
 								<div class=" col-lg-8 col-md-8 col-md-offset-1 col-lg-offset-1">
 									<div class="inner-form">
 										<div class="form-group label-floating">
 											<label class="control-label">Nama Pengusul*</label>
 											{!! Form::text('name' , null ,['class' => 'form-control', 'required']) !!}
-											<span class="help-block" style="display:none">
+											<span class="help-block-error" style="display:none">
 												<strong></strong>
 											</span>
 										</div><!--end.form-group-->
@@ -81,8 +82,9 @@
 										</div><!--end.form-group-->
 										<div class="form-group">
 											<div class="captcha-row">
-												<img src="images/material/captcha.gif" width="200">
-												<input type="text" class="form-control " id="captchaInput" placeholder="type the character you see">
+												<!-- <img src="images/material/captcha.gif" width="200">
+												<input type="text" class="form-control " id="captchaInput" placeholder="type the character you see"> -->
+												<div class="g-recaptcha" data-sitekey="6Ld33zAUAAAAAEDZ-pq6TK5Dt3Uqw0Z9zWzGF0zn"></div>
 											</div>
 										</div><!--end.form-group-->
 										<div class="rows">
@@ -111,6 +113,7 @@
 @endsection
 
 @push('script-js')
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <script src="{{ asset('frontend/js/jquery.validate.min.js') }}" type="text/javascript"></script>
 <script>
 
@@ -128,45 +131,27 @@ $(document).ready(function(){
 			name: {
 				required: true
 			},
-			car_price: {
-				required: true,
-				minlength : 5,
-				maxlength : 13,
-				remote: {
-					url: basedomain +'/buy/my-car-protection/max-price',
-					type: "get",
-					data: {
-							price: function() {
-							return $( "#car_price" ).val();
-						  },
-							accesories: function() {
-							return $( "#accessoris_price" ).val();
-						  }
-					}
-				}
+			title: {
+				required: true
 			},
-			accessoris_price: {
-				maxlength : 11,
-				remote: {
-					url: basedomain +'/buy/my-car-protection/valid-price',
-					type: "get",
-					data: {
-							price: function() {
-							return $( "#car_price" ).val();
-						  },
-							accesories: function() {
-							return $( "#accessoris_price" ).val();
-						  }
-						  
-					},
-					dataFilter: function(data){
-						var json = JSON.parse(data);
-						if(json.status === "success") {
-							return '"true"';
-						}
-						return "\"" + json.error + "\"";
-					}
-				}
+			institute: {
+				required: true
+			},
+			position: {
+				required: true
+			},
+			address: {
+				required: true
+			},
+			email: {
+				required: true
+			},
+			message: {
+				required: true
+			},
+			phone: {
+				required: true,
+				minlength : 10
 			},
 			
 		},
@@ -184,7 +169,7 @@ $(document).ready(function(){
 			$( element ).closest("div").append( error )
 		},
 		errorElement: "span",
-		errorClass: "help-block",
+		errorClass: "help-block-error",
 		highlight: function(element, errorClass) {
 			$(element).removeClass(errorClass).addClass('error');
 		}
