@@ -98,10 +98,10 @@
                         <div class="row">
                           <div class="col-md-6">                            
                             
-                            {!! Form::select('cooperation_province_id', $data['province'], null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!}  
+                            {!! Form::select('cooperation_province_id', $data['province'], null ,['class' => 'form-control select2-example province', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!}  
                           </div>
                           <div class="col-md-6">                        
-                            {!! Form::select('cooperation_city_id', $data['city'], null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!} 
+                            {!! Form::select('cooperation_city_id', $data['city'], $model->cooperation_city_id ? $model->cooperation_city_id : null ,['class' => 'form-control select2-example city', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!} 
                           </div>
                         </div>
                         <div class="row p-y-2">
@@ -280,6 +280,30 @@
             swal("Hapus File !", "File Anda telah dihapus!", "success");
           } else {
             swal("Maaf", "File Anda tidak dapat dihapus!", "info");
+          }
+          
+        },
+      });
+    })
+
+    $('.province').change(function(){
+      var id = $(this).val();
+      var html = '';
+
+      $.ajax({
+        type : 'get',
+        url : '{{ urlBackendAction("city") }}',
+        data : {
+          id : id,
+        },
+        success : function(data){
+          if (data.status == true) {
+            $.each(data.res, function( index, val ) {
+              html += '<option value='+index+'>'+val+'</option>';
+            })
+            $('.city').append(html);
+          } else {
+            return false;  
           }
           
         },

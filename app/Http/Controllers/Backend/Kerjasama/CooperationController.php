@@ -76,7 +76,7 @@ class CooperationController extends TrinataController
                     'cooperationType' => CooperationType::lists('name','id'),
                     'cooperationFocus' => CooperationFocus::lists('name','id'),
                     'province' => CooperationProvince::lists('name','id'),
-                    'city' => CooperationCity::lists('name','id'),
+                    'city' => [],
                 ];
         
         // dd($cooperationType);
@@ -148,7 +148,7 @@ class CooperationController extends TrinataController
                     'cooperationType' => CooperationType::lists('name','id'),
                     'cooperationFocus' => CooperationFocus::lists('name','id'),
                     'province' => CooperationProvince::lists('name','id'),
-                    'city' => CooperationCity::lists('name','id'),
+                    'city' => CooperationCity::where('cooperation_province_id', $model->cooperation_province_id)->lists('name','id'),
                 ];
 
         return view('backend.kerjasama.daftar._form',compact('model', 'data'));
@@ -257,5 +257,14 @@ class CooperationController extends TrinataController
         }
 
         return response()->json(['status' => $status]);
+    }
+
+    public function getCity(Request $request)
+    {
+        $status = false;
+        $model = CooperationCity::where('cooperation_province_id', $request->id)->lists('name', 'id');
+        if ($model) $status = true;
+
+        return response()->json(['status' => $status, 'res'=>$model]);
     }
 }
