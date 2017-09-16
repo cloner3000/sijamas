@@ -19,13 +19,16 @@
 						<div class="form-content">
 							<h3>Form Usulan Kerjasama</h3>
 							
-							{!! Form::model($data['model'],['files' => true, 'class'=>'panel-body p-y-1']) !!} 
+							{!! Form::model($data['model'],['files' => true, 'class'=>'panel-body p-y-1', 'id'=>'usulan-kerjasama']) !!} 
 							<div class="row">
 								<div class=" col-lg-8 col-md-8 col-md-offset-1 col-lg-offset-1">
 									<div class="inner-form">
 										<div class="form-group label-floating">
 											<label class="control-label">Nama Pengusul*</label>
-											{!! Form::text('name' , null ,['class' => 'form-control']) !!}
+											{!! Form::text('name' , null ,['class' => 'form-control', 'required']) !!}
+											<span class="help-block" style="display:none">
+												<strong></strong>
+											</span>
 										</div><!--end.form-group-->
 										<div class="form-group label-floating">
 											<label class="control-label">Judul Usulan*</label>
@@ -108,6 +111,7 @@
 @endsection
 
 @push('script-js')
+<script src="{{ asset('frontend/js/jquery.validate.min.js') }}" type="text/javascript"></script>
 <script>
 
 $(document).ready(function(){
@@ -118,6 +122,74 @@ $(document).ready(function(){
 	$('#file-input').change(function () {
 	    $('.inputFile').val($(this).val());
 	})
+
+	$("#usulan-kerjasama").validate({
+		rules: {
+			name: {
+				required: true
+			},
+			car_price: {
+				required: true,
+				minlength : 5,
+				maxlength : 13,
+				remote: {
+					url: basedomain +'/buy/my-car-protection/max-price',
+					type: "get",
+					data: {
+							price: function() {
+							return $( "#car_price" ).val();
+						  },
+							accesories: function() {
+							return $( "#accessoris_price" ).val();
+						  }
+					}
+				}
+			},
+			accessoris_price: {
+				maxlength : 11,
+				remote: {
+					url: basedomain +'/buy/my-car-protection/valid-price',
+					type: "get",
+					data: {
+							price: function() {
+							return $( "#car_price" ).val();
+						  },
+							accesories: function() {
+							return $( "#accessoris_price" ).val();
+						  }
+						  
+					},
+					dataFilter: function(data){
+						var json = JSON.parse(data);
+						if(json.status === "success") {
+							return '"true"';
+						}
+						return "\"" + json.error + "\"";
+					}
+				}
+			},
+			
+		},
+		messages: {
+			car_price: {
+				maxlength: "Maksimum Total Nilai Pertanggungan 1M",
+				remote: "Maksimum Total Nilai Pertanggungan 1M",
+			},
+			accessoris_price: {
+				maxlength: "Maksimum Total Nilai Pertanggungan 1M",
+				remote: "Maksimum 10%"
+			}
+		},
+		errorPlacement: function(error, element) {
+			$( element ).closest("div").append( error )
+		},
+		errorElement: "span",
+		errorClass: "help-block",
+		highlight: function(element, errorClass) {
+			$(element).removeClass(errorClass).addClass('error');
+		}
+	});
+
 });
 </script>
 

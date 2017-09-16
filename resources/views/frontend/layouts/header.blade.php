@@ -15,9 +15,9 @@
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 <!--Style-->
 <!--link rel="stylesheet" href="css/reset.css"-->
-<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="{{ asset(null) }}css/all.css">
 <!--link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"-->
-<link href="{{ asset(null) }}frontend/css/jquery-ui.css" rel="stylesheet" />
+<!-- <link href="{{ asset(null) }}frontend/css/jquery-ui.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="{{ asset(null) }}frontend/js/source/jquery.fancybox.css?v=2.1.5" media="screen" />
 <link rel="stylesheet" href="{{ asset(null) }}frontend/css/camera.css">
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bxslider/4.1.1/jquery.bxslider.css">
@@ -27,26 +27,10 @@
 <link rel="stylesheet" type="text/css" href="{{ asset(null) }}frontend/css/media1024.css"/>
 <link rel="stylesheet" type="text/css" href="{{ asset(null) }}frontend/css/media768.css"/>
 <link rel="stylesheet" type="text/css" href="{{ asset(null) }}frontend/css/media480.css"/>
-<link rel="stylesheet" type="text/css" href="{{ asset(null) }}frontend/css/media320.css"/>
+<link rel="stylesheet" type="text/css" href="{{ asset(null) }}frontend/css/media320.css"/> -->
 <!--link rel="stylesheet" href="css/style-temp.css"-->
 
-<!--js-->
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
-<script src="{{ asset(null) }}frontend/js/vendor/modernizr-2.6.2.min.js"></script>
-<script src="{{ asset(null) }}frontend/js/SmoothScroll.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/bxslider/4.1.1/plugins/jquery.easing.1.3.js"></script>
-<script type="text/javascript" src="{{ asset(null) }}frontend/js/source/jquery.fancybox.js?v=2.1.5"></script>
-<script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<script src="{{ asset(null) }}frontend/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="{{ asset(null) }}frontend/js/material.min.js"></script>
-<script src="{{ asset(null) }}frontend/js/material-kit.js" type="text/javascript"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/bxslider/4.1.1/jquery.bxslider.js"></script>
-<!--CDN link for  TweenMax-->
-<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
 
-<script src="{{ asset(null) }}frontend/js/js_lib.js"></script>
-<script src="{{ asset(null) }}frontend/js/js_run.js"></script>
-<script src="{{ asset(null) }}frontend/js/apps.js"></script>
 </head>
 <body>
 <!--[if lt IE 7]>

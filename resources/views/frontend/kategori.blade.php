@@ -137,7 +137,7 @@
 						  					<div class="isi-h-news">
 						  						<div class="media">
 												  @if($val->cooperationfile)
-												  @foreach($val->cooperationfile as $file)
+												  @foreach($val->cooperationfoto as $file)
 												  @if($file->type == 'photo')
 												  <div class="media-left">
 												    <a href="#">

@@ -1,0 +1,81 @@
+@charset "utf-8";
+
+/*===============================================================================================================   
+
+Author      : Muhammad Febriansyah
+
+Built       : Juli 2017
+
+=============================================================================================================== */
+
+
+
+@media all and (max-width:767px){
+
+    
+
+    /* header
+
+    ================================================================================================================= */
+    .text-logo{
+        display: none;
+    }
+    .logo-top{
+        width: 100%;
+        text-align: center;
+        float: none;
+        display: block;
+    }
+    .main-menu-mobile ul li,.search-mobile{
+        padding: 10px 20px;
+    }
+    .search-mobile .search-row{
+        float: left;
+    }
+	
+    /* middle homepage
+
+    ================================================================================================================= */
+    .wrapper{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .camera_caption{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    #middle-content {
+        margin-top: 132px;
+    }
+    .camera_caption {
+        height: 230px;
+    }
+    .title-section h3{
+        font-size: 18px;
+    }
+    #bsn-middle .box-border{
+        margin-left: 0;
+    }
+    .inline-news .isi-h-news .media-body{
+        width: 100%;
+    }
+    .profile-info-name, .profile-info-value{
+        display: block;
+        width: 100%;
+    }
+    .register-body{
+        width: 310px;
+    }
+    /* middle contentpage
+
+    ================================================================================================================= */
+	
+	
+    /* footer
+
+    ================================================================================================================= */
+	
+	
+	
+	
+}

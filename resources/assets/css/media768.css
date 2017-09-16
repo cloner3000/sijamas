@@ -1,0 +1,77 @@
+ @charset "utf-8";
+
+/*===============================================================================================================   
+
+Author      : Muhammad Febriansyah
+
+Built       : Juli 2017
+
+=============================================================================================================== */
+
+
+
+@media all and (max-width:1023px){
+
+  
+
+    
+
+    /* header
+
+    ================================================================================================================= */
+    .search-top{
+        display: none;
+    }
+    #menu-desktop{
+        display: none;
+    }
+    #trigger-menu{
+        text-align: right;
+        display: inline-block;
+        border: 1px solid #fff;
+        padding: 5px 20px;
+        margin: 10px 0;
+        text-transform: uppercase;
+        color: #fff;
+        font-size: 14px;
+        border-radius: 10px;
+    }
+    /* middle homepage
+
+    ================================================================================================================= */
+    .camera_caption{
+        height: 140px;
+    }
+    .isi-h-news .media-left,.right-content .big-side-news .isi-h-news .media-left{
+        height: auto;
+    }
+    .carousel-bx-main .bx-wrapper .bx-next{
+        right: 10px;
+        background: url(images/controls.png) no-repeat -43px -32px;
+        top: 47%;
+    }
+    .carousel-bx-main .bx-wrapper .bx-prev{
+        left: 10px;
+        background: url(images/controls.png) no-repeat 0 -32px;
+        top: 47%;
+    }
+    /* popup
+
+    ================================================================================================================= */
+
+    
+    /* middle contentpage
+
+    ================================================================================================================= */
+	
+	
+    /* footer
+
+    ================================================================================================================= */
+    footer .col-md-6 .right.text-right{
+        text-align: left;
+        float: left;
+    }
+
+}
+

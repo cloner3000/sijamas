@@ -23,7 +23,7 @@ class KontakController extends Controller {
 	public function __construct()
 	{
 		// $this->middleware('auth');
-		$kerjasama = Cooperation::whereApproval('approved')->get();
+		$kerjasama = Cooperation::whereApproval('approved')->take(3)->get();
 		View::share('kerjasama', $kerjasama);
 	}
 
