@@ -8,25 +8,26 @@
 			<div class="rows-berita big-side-news">
 				<div class="box-news bg-green">
   					<div class="title-h-news">
-  						<h3><a href="#">{{ $val->title }} </a></h3>
-  						<span class="date-h">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $val->created_at)->format('j F Y')}}</span>
+  						<h3><a href="{{ url('kategori-kerjasama/read/'.$val->slug)}}">{{ $val->title }} </a></h3>
+  						<span class="date-h">{{ $val->about }}</span>
   					</div>
   					<div class="isi-h-news">
   						<div class="media">
 						@if($val->cooperationfoto)
-						  @foreach($val->cooperationfoto as $file)
-						  @if($file->type == 'photo')
+						  @if(isset($val->cooperationfoto[0]))
+						  
 						  <div class="media-left">
-						    <a href="#">
-						      <img class="media-object" src="{{ asset('contents/file/'.$file->filename)}}" alt="berita">
+						  	
+						    <a href="{{ url('kategori-kerjasama/read/'.$val->slug)}}">
+						      <img class="media-object" src="{{ asset('contents/file/'.$val->cooperationfoto[0]->filename)}}" alt="berita">
 						    </a>
 						  </div>
-						   @endif
-						  @endforeach
+						   
 						  @endif
-						  <div class="media-body">
+						  @endif
+						  <!-- <div class="media-body">
 						    {!! $val->scope !!}	
-						  </div>
+						  </div> -->
 						</div>
   					</div><!--en.isi-h-news-->
   				</div><!--end.box-news-->

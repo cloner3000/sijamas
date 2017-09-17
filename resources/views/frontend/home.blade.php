@@ -42,17 +42,19 @@
             $link = $cooperation->cooperation_category == 'dn' ? 'dalam-negeri' : 'luar-negeri';
             ?>
   						<h3><a href="{{ url('kategori-kerjasama/'. $link)}}">{{ $cooperation->title}} </a></h3>
-  						<span class="date-h">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $cooperation->created_at)->format('j F Y')}}</span>
+  						<span class="date-h">{{ $cooperation->about }}</span>
   					</div>
   					<div class="isi-h-news">
   						<div class="media">
 						  <div class="media-left">
 						    <a href="{{ url('kategori-kerjasama/'. $link)}}">
-						      <img class="media-object" src="{{ asset(null) }}contents/file/{{$cooperation->cooperationFoto[0]->filename}}" alt="berita">
-						    </a>
+						      @if(isset($cooperation->cooperationFoto[0]))
+                  <img class="media-object" src="{{ asset(null) }}contents/file/{{$cooperation->cooperationFoto[0]->filename}}" alt="berita">
+						      @endif
+                </a>
 						  </div>
 						  <div class="media-body">
-						    {!! $cooperation->about !!}
+						    {!! $cooperation->scope !!}
 						  </div>
 						  <a href="{{ url('kategori-kerjasama/'. $link)}}" class="btn btn-success right">INDEX</a>
 						</div>

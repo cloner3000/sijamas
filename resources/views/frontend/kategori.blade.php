@@ -7,7 +7,12 @@
 		<div class="wrapper">
 			<ol class="breadcrumb">
 			  <li><a href="#">Home</a></li>
-			  <li class="active">Kategori Kerjasama</li>
+			   @if($flag == 1)
+			  <li class="active">Kategori Kerjasama Luar Negeri</li>
+			  @else 
+			  <li class="active">Kategori Kerjasama Dalam Negeri</li>
+			  @endif
+			  
 			</ol>
 		</div>
 	</div>
@@ -17,7 +22,11 @@
 				<div class=" col-lg-8 col-md-8">
 					<div class="left-content">
 						<div class="kerjasama-page">
-							<h3>Kategori Kerjasama</h3>
+							@if($flag == 1)
+							<h3>Kategori Kerjasama Dalam Negeri</h3>
+							@else 
+							  <h3>Kategori Kerjasama Dalam Negeri</h3>
+							@endif
 							<div class="rows" style="display: none">
 								<div class="box-form">
 									<form>
@@ -128,44 +137,46 @@
 								<div class="list-berita">
 									@if($model)
 									@foreach($model as $val)
+									
 									<div class="rows-berita inline-news">
 										<div class="box-news">
 						  					<div class="title-h-news">
 						  						<h3><a href="{{url('kategori-kerjasama/read/'.$val->slug)}}">{{ $val->title }}</a></h3>
-						  						<span class="date-h">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $val->created_at)->format('j F Y')}}</span>
+						  						<span class="date-h">{{ $val->about}}</span>
 						  					</div>
 						  					<div class="isi-h-news">
 						  						<div class="media">
 												  @if($val->cooperationfile)
-												  @foreach($val->cooperationfoto as $file)
-												  @if($file->type == 'photo')
+												  @if(isset($val->cooperationfoto[0]))
+												  
 												  <div class="media-left">
 												    <a href="#">
-												      <img class="media-object" src="{{ asset('contents/file/'.$file->filename)}}" alt="berita">
+												      <img class="media-object" src="{{ asset('contents/file/'.$val->cooperationfoto[0]->filename)}}" alt="berita">
 												    </a>
 												  </div>
+												  
 												  @endif
-												  @endforeach
 												  @endif
 												  <div class="media-body">
-												  	<span class="fontBlue">
+												  	<span class="fontBlue1">
 												  		@if($val->cooperation_category == 'ln')
 												  		Kerjasama Luar negeri
 												  		@else
 												  		Kerjasama Dalam negeri
 												  		@endif
 												  	</span><br>
-												  	<span class="fontGreen">{{ $val->cooperation_number}}</span><br>
-												  	<span class="fontBlue">{{ $val->cooperationtype->name }}</span><br>
-												  	<span class="fontGreen">Status: {{ $val->cooperation_status }}</span><br>
-												  	<span class="fontGreen">Tahun Penandatanganan : {{ \Carbon\Carbon::createFromFormat('Y-m-d', $val->cooperation_signed)->format('Y')}}</span><br>
-												  	<span class="fontGreen">Tahun Berakhir : {{ \Carbon\Carbon::createFromFormat('Y-m-d', $val->cooperation_ended)->format('Y')}}</span><br><br>
+												  	<span class="fontGreen1">{{ $val->cooperation_number}}</span><br>
+												  	<span class="fontBlue1">{{ $val->cooperationtype->name }}</span><br>
+												  	<span class="fontGreen1">Status: {{ $val->cooperation_status }}</span><br>
+												  	<span class="fontGreen1">Tahun Penandatanganan : {{ \Carbon\Carbon::createFromFormat('Y-m-d', $val->cooperation_signed)->format('Y')}}</span><br>
+												  	<span class="fontGreen1">Tahun Berakhir : {{ \Carbon\Carbon::createFromFormat('Y-m-d', $val->cooperation_ended)->format('Y')}}</span><br><br>
 												    <p>{!! $val->scope !!}</p>
 												  </div>
 												</div>
 						  					</div><!--en.isi-h-news-->
 						  				</div><!--end.box-news-->
 									</div><!--end.rows-berita-->
+									
 									@endforeach
 									@endif
 									<!--
