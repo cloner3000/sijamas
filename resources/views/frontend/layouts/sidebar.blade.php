@@ -14,15 +14,15 @@
   					<div class="isi-h-news">
   						<div class="media">
 						@if($val->cooperationfoto)
-						  @foreach($val->cooperationfoto as $file)
-						  @if($file->type == 'photo')
+						  @if(isset($val->cooperationfoto[0]))
+						  
 						  <div class="media-left">
 						    <a href="#">
-						      <img class="media-object" src="{{ asset('contents/file/'.$file->filename)}}" alt="berita">
+						      <img class="media-object" src="{{ asset('contents/file/'.$val->cooperationfoto[0]->filename)}}" alt="berita">
 						    </a>
 						  </div>
-						   @endif
-						  @endforeach
+						   
+						  @endif
 						  @endif
 						  <div class="media-body">
 						    {!! $val->scope !!}	

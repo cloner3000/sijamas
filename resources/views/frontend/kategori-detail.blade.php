@@ -107,13 +107,14 @@
 												<span>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $model->cooperation_signed)->format('j F Y')}}</span>
 											</div>
 										</div><!--.profile-info-row-->
-										<div class="profile-info-row">
+										<!-- <div class="profile-info-row">
 											<div class="profile-info-name"> Lama Berlaku Kerjasama :</div>
 
 											<div class="profile-info-value">
 												<span>5 Tahun</span>
 											</div>
-										</div><!--.profile-info-row-->
+										</div> -->
+										<!--.profile-info-row-->
 										<div class="profile-info-row">
 											<div class="profile-info-name"> Tanggal Berakhir Kerjasama :</div>
 
