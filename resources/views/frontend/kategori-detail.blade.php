@@ -7,9 +7,15 @@
 		<div class="wrapper">
 			<ol class="breadcrumb">
 			  <li><a href="#">Home</a></li>
-			  <li><a href="#">Kategori Kerjasama</a></li>
-			  <li><a href="#">Kerjasama Luar Negeri</a></li>
-			  <li class="active">Lorem Ipsum Dolot sit amet</li>
+			  
+			  @if($model->cooperation_category == 'ln')
+			  <li><a href="#">Kategori Kerjasama Luar Negeri</a></li>
+			  <li><a href="{{ url('kategori-kerjasama/luar-negeri')}}">Kerjasama Luar Negeri</a></li>
+			  @else
+			  <li><a href="#">Kategori Kerjasama Dalam Negeri</a></li>
+			  <li><a href="{{ url('kategori-kerjasama/dalam-negeri')}}">Kerjasama Dalam Negeri</a></li>
+			  @endif
+			  <li class="active">{{$model->title}}</li>
 			</ol>
 		</div>
 	</div>
@@ -22,7 +28,7 @@
 							<div class="entry-header">
 								<h1 class="entry-title h1">{{ $model->title }}</h1>
 								<div class="entry-meta entry-meta-single">
-									<div class="meta-item herald-date"><span class="updated">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('j F Y')}}</span></div>
+									<div class="meta-item herald-date"><span class="updated">{{ $model->about }}</span></div>
 								</div> 
 							</div><!--end.entry-hedaer-->
 							<div class="slider-detail">
@@ -45,8 +51,8 @@
 	    							<div class="carousel-bx-main">
 		    							<ul id="bxslider-pager">
 											@if($model->cooperationFoto)
-											@foreach ($model->cooperationFoto as $foto)
-											<li data-slideIndex="0"><a href=""><img src="{{ asset(null) }}contents/file/{{$foto->filename}}" alt=""></a></li>
+											@foreach ($model->cooperationFoto as $key => $foto)
+											<li data-slideIndex="{{$key}}"><a href=""><img src="{{ asset(null) }}contents/file/{{$foto->filename}}" alt=""></a></li>
 											@endforeach
 											@endif
 
@@ -97,7 +103,7 @@
 											<div class="profile-info-name"> Lokasi Kerjasama :</div>
 
 											<div class="profile-info-value">
-												<span>{{ $model->address}}, {{ $model->city->name}} , {{ $model->province->name}} </span>
+												<span>{{ $model->city->name}}, {{ $model->province->name}} </span>
 											</div>
 										</div><!--.profile-info-row-->
 										<div class="profile-info-row">
@@ -142,7 +148,7 @@
 											<div class="profile-info-value">
 												@if($model->cooperationfile)
 												@foreach ($model->cooperationfile as $file)
-												<span>{{ $file->filename}}</span><br>
+												<span><a href="javascript:void(0)" onclick="return alert('Hubungi Admin untuk mendownload')"> {{ $file->filename}}</a></span><br>
 												@endforeach
 												@endif
 											</div>
@@ -163,12 +169,13 @@
 													<tbody>
 														@if($model->cooperationimplementation)
 														@foreach ($model->cooperationimplementation as $imp)
-														
+														@if($imp->category == 'implementation')
 														<tr>
 															<td>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $imp->implementation_date)->format('j F Y')}}</td>
 															<td>{{ $imp->activity_type}}</td>
 															<td>{!! $imp->description !!}</td>
 														</tr>
+														@endif
 													@endforeach
 													@endif
 													</tbody>

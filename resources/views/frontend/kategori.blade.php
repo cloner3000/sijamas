@@ -7,7 +7,12 @@
 		<div class="wrapper">
 			<ol class="breadcrumb">
 			  <li><a href="#">Home</a></li>
-			  <li class="active">Kategori Kerjasama</li>
+			   @if($flag == 1)
+			  <li class="active">Kategori Kerjasama Luar Negeri</li>
+			  @else 
+			  <li class="active">Kategori Kerjasama Dalam Negeri</li>
+			  @endif
+			  
 			</ol>
 		</div>
 	</div>
@@ -17,7 +22,11 @@
 				<div class=" col-lg-8 col-md-8">
 					<div class="left-content">
 						<div class="kerjasama-page">
-							<h3>Kategori Kerjasama</h3>
+							@if($flag == 1)
+							<h3>Kategori Kerjasama Dalam Negeri</h3>
+							@else 
+							  <h3>Kategori Kerjasama Dalam Negeri</h3>
+							@endif
 							<div class="rows" style="display: none">
 								<div class="box-form">
 									<form>

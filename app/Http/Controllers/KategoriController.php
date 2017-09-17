@@ -47,7 +47,8 @@ class KategoriController extends Controller {
 	{
 		$model = $this->model->whereApproval('approved')->whereCooperationCategory('ln')->paginate($this->paging);
 		// dd($model[1]->cooperationfile);
-		return view('frontend.kategori', compact('model'));
+		$flag = 1;
+		return view('frontend.kategori', compact('model', 'flag'));
 	}
 
 	public function getDalamNegeri()
@@ -55,14 +56,15 @@ class KategoriController extends Controller {
 		$model = $this->model->whereApproval('approved')->whereCooperationCategory('dn')->paginate($this->paging);
 		// dd($model);
 		// dd($model[1]->cooperationfile);
-		return view('frontend.kategori', compact('model'));
+		$flag = 2;
+		return view('frontend.kategori', compact('model', 'flag'));
 	}
 
 	public function read($slug=false)
 	{
 
 		$model = $this->model->whereSlug($slug)->first();
-		
+		// dd($model->cooperationimplementation);
 		return view('frontend.kategori-detail', compact('model'));
 	}
 
