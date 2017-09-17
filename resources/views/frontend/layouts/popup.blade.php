@@ -44,8 +44,9 @@
                               <label>Jenis Kerjasama</label>
                               <select class="form-control" name="jenis">
                                 <option value=""> -- Pilih Jenis Kerjasama -- </option>
-                                <option value="">Payung Kerjasama</option>
-                                <option value="">Perjanjian Pelaksana</option>
+                              @foreach($CooperationType as $jenis)
+                                <option value="{{$jenis->id}}">{{$jenis->name}}</option>
+                              @endforeach
                               </select>
                             </div><!--end.form-group-->
                             <div class="form-group">

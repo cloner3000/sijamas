@@ -167,6 +167,10 @@
                           <span class="custom-file-control form-control">
                           Pilih File Dokumen...
                           </span>
+                          <div class="px-file-buttons">
+                            <button type="button" class="btn btn-xs px-file-clear">Clear</button>
+                            <button type="button" class="btn btn-primary btn-xs px-file-browse">Browse</button>
+                          </div>
                           @if($model->cooperationfile)
                           @foreach($model->cooperationfile as $file)
                             @if ($file->type == 'document') <label class="file_{{$file->id}}">{{ $file->filename }}</label> 
@@ -188,6 +192,10 @@
                           <span class="custom-file-control form-control">
                           Pilih Foto Dokumen...
                           </span>
+                          <div class="px-file-buttons">
+                            <button type="button" class="btn btn-xs px-file-clear">Clear</button>
+                            <button type="button" class="btn btn-primary btn-xs px-file-browse">Browse</button>
+                          </div>
                            @if($model->cooperationfile)
                           @foreach($model->cooperationfoto as $file)
                             @if ($file->type == 'photo') <label class="file_{{$file->id}}">{{ $file->filename }}</label> 
