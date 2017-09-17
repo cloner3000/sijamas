@@ -58,9 +58,12 @@ class KategoriController extends Controller {
 		return view('frontend.kategori', compact('model'));
 	}
 
-	public function read()
+	public function read($slug=false)
 	{
-		return view('frontend.kategori-detail');
+
+		$model = $this->model->whereSlug($slug)->first();
+		
+		return view('frontend.kategori-detail', compact('model'));
 	}
 
 	public function getPencarian(Request $request)

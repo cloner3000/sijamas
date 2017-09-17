@@ -20,9 +20,9 @@
 					<div class="left-content">
 						<div class="detail-Berita">
 							<div class="entry-header">
-								<h1 class="entry-title h1">Sorotan BPK, Pengadaan Barang dan Jasa Pemerintah Rawan Persekongkolan </h1>
+								<h1 class="entry-title h1">{{ $model->title }}</h1>
 								<div class="entry-meta entry-meta-single">
-									<div class="meta-item herald-date"><span class="updated">Selasa 18 Juli 2017 18:08:00</span></div>
+									<div class="meta-item herald-date"><span class="updated">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $model->created_at)->format('j F Y')}}</span></div>
 								</div> 
 							</div><!--end.entry-hedaer-->
 							<div class="slider-detail">
@@ -30,12 +30,12 @@
 									<div class="col-md-9">
 										<div class="bx-main">
 											<ul id="bxslider">
-												<li><img src="{{ asset(null) }}frontend/images/content/detail-news.jpg" alt=""></li>
-												<li><img src="{{ asset(null) }}frontend/images/content/detail-news2.jpg" alt=""></li>
-												<li><img src="{{ asset(null) }}frontend/images/content/detail-news.jpg" alt=""></li>
-												<li><img src="{{ asset(null) }}frontend/images/content/detail-news2.jpg" alt=""></li>
-												<li><img src="{{ asset(null) }}frontend/images/content/detail-news.jpg" alt=""></li>
-												<li><img src="{{ asset(null) }}frontend/images/content/detail-news2.jpg" alt=""></li>
+												@if($model->cooperationFoto)
+												@foreach ($model->cooperationFoto as $foto)
+												<li><img src="{{ asset(null) }}contents/file/{{$foto->filename}}" alt=""></li>
+												@endforeach
+												@endif
+												
 			    							</ul>
 		    							</div>
 	    							</div>
@@ -44,12 +44,12 @@
     							<div class="col-md-3">
 	    							<div class="carousel-bx-main">
 		    							<ul id="bxslider-pager">
-											<li data-slideIndex="0"><a href=""><img src="{{ asset(null) }}frontend/images/content/detail-news.jpg" alt=""></a></li>
-											<li data-slideIndex="1"><a href=""><img src="{{ asset(null) }}frontend/images/content/detail-news2.jpg" alt=""></a></li>
-											<li data-slideIndex="2"><a href=""><img src="{{ asset(null) }}frontend/images/content/detail-news.jpg" alt=""></a></li>
-											<li data-slideIndex="3"><a href=""><img src="{{ asset(null) }}frontend/images/content/detail-news2.jpg" alt=""></a></li>
-											<li data-slideIndex="4"><a href=""><img src="{{ asset(null) }}frontend/images/content/detail-news.jpg" alt=""></a></li>
-											<li data-slideIndex="5"><a href=""><img src="{{ asset(null) }}frontend/images/content/detail-news2.jpg" alt=""></a></li>
+											@if($model->cooperationFoto)
+											@foreach ($model->cooperationFoto as $foto)
+											<li data-slideIndex="0"><a href=""><img src="{{ asset(null) }}contents/file/{{$foto->filename}}" alt=""></a></li>
+											@endforeach
+											@endif
+
 										</ul>
 									</div>
 								</div>
@@ -62,21 +62,21 @@
 											<div class="profile-info-name"> Nomor Kerjasama : </div>
 
 											<div class="profile-info-value">
-												<span>02/0219/BSN/2910/2190920</span>
+												<span>{{ $model->cooperation_number}}</span>
 											</div>
 										</div><!--.profile-info-row-->
 										<div class="profile-info-row">
 											<div class="profile-info-name"> Kategori Kerjasama : </div>
 
 											<div class="profile-info-value">
-												<span>DN</span>
+												<span>{{ strtoupper($model->cooperation_category) }}</span>
 											</div>
 										</div><!--.profile-info-row-->
 										<div class="profile-info-row">
 											<div class="profile-info-name"> Kategori Status Kerjasama : </div>
 
 											<div class="profile-info-value">
-												<span>Baru</span>
+												<span>{{ ucfirst($model->cooperation_status) }}</span>
 											</div>
 										</div><!--.profile-info-row-->
 										<div class="profile-info-row">
@@ -90,21 +90,21 @@
 											<div class="profile-info-name"> Mitra Kerjasama :</div>
 
 											<div class="profile-info-value">
-												<span>Pemerintah Provinsi D.K.I Jakarta</span>
+												<span>{{ $model->partners }}</span>
 											</div>
 										</div><!--.profile-info-row-->
 										<div class="profile-info-row">
 											<div class="profile-info-name"> Lokasi Kerjasama :</div>
 
 											<div class="profile-info-value">
-												<span>Jakarta </span>
+												<span>{{ $model->address}}, {{ $model->city->name}} , {{ $model->province->name}} </span>
 											</div>
 										</div><!--.profile-info-row-->
 										<div class="profile-info-row">
 											<div class="profile-info-name"> Tanggal Penandatanganan Kerjasama :</div>
 
 											<div class="profile-info-value">
-												<span>28 April 2016</span>
+												<span>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $model->cooperation_signed)->format('j F Y')}}</span>
 											</div>
 										</div><!--.profile-info-row-->
 										<div class="profile-info-row">
@@ -118,29 +118,32 @@
 											<div class="profile-info-name"> Tanggal Berakhir Kerjasama :</div>
 
 											<div class="profile-info-value">
-												<span>28 April 2021</span>
+												<span>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $model->cooperation_ended)->format('j F Y')}}</span>
 											</div>
 										</div><!--.profile-info-row-->
 										<div class="profile-info-row">
 											<div class="profile-info-name"> Bidang Fokus :</div>
 
 											<div class="profile-info-value">
-												<span>Lainnya</span>
+												<span>{{ $model->cooperationfocus->name}}</span>
 											</div>
 										</div><!--.profile-info-row-->
 										<div class="profile-info-row">
 											<div class="profile-info-name"> Ruang Lingkup :</div>
 
 											<div class="profile-info-value">
-												<span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
+												<span>{!! $model->scope !!}</span>
 											</div>
 										</div><!--.profile-info-row-->
 										<div class="profile-info-row">
 											<div class="profile-info-name"> File Dokumen :</div>
 
 											<div class="profile-info-value">
-												<span>1. MOU Kerjasama</span><br>
-												<span>2. Data Implementasi</span>
+												@if($model->cooperationfile)
+												@foreach ($model->cooperationfile as $file)
+												<span>{{ $file->filename}}</span><br>
+												@endforeach
+												@endif
 											</div>
 										</div><!--.profile-info-row-->
 										
@@ -157,11 +160,16 @@
 														</tr>
 													</thead>
 													<tbody>
+														@if($model->cooperationimplementation)
+														@foreach ($model->cooperationimplementation as $imp)
+														
 														<tr>
-															<td>28 April 2018</td>
-															<td>Lorem Ipsum is simply dummy text</td>
-															<td>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</td>
+															<td>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $imp->implementation_date)->format('j F Y')}}</td>
+															<td>{{ $imp->activity_type}}</td>
+															<td>{!! $imp->description !!}</td>
 														</tr>
+													@endforeach
+													@endif
 													</tbody>
 												</table>
 											</div>

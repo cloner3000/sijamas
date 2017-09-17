@@ -131,7 +131,7 @@
 									<div class="rows-berita inline-news">
 										<div class="box-news">
 						  					<div class="title-h-news">
-						  						<h3><a href="{{url('kategori-kerjasama/read/1')}}">{{ $val->title }}</a></h3>
+						  						<h3><a href="{{url('kategori-kerjasama/read/'.$val->slug)}}">{{ $val->title }}</a></h3>
 						  						<span class="date-h">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $val->created_at)->format('j F Y')}}</span>
 						  					</div>
 						  					<div class="isi-h-news">
