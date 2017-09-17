@@ -1,4 +1,3 @@
-{{dd($CooperationType)}}
 <div class="popup-badan" style="display:none;width: 650px;">
     <div class="popup-body popupEdit"  id="pencarianLanjut">
         <div class="register-body">
