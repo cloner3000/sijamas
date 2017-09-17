@@ -42,12 +42,14 @@
                                 </tr>
                               </thead>
                               <tbody>
+                                @if($model)
+                                @foreach($model as $val)
                                 <tr class="odd gradeX">
                                   <td>
                                     1
                                   </td>
-                                  <td>Kerjasama Luar Negeri</td>
-                                  <td class="center"><a href="edit-pengumumanku.php"> Mou BSN - BNSP; Perkuat Personel Indonesia Hadapi MEA</a></td>
+                                  <td>{{ strtoupper($val->cooperation_category)}}</td>
+                                  <td class="center"><a href="edit-pengumumanku.php"> {{ $val->title}}</a></td>
                                   <td class="center">12-02-2017</td>
                                   <td class="center">
                                     <label for="switcher-rounded" class="switcher switcher-primary">&nbsp;
@@ -63,7 +65,8 @@
                                     <a href="#" class="btn btn-danger confirm"><i class="fa fa-trash"></i></a> 
                                   </td>
                                 </tr>
-                                
+                                @endforeach
+                                @endif
                               </tbody>
                             </table>
                           </div>

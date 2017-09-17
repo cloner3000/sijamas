@@ -13,7 +13,7 @@
               </div>
               <div class="panel-body">
               <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-12">
                 
                 {!! Form::model($model, ['class'=>'panel-body p-y-1', 'files'=>true]) !!} 
                   <div class="form-group">
@@ -200,6 +200,41 @@
                       </div>
                     </div>
                   </div>
+                  
+                 
+                  <div class="form-group">
+                    <div class="row">
+                      <label class="col-sm-4 control-label">Penandatangan 1 :</label>
+                      <div class="col-sm-4">
+                        {!! Form::text('first_sign' , null ,['class' => 'form-control', 'placeholder'=>'Nama']) !!}
+                      </div>
+                      <div class="col-sm-4">
+                        {!! Form::text('first_sign_position' , null ,['class' => 'form-control', 'placeholder'=>'Jabatan']) !!}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <label class="col-sm-4 control-label">Penandatangan 2 :</label>
+                      <div class="col-sm-4">
+                        {!! Form::text('second_sign' , null ,['class' => 'form-control', 'placeholder'=>'Nama']) !!}
+                      </div>
+                      <div class="col-sm-4">
+                        {!! Form::text('second_sign_position' , null ,['class' => 'form-control', 'placeholder'=>'Jabatan']) !!}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <label class="col-sm-4 control-label">Penandatangan 3 :</label>
+                      <div class="col-sm-4">
+                        {!! Form::text('third_sign' , null ,['class' => 'form-control', 'placeholder'=>'Nama']) !!}
+                      </div>
+                      <div class="col-sm-4">
+                        {!! Form::text('third_sign_position' , null ,['class' => 'form-control', 'placeholder'=>'Jabatan']) !!}
+                      </div>
+                    </div>
+                  </div>
                   <div class="form-group">
                     <div class="row">
                       <label class="col-sm-4 control-label">Persetujuan Kerjasama :</label>
@@ -297,6 +332,7 @@
           id : id,
         },
         success : function(data){
+          $('.city').html('');
           if (data.status == true) {
             $.each(data.res, function( index, val ) {
               html += '<option value='+index+'>'+val+'</option>';
