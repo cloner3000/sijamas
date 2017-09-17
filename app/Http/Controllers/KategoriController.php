@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Models\Cooperation;
+use Illuminate\Http\Request;
 use View;
 class KategoriController extends Controller {
 
@@ -27,6 +28,7 @@ class KategoriController extends Controller {
 		$kerjasama = Cooperation::whereApproval('approved')->take(3)->get();
 		View::share('kerjasama', $kerjasama);
 		$this->paging = 5;
+		parent::__construct();
 	}
 
 	/**
@@ -59,6 +61,43 @@ class KategoriController extends Controller {
 	public function read()
 	{
 		return view('frontend.kategori-detail');
+	}
+
+	public function getPencarian(Request $request)
+	{
+		// dd('masuk');
+		$model = $this->model->whereApproval('approved');
+
+		$start_date = $request->start_date;
+		$end_date 	= $request->end_date;
+		$kategori 	= $request->kategori;
+		$jenis 		= $request->jenis;
+		$bidang 	= $request->bidang;
+		$status 	= $request->status;
+		$start_year	= $request->start_year;
+		$end_year 	= $request->end_year;
+
+		if($kategori){
+			if($kategori=="ln" || $kategori =="dn"){
+				$model = $model->whereCooperationCategory($kategori);
+			}
+		}
+		if($jenis){
+			$model = $model->whereCooperationTypeId($jenis);
+		}
+		if($bidang){
+			$model = $model->whereCooperationFocusId($bidang);
+		}
+		if($status){
+			if($kategori=="baru" || $kategori =="lanjutan"){
+				$model = $model->whereCooperationCategory($kategori);
+			}
+		}
+
+
+		$model = $model->paginate($this->paging);
+
+		return view('frontend.kategori', compact('model'));
 	}
 
 }

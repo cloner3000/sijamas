@@ -18,6 +18,7 @@ Route::get('profile', 'ProfileController@index');
 Route::get('usulan-kerjasama', 'UsulanController@index');
 Route::get('kategori-kerjasama', 'KategoriController@index');
 Route::get('kategori-kerjasama/read/{id?}', 'KategoriController@read');
+Route::get('kategori-kerjasama/pencarian', 'KategoriController@getPencarian');
 Route::get('kontak-kami', 'KontakController@index');
 
 Route::controller('usulan-kerjasama','UsulanController');

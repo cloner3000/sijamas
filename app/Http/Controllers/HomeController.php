@@ -2,6 +2,7 @@
 
 use App\Models\Cooperation;
 use App\Models\NewsContent;
+use View;
 
 class HomeController extends Controller {
 
@@ -23,7 +24,8 @@ class HomeController extends Controller {
 	 */
 	public function __construct()
 	{
-		// $this->middleware('auth');
+		// // $this->middleware('auth');
+		parent::__construct();
 	}
 
 	/**

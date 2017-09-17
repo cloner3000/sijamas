@@ -30,6 +30,7 @@ class ProfileController extends Controller {
 		
 		$kerjasama = Cooperation::whereApproval('approved')->take(3)->get();
 		View::share('kerjasama', $kerjasama);
+		parent::__construct();
 	}
 
 	/**

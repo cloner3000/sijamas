@@ -34,6 +34,7 @@ class UsulanController extends Controller {
 
 		$this->recaptcha = ['key'=>'6Ld33zAUAAAAAEDZ-pq6TK5Dt3Uqw0Z9zWzGF0zn',
 							'secret'=>'6Ld33zAUAAAAABLLDaOyH4nawdgWcPFyDm2UTcja'];
+		parent::__construct();
 
 	}
 

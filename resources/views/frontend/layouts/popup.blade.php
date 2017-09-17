@@ -1,32 +1,25 @@
+{{dd($CooperationType)}}
 <div class="popup-badan" style="display:none;width: 650px;">
     <div class="popup-body popupEdit"  id="pencarianLanjut">
         <div class="register-body">
             <div class="top-text text-center"><p>Pencarian Lanjutan SIJAMAS</p></div>
             <div class="inputnya">
-                <form>
+                <form method="get" action="{{url('/kategori-kerjasama/pencarian')}}">
                     <div class="row">
                         <div class="col-md-12">
-                            <!--<div class="form-group">-->
-                            <!--  <label>Jenis Pencarian</label>-->
-                            <!--  <select class="form-control">-->
-                            <!--    <option> -- Pilih Jenis Pencarian -- </option>-->
-                            <!--    <option>Pencarian Berita</option>-->
-                            <!--    <option>Pencarian Olahraga</option>-->
-                            <!--  </select>-->
-                            <!--</div>-->
                             <div class="form-group">
                               <label>Periode Pencarian</label>
                               <div class="row">
                                   <div class="col-md-12">
                                       <select class="form-control">
-                                        <option> -- Pilih Jenis Periode -- </option>
-                                        <option>Tanggal Terbaru</option>
+                                        <option value=""> -- Pilih Jenis Periode -- </option>
+                                        <option value="">Tanggal Terbaru</option>
                                       </select>
                                   </div>
                                   <div class="col-md-5 col-sm-5 col-xs-6">
                                       <div class="inner-addon right-addon">
                                         <i class="fa fa-calendar" aria-hidden="true"></i>
-                                        <input type="text" class="form-control datepicker1"/>
+                                        <input type="text" name="start_date" class="form-control datepicker_start"/>
                                       </div>
                                   </div>
                                   <div class="col-md-2 hidden-xs text-center">
@@ -35,66 +28,66 @@
                                   <div class="col-md-5 col-sm-5 col-xs-6">
                                      <div class="inner-addon right-addon">
                                         <i class="fa fa-calendar" aria-hidden="true"></i>
-                                        <input type="text" class="form-control datepicker2  "/>
+                                        <input type="text" name="end_date" class="form-control datepicker_end  "/>
                                       </div>
                                   </div>
                               </div>
                             </div><!--end.form-group-->
                             <div class="form-group">
                               <label>Kategori Kerjasama</label>
-                              <select class="form-control">
-                                <option> -- Pilih Kategori Kerjasama -- </option>
-                                <option>Kerjasama Luar Negeri</option>
-                                <option>Kerjasama Dalam Negeri</option>
+                              <select class="form-control" name="kategori">
+                                <option value=""> -- Pilih Kategori Kerjasama -- </option>
+                                <option value="ln">Kerjasama Luar Negeri</option>
+                                <option value="dn">Kerjasama Dalam Negeri</option>
                               </select>
                             </div><!--end.form-group-->
                             <div class="form-group">
                               <label>Jenis Kerjasama</label>
-                              <select class="form-control">
-                                <option> -- Pilih Jenis Kerjasama -- </option>
-                                <option>Payung Kerjasama</option>
-                                <option>Perjanjian Pelaksana</option>
+                              <select class="form-control" name="jenis">
+                                <option value=""> -- Pilih Jenis Kerjasama -- </option>
+                                <option value="">Payung Kerjasama</option>
+                                <option value="">Perjanjian Pelaksana</option>
                               </select>
                             </div><!--end.form-group-->
                             <div class="form-group">
                               <label>Status Kerjasama</label>
-                              <select class="form-control">
-                                <option> -- Pilih Status Kerjasama -- </option>
-                                <option>Baru</option>
-                                <option>Lanjutan</option>
+                              <select class="form-control" name="status">
+                                <option value=""> -- Pilih Status Kerjasama -- </option>
+                                <option value="baru">Baru</option>
+                                <option value="lanjutan">Lanjutan</option>
                               </select>
                             </div><!--end.form-group-->
                             <div class="form-group">
                               <label>Bidang Fokus</label>
-                              <select class="form-control">
-                                <option> -- Pilih Bidang Fokus -- </option>
-                                <option>Teknologi Informasi</option>
-                                <option>Pendidikan</option>
+                              <select class="form-control" name="bidang">
+                                <option value=""> -- Pilih Bidang Fokus -- </option>
+                                <option value="">Teknologi Informasi</option>
+                                <option value="">Pendidikan</option>
                               </select>
                             </div><!--end.form-group-->
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                               <label>Tahun Penandatanganan</label>
-                              <select class="form-control">
-                                <option> -- Pilih Tahun -- </option>
-                                <option>2011</option>
-                                <option>2012</option>
+                              <select class="form-control" name="start_year">
+                                <option value=""> -- Pilih Tahun -- </option>
+                                <option value="">2011</option>
+                                <option value="">2012</option>
                               </select>
-                            </div><!--end.form-group-->
-                            <div class="form-group">
+                            </div> --><!--end.form-group-->
+                            <!-- <div class="form-group">
                               <label>Tahun Berakhir</label>
-                              <select class="form-control">
-                                <option> -- Pilih Tahun -- </option>
-                                <option>2017</option>
-                                <option>2018</option>
+                              <select class="form-control" name="end_year">
+                                <option value=""> -- Pilih Tahun -- </option>
+                                <option value="">2017</option>
+                                <option value="">2018</option>
                               </select>
-                            </div><!--end.form-group-->
+                            </div> --><!--end.form-group-->
                             <div class="form-group">
                               <label>Pencarian Global</label>
-                              <input type="text" class="form-control" placeholder="masukan kata pencarian">
+                              <input type="text" class="form-control" name="keyword" placeholder="masukan kata pencarian">
                             </div>
                             <div class="rows">
                               <button type="submit" class="btn btn-primary">Tampilkan</button>
-                              <button type="submit" class="btn btn-default">Reset</button>
+                              <button type="reset" class="btn btn-default">Reset</button>
                               <button type="submit" class="btn btn-danger">Batal</button>
                             </div>
                         </div>

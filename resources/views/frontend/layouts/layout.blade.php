@@ -36,6 +36,21 @@
 <script src="{{ asset(null) }}frontend/js/js_lib.js"></script>
 <script src="{{ asset(null) }}frontend/js/js_run.js"></script>
 <script src="{{ asset(null) }}frontend/js/apps.js"></script> -->
-
+<script type="text/javascript">
+	 $(document).ready(function() {
+	 	//windowHeight();
+		$('.datepicker_start').datepicker({
+				changeMonth : true,
+                changeYear : true,
+                dateFormat : "dd/mm/yy",
+		});
+		$('.datepicker_end').datepicker({
+				changeMonth : true,
+                changeYear : true,
+                dateFormat : "dd/mm/yy",
+		});
+		
+	});
+</script>
 @stack('script-js')
 </html>
