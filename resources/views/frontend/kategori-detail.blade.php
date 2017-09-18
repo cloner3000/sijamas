@@ -38,7 +38,7 @@
 											<ul id="bxslider">
 												@if($model->cooperationFoto)
 												@foreach ($model->cooperationFoto as $foto)
-												<li><img src="{{ asset(null) }}contents/file/{{$foto->filename}}" alt=""></li>
+												<li><img src="{{ asset(null) }}contents/file/{{$foto->filename}}" alt="" title="Test"></li>
 												@endforeach
 												@endif
 												
@@ -204,6 +204,7 @@
 var realSlider= $("ul#bxslider").bxSlider({
       speed:1000,
       pager:false,
+      captions: true,
       nextText:'',
       prevText:'',
       infiniteLoop:false,

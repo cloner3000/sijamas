@@ -102,7 +102,8 @@ class KategoriController extends Controller {
 
 		$model = $model->paginate($this->paging);
 
-		return view('frontend.kategori', compact('model'));
+		$flag = ($kategori == 'ln') ? 1 : 2;
+		return view('frontend.kategori', compact('model', 'flag'));
 	}
 
 }

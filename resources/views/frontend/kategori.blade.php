@@ -23,7 +23,7 @@
 					<div class="left-content">
 						<div class="kerjasama-page">
 							@if($flag == 1)
-							<h3>Kategori Kerjasama Dalam Negeri</h3>
+							<h3>Kategori Kerjasama Luar Negeri</h3>
 							@else 
 							  <h3>Kategori Kerjasama Dalam Negeri</h3>
 							@endif
