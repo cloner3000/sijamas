@@ -10,7 +10,7 @@
           </div>   
                     
             <div class="row p-a-3">
-                <a href="{{urlBackend(Request::segment(1).'/export?start='.$start.'&end='.$end.'&report='.$field)}}" class="btn btn-primary btn-3d"><i class="fa fa-file-excel-o"></i> Eksport Report</a>
+                <a href="{{urlBackend('laporan-kerjasama/export-excel?start='.$start.'&end='.$end.'&report='.$field)}}" class="btn btn-primary btn-3d"><i class="fa fa-file-excel-o"></i> Eksport Report</a>
                 <div class="col-md-12 fadeIn animated"> 
                   @include('backend.common.flashes')
                     <p>&nbsp;</p>
@@ -25,6 +25,14 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($model as $key=>$data)
+                            <tr>
+                                <th>{{$key+1}}</th>
+                                @foreach($dataField as $column)
+                                <th>{{$data->$column['field']}}</th>
+                                @endforeach
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

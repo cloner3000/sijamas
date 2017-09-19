@@ -69,8 +69,8 @@
 
               <div class="col-md-12 fadeIn animated">
                
-                <button type="submit" class="btn btn-primary btn-3d"><i class="fa fa-eye"></i>Lihat</button>
-                {{--<a href="#" class="btn btn-danger btn-3d confirm"> <i class="fa fa-download"></i> Ekspor</a>--}}
+                <button type="submit" class="btn btn-primary btn-3d"><i class="fa fa-eye"></i>Lihat</button> 
+                <a href="{{urlBackend('cooperation-implementation/export-excel/'.$cooperation_id)}}" class="btn btn-danger btn-3d"> <i class="fa fa-download"></i> Ekspor</a>
               </div>
               {!! Form::close() !!}
               </div>

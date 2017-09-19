@@ -123,5 +123,36 @@ class UsulanController extends TrinataController
     }
 
 
+    public function getExportExcel()
+    {
+
+        $model = $this->model->orderBy('id','asc')->get();
+
+        foreach ($model as $key => $value) {
+
+            $data[$key]['No'] = $key+1;
+            $data[$key]['Judul Usulan'] = $value->title;
+            $data[$key]['Nama'] = $value->name ;
+            $data[$key]['Instansi'] = $value->institute;
+            $data[$key]['Jabatan'] = $value->position;
+            $data[$key]['Alamat'] = $value->address;
+            $data[$key]['Telepon'] = $value->phone;
+            $data[$key]['Email'] = $value->email;
+            $data[$key]['Isi Pesan'] = $value->message;
+            $data[$key]['Jenis Naskah Kerjasama yang Diusulkan'] = $value->name;
+            $data[$key]['Status Approval'] = $value->approval;
+        }
+
+        \Excel::create('Usulan-Kerjasama', function($excel)  use($data) {
+
+            $excel->sheet('Sheet Name', function($sheet) use($data)  {
+
+                $sheet->fromArray($data);
+            
+            });
+        })->download('xlsx');
+    }
+
+
 
 }
