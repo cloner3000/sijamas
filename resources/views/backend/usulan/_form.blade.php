@@ -115,7 +115,7 @@
                             <button type="button" class="btn btn-primary px-file-browse">Upload</button>
                           </div>
                           @if($model->filename)
-                          {{$model->filename}}
+                          <a href="{{url('contents/file/'.$model->filename)}}" target="_blank"> {{$model->filename}}</a>
                           @endif
                         </label>
                       </div>
