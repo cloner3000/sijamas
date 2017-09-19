@@ -125,7 +125,7 @@
 											<div class="profile-info-name"> Tanggal Berakhir Kerjasama :</div>
 
 											<div class="profile-info-value">
-												<span>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $model->cooperation_ended)->format('j F Y')}}</span>
+												<span @if(!$end) style="color: green" @else style="color: red" @endif>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $model->cooperation_ended)->format('j F Y')}}</span>
 											</div>
 										</div><!--.profile-info-row-->
 										<div class="profile-info-row">

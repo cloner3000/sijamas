@@ -64,8 +64,16 @@ class KategoriController extends Controller {
 	{
 
 		$model = $this->model->whereSlug($slug)->first();
+
+		// dd($model->cooperation_signed);
+		$end_date = \Carbon\Carbon::CreateFromFormat('Y-m-d', $model->cooperation_ended)->diff(\Carbon\Carbon::now())->format("%y,%m");
+		$end = false;
+		if ($end_date) {
+			$end = explode(',', $end_date);
+			if ($end[0] < 1 && $end[1] <= 3) $end = true;
+		}
 		// dd($model->cooperationimplementation);
-		return view('frontend.kategori-detail', compact('model'));
+		return view('frontend.kategori-detail', compact('model','end'));
 	}
 
 	public function getPencarian(Request $request)
