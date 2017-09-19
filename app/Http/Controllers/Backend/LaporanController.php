@@ -77,8 +77,14 @@ class LaporanController extends TrinataController
                                 
         foreach ($model as $key => $value) {				
             $data[$key]['No'] = $key+1;
-			foreach($dataField as $column){					
+			foreach($dataField as $column){	
+				if($column['field']=="scope"){
+                $data[$key][$column['name']] = strip_tags($value->$column['field']);
+
+				}else{
                 $data[$key][$column['name']] = $value->$column['field'];
+
+				}			
 			}
         }
 
