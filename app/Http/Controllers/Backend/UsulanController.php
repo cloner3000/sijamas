@@ -68,7 +68,7 @@ class UsulanController extends TrinataController
     {
         $model = $this->model->findOrFail($id);
         $data = ['model' => $this->model, 'type'=> ProposedCooperationType::get()];
-
+        // dd($model);
         return view('backend.usulan._form',compact('model', 'data'));
     }
 

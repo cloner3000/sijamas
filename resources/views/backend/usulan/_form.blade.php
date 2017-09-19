@@ -88,10 +88,10 @@
                       <div class="col-sm-8">
                         @if($data['type'])
                           @foreach($data['type'] as $type)
+
                           <!-- <div class="radio"> -->
                             <label class="custom-control custom-radio radio-inline">
-                                
-                                {!! Form::radio('proposed_cooperation_type_id' , 1 ,true,['class' => 'custom-control-input']) !!}
+                                {!! Form::radio('proposed_cooperation_type_id' , $type->id ,null,['class' => 'custom-control-input']) !!}
                                 <span class="custom-control-indicator"></span>
                                 {{$type->name}}
                             </label><br/>
@@ -114,6 +114,9 @@
                             <button type="button" class="btn px-file-clear">Clear</button>
                             <button type="button" class="btn btn-primary px-file-browse">Upload</button>
                           </div>
+                          @if($model->filename)
+                          {{$model->filename}}
+                          @endif
                         </label>
                       </div>
                     </div>
