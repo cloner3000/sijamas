@@ -269,4 +269,48 @@ class CooperationController extends TrinataController
 
         return response()->json(['status' => $status, 'res'=>$model]);
     }
+
+    public function getExportExcel()
+    {
+
+        $model = $this->model->orderBy('id','asc')->get();
+
+        foreach ($model as $key => $value) {
+            $to = \Carbon\Carbon::createFromFormat('Y-m-d', $value->cooperation_signed);
+            $from = \Carbon\Carbon::createFromFormat('Y-m-d', $value->cooperation_ended);
+            $diff_in_months = $to->diffInMonths($from);
+            $diff_in_years = $to->diffInYears($from);
+            // dd($diff_in_years); // Output: 1
+            $data[$key]['No.Urut'] = $key+1;
+            $data[$key]['Judul Kerja Sama'] = $value->about;
+            $data[$key]['Nomor Kerja Sama'] = $value->cooperation_number ;
+            $data[$key]['Kata Kunci Pencarian'] = $value->phone ;
+            $data[$key]['Nama Mitra'] = $value->partners;
+            $data[$key]['Kategori'] = strtoupper($value->cooperation_category) ;
+            $data[$key]['Unit Kerja Terkait'] = '-' ;
+            $data[$key]['Ruang Lingkup'] = strip_tags($value->scope) ;
+            $data[$key]['Fokus Bidang'] = '-' ;
+            $data[$key]['Fokus Bidang Lainnya'] = 'Lainnya' ;
+            $data[$key]['Tempat'] = $value->message ;
+            $data[$key]['Tanggal Mulai'] = $value->cooperation_signed ;
+            $data[$key]['Tanggal Berakhir'] = $value->cooperation_ended ;
+            $data[$key]['Lamanya [Bulan]'] = $diff_in_months ;
+            $data[$key]['Lamanya [Tahun]'] = $diff_in_years ;
+            $data[$key]['Nama Penanda Tangan Pihak I'] = '-' ;
+            $data[$key]['Jabatan Penanda Tangan Pihak I'] = '-' ;
+            $data[$key]['Nama Penanda Tangan Pihak II'] = '-' ;
+            $data[$key]['Jabatan Penanda Tangan Pihak II'] = '-' ;
+            $data[$key]['Status'] = $value->cooperation_status ;
+            $data[$key]['Alamat Dokumen'] = 'BSN' ;
+        }
+
+        \Excel::create('Kategori-Kerjasama', function($excel)  use($data) {
+
+            $excel->sheet('Sheet Name', function($sheet) use($data)  {
+
+                $sheet->fromArray($data);
+            
+            });
+        })->download('xlsx');
+    }
 }

@@ -217,4 +217,28 @@ class ImplementationController extends TrinataController
 
         return redirect(urlBackendAction('index'))->withSuccess($msg);
     }
+
+    public function getExportExcel($id, Request $request)
+    {
+
+        $model = $this->model->where('cooperation_id',$id)->where('category','implementation')->orderBy('id','asc')->get();
+
+        foreach ($model as $key => $value) {
+
+            $data[$key]['No'] = $key+1;
+            $data[$key]['Tanggal Implementasi'] = $value->implementation_date;
+            $data[$key]['Jenis Kegiatan'] = $value->activity_type ;
+            $data[$key]['Keterangan'] = strip_tags($value->description) ;
+            $data[$key]['Tindak Lanjut'] = 'Implementation';
+        }
+
+        \Excel::create('Tindak-Lanjut-Implementation', function($excel)  use($data) {
+
+            $excel->sheet('Sheet Name', function($sheet) use($data)  {
+
+                $sheet->fromArray($data);
+            
+            });
+        })->download('xlsx');
+    }
 }
