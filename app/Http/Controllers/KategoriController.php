@@ -69,8 +69,8 @@ class KategoriController extends Controller {
 		$end_date = \Carbon\Carbon::CreateFromFormat('Y-m-d', $model->cooperation_ended)->diff(\Carbon\Carbon::now())->format("%y,%m");
 		$end = false;
 		if ($end_date) {
-			$end = explode(',', $end_date);
-			if ($end[0] < 1 && $end[1] <= 3) $end = true;
+			$ends = explode(',', $end_date);
+			if ($ends[0] < 1 && $ends[1] <= 3) $end = true;
 		}
 		// dd($model->cooperationimplementation);
 		return view('frontend.kategori-detail', compact('model','end'));

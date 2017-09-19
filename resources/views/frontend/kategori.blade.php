@@ -170,8 +170,9 @@
 												  	<span class="fontGreen1">Status: {{ $val->cooperation_status }}</span><br>
 												  	<span class="fontGreen1">Tahun Penandatanganan : {{ \Carbon\Carbon::createFromFormat('Y-m-d', $val->cooperation_signed)->format('Y')}}</span><br>
 												  	<span class="fontGreen1">Tahun Berakhir : {{ \Carbon\Carbon::createFromFormat('Y-m-d', $val->cooperation_ended)->format('Y')}}</span><br><br>
-												    <p>{!! $val->scope !!}</p>
+												    
 												  </div>
+												  <p>{!! $val->scope !!}</p>
 												</div>
 						  					</div><!--en.isi-h-news-->
 						  				</div><!--end.box-news-->
