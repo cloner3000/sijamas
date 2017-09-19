@@ -77,7 +77,7 @@
                                   <th>Nama Pengusul</th>
                                   <th>Judul Usulan</th>
                                   <th>Tanggal Upload</th>
-                                  <th>Approved/Reject</th>
+                                  <!-- <th>Approved/Reject</th> -->
                                   <th>Aksi</th>
                                 </tr>
                               </thead>
@@ -91,7 +91,7 @@
                                   <td>{{$proposed->name}}</td>
                                   <td class="center"><a href="{{urlBackend('usulan-kerjasama/update/'.$proposed->id)}}">{{$proposed->title}}</a></td>
                                   <td class="center">{{$proposed->created_at}}</td>
-                                  <td class="center">
+                                  <!-- <td class="center">
                                     <label for="switcher-rounded" class="switcher switcher-primary">&nbsp;
                                       <input type="checkbox" id="switcher-rounded" class="editData">
                                       <div class="switcher-indicator">
@@ -99,7 +99,7 @@
                                         <div class="switcher-no">No</div>
                                       </div>
                                     </label>   
-                                  </td>
+                                  </td> -->
                                   <td class="center">
                                     <a href="{{urlBackend('usulan-kerjasama/update/'.$proposed->id)}}" class="btn btn-success"><i class="fa fa-pencil"></i></a> 
                                     <a href="{{urlBackend('usulan-kerjasama/delete/'.$proposed->id)}}" class="btn btn-danger confirm"><i class="fa fa-trash"></i></a> 

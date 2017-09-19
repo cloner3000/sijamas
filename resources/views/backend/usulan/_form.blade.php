@@ -22,7 +22,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Nama Pengusul :</label>
                       <div class="col-sm-8">
-                        <input type="text" name="name" class="form-control" value="Nila" readonly="readonly">
+                        {!! Form::text('name' , null ,['class' => 'form-control', 'readonly']) !!}
                       </div>
                     </div>
                   </div>
@@ -54,7 +54,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Alamat :</label>
                       <div class="col-sm-8">
-                        <textarea class="form-control" readonly="readonly">GEdung I BPPT</textarea> 
+                        {!! Form::textarea('address' , null ,['class' => 'form-control', 'readonly']) !!}
                       </div>
                     </div>
                   </div>
@@ -90,7 +90,8 @@
                           @foreach($data['type'] as $type)
                           <!-- <div class="radio"> -->
                             <label class="custom-control custom-radio radio-inline">
-                                <input type="radio" name="proposed_cooperation_type_id" class="custom-control-input" value="{{$type->id}}">
+                                
+                                {!! Form::radio('proposed_cooperation_type_id' , 1 ,true,['class' => 'custom-control-input']) !!}
                                 <span class="custom-control-indicator"></span>
                                 {{$type->name}}
                             </label><br/>
