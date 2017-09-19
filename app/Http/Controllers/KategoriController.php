@@ -73,37 +73,36 @@ class KategoriController extends Controller {
 		// dd('masuk');
 		$model = $this->model->whereApproval('approved');
 
-		$start_date = $request->start_date;
-		$end_date 	= $request->end_date;
-		$kategori 	= $request->kategori;
-		$jenis 		= $request->jenis;
-		$bidang 	= $request->bidang;
-		$status 	= $request->status;
-		$start_year	= $request->start_year;
-		$end_year 	= $request->end_year;
+		$get['start_date'] = $request->start_date;
+		$get['end_date'] 	= $request->end_date;
+		$get['kategori'] 	= $request->kategori;
+		$get['jenis']		= $request->jenis;
+		$get['bidang'] 	= $request->bidang;
+		$get['status'] 	= $request->status;
+		$get['start_year']	= $request->start_year;
+		$get['end_year'] 	= $request->end_year;
 
-		if($kategori){
-			if($kategori=="ln" || $kategori =="dn"){
-				$model = $model->whereCooperationCategory($kategori);
+		if($get['kategori']){
+			if($get['kategori']=="ln" || $get['kategori'] =="dn"){
+				$model = $model->whereCooperationCategory($get['kategori']);
 			}
 		}
-		if($jenis){
-			$model = $model->whereCooperationTypeId($jenis);
+		if($get['jenis']){
+			$model = $model->whereCooperationTypeId($get['jenis']);
 		}
-		if($bidang){
-			$model = $model->whereCooperationFocusId($bidang);
+		if($get['bidang']){
+			$model = $model->whereCooperationFocusId($get['bidang']);
 		}
-		if($status){
-			if($kategori=="baru" || $kategori =="lanjutan"){
-				$model = $model->whereCooperationCategory($kategori);
+		if($get['status']){
+			if($get['kategori']=="baru" || $get['kategori'] =="lanjutan"){
+				$model = $model->whereCooperationCategory($get['kategori']);
 			}
 		}
 
 
 		$model = $model->paginate($this->paging);
-
-		$flag = ($kategori == 'ln') ? 1 : 2;
-		return view('frontend.kategori', compact('model', 'flag'));
+		
+		return view('frontend.pencarian', compact('model', 'get'));
 	}
 
 }
