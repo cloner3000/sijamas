@@ -31,6 +31,8 @@ class CooperationController extends TrinataController
     {
 
     	$model = $this->model->select('id','title','cooperation_number','cooperation_category','cooperation_status', 'approval');
+        if (\Auth::user()->role_id != 1) $model->whereOwnerId(\Auth::user()->id);
+        
         if ($request->approval) $model->where('approval', $request->approval);
         if ($request->cooperation_category) $model->where('cooperation_category', $request->cooperation_category);
         if ($request->start) $model->where('cooperation_signed', '>=',\Carbon\Carbon::CreateFromFormat('d/m/Y', $request->start)->format('Y-m-d'));

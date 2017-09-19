@@ -18,10 +18,10 @@
                         {!! Form::text('title' , null ,['class' => 'form-control']) !!}
                       </div>
                       
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label>Description</label>
                         {!! Form::textarea('description' , null ,['class' => 'form-control','id'=>'description']) !!}
-                      </div>
+                      </div> -->
 
                       <div class="form-group">
                         <label>File</label>

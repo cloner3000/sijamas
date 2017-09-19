@@ -32,8 +32,8 @@ class FollowupController extends TrinataController
     public function getData(Request $request)
     {
 
-        $model = $this->cooperation->select('id','title','cooperation_number','cooperation_category','cooperation_status', 'approval');
-        if ($request->approval) $model->where('approval', $request->approval);
+        $model = $this->cooperation->select('id','title','cooperation_number','cooperation_category','cooperation_status', 'approval')->whereApproval('approved');
+        // if ($request->approval) $model->where('approval', $request->approval);
         if ($request->cooperation_category) $model->where('cooperation_category', $request->cooperation_category);
         if ($request->start) $model->where('cooperation_signed', $request->start);
         if ($request->end) $model->where('cooperation_ended', $request->end);

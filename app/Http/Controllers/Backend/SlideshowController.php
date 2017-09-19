@@ -79,7 +79,7 @@ class SlideshowController extends TrinataController
         // $this->validate($request,$model->rules());
 
         $inputs = $request->all();
-        if ($inputs['image']) {
+        if (isset($inputs['image'])) {
             $inputs['image'] = trinata::globalUpload($request, 'image')['filename'];
         } 
 
@@ -106,7 +106,7 @@ class SlideshowController extends TrinataController
 
         $inputs = $request->all();
 
-        if ($inputs['image']) {
+        if (isset($inputs['image'])) {
             $inputs['image'] = trinata::globalUpload($request, 'image')['filename'];
         } 
 

@@ -37,21 +37,21 @@
                                   <th>Jenis Data</th>
                                   <th>Judul</th>
                                   <th>Tanggal Upload</th>
-                                  <th>Approved/Reject</th>
+                                  <!-- <th>Approved/Reject</th> -->
                                   <th>Aksi</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 @if($model)
-                                @foreach($model as $val)
+                                @foreach($model as $key => $val)
                                 <tr class="odd gradeX">
                                   <td>
-                                    1
+                                    {{$key+1}}
                                   </td>
                                   <td>{{ strtoupper($val->cooperation_category)}}</td>
-                                  <td class="center"><a href="edit-pengumumanku.php"> {{ $val->title}}</a></td>
-                                  <td class="center">12-02-2017</td>
-                                  <td class="center">
+                                  <td class="center"><a href="{{ urlBackend('cooperation-category/update/'.$val->id)}}"> {{ $val->title}}</a></td>
+                                  <td class="center">{{ \Carbon\Carbon::CreateFromFormat('Y-m-d H:i:s', $val->created_at)->format('j F Y')}}</td>
+                                  <!-- <td class="center">
                                     <label for="switcher-rounded" class="switcher switcher-primary">&nbsp;
                                       <input type="checkbox" id="switcher-rounded" class="editData">
                                       <div class="switcher-indicator">
@@ -59,10 +59,10 @@
                                         <div class="switcher-no">No</div>
                                       </div>
                                     </label>   
-                                  </td>
+                                  </td> -->
                                   <td class="center">
-                                    <a href="edit-pengumumanku.php" class="btn btn-success"><i class="fa fa-pencil"></i></a> 
-                                    <a href="#" class="btn btn-danger confirm"><i class="fa fa-trash"></i></a> 
+                                    <a href="{{ urlBackend('cooperation-category/update/'.$val->id)}}" class="btn btn-success"><i class="fa fa-pencil"></i></a> 
+                                    <!-- <a href="#" class="btn btn-danger confirm"><i class="fa fa-trash"></i></a>  -->
                                   </td>
                                 </tr>
                                 @endforeach

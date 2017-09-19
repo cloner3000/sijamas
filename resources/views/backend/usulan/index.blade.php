@@ -89,7 +89,7 @@
                                     1
                                   </td>
                                   <td>{{$proposed->name}}</td>
-                                  <td class="center"><a href="{{urlBackend('usulan-kerjasama/update')}}">{{$proposed->title}}</a></td>
+                                  <td class="center"><a href="{{urlBackend('usulan-kerjasama/update/'.$proposed->id)}}">{{$proposed->title}}</a></td>
                                   <td class="center">{{$proposed->created_at}}</td>
                                   <td class="center">
                                     <label for="switcher-rounded" class="switcher switcher-primary">&nbsp;
@@ -101,8 +101,8 @@
                                     </label>   
                                   </td>
                                   <td class="center">
-                                    <a href="{{urlBackend('usulan-kerjasama/update')}}" class="btn btn-success"><i class="fa fa-pencil"></i></a> 
-                                    <a href="#" class="btn btn-danger confirm"><i class="fa fa-trash"></i></a> 
+                                    <a href="{{urlBackend('usulan-kerjasama/update/'.$proposed->id)}}" class="btn btn-success"><i class="fa fa-pencil"></i></a> 
+                                    <a href="{{urlBackend('usulan-kerjasama/delete/'.$proposed->id)}}" class="btn btn-danger confirm"><i class="fa fa-trash"></i></a> 
                                   </td>
                                 </tr>
 

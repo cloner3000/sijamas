@@ -67,8 +67,9 @@ class UsulanController extends TrinataController
 	public function getUpdate($id)
     {
         $model = $this->model->findOrFail($id);
+        $data = ['model' => $this->model, 'type'=> ProposedCooperationType::get()];
 
-        return view('backend.usulan._form',compact('model'));
+        return view('backend.usulan._form',compact('model', 'data'));
     }
 
     public function postUpdate(Request $request,$id)

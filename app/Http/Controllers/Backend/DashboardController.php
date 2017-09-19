@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\TrinataController;
 use Chart;
 use App\Models\UserActivity;
 use App\Models\Cooperation;
+use App\Models\ProposedCooperation;
 use Carbon\Carbon;
 
 class DashboardController extends TrinataController
@@ -23,15 +24,16 @@ class DashboardController extends TrinataController
 
 	public function getIndex()
 	{	
-		$model = $this->model->whereApproval('approved')->paginate($this->paging);
+		$model = $this->model->whereApproval('draft')->paginate($this->paging);
 
 	   	return view('backend.dashboard.index', compact('model'));
 	}
 
 	public function getUsulan()
 	{	
+		$model = ProposedCooperation::whereApproval('draft')->paginate($this->paging);
 
-	   	return view('backend.dashboard.usulan');
+	   	return view('backend.dashboard.usulan', compact('model'));
 	}
 
 	public function getUpdate()
