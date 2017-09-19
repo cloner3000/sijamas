@@ -38,7 +38,7 @@
 											<ul id="bxslider">
 												@if($model->cooperationFoto)
 												@foreach ($model->cooperationFoto as $foto)
-												<li><img src="{{ asset(null) }}contents/file/{{$foto->filename}}" alt="" title="Test"></li>
+												<li><img src="{{ asset(null) }}contents/file/{{$foto->filename}}" alt="" title="Lorem Ipsum dolor sit amet"></li>
 												@endforeach
 												@endif
 												
