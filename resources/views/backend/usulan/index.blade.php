@@ -62,7 +62,10 @@
                   </div>
 
               <div class="col-md-12 fadeIn animated">
-                <a href="tambah-event-calendar.php" class="btn btn-primary btn-3d"> <i class="fa fa-eye"></i> Lihat</a> <!-- <a href="#" class="btn btn-danger btn-3d confirm"> <i class="fa fa-download"></i> Ekspor</a> -->
+                <a href="tambah-event-calendar.php" class="btn btn-primary btn-3d"> <i class="fa fa-eye"></i> Lihat</a> 
+
+                <a href="{{urlBackend('usulan-kerjasama/export-excel')}}" class="btn btn-danger btn-3d"> <i class="fa fa-download"></i> Ekspor</a>
+                <!-- <a href="#" class="btn btn-danger btn-3d confirm"> <i class="fa fa-download"></i> Ekspor</a> -->
               </div>
                 </form>
               </div>
