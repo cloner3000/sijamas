@@ -15,9 +15,9 @@
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 <!--Style-->
 <!--link rel="stylesheet" href="css/reset.css"-->
-<link rel="stylesheet" type="text/css" href="{{ asset(null) }}css/all.css">
+<!-- <link rel="stylesheet" type="text/css" href="{{ asset(null) }}css/all.css"> -->
 <!--link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"-->
-<!-- <link href="{{ asset(null) }}frontend/css/jquery-ui.css" rel="stylesheet" />
+<link href="{{ asset(null) }}frontend/css/jquery-ui.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="{{ asset(null) }}frontend/js/source/jquery.fancybox.css?v=2.1.5" media="screen" />
 <link rel="stylesheet" href="{{ asset(null) }}frontend/css/camera.css">
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bxslider/4.1.1/jquery.bxslider.css">
@@ -27,7 +27,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset(null) }}frontend/css/media1024.css"/>
 <link rel="stylesheet" type="text/css" href="{{ asset(null) }}frontend/css/media768.css"/>
 <link rel="stylesheet" type="text/css" href="{{ asset(null) }}frontend/css/media480.css"/>
-<link rel="stylesheet" type="text/css" href="{{ asset(null) }}frontend/css/media320.css"/> -->
+<link rel="stylesheet" type="text/css" href="{{ asset(null) }}frontend/css/media320.css"/>
 <!--link rel="stylesheet" href="css/style-temp.css"-->
 
 

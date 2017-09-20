@@ -29,7 +29,11 @@
                             <tr>
                                 <th>{{$key+1}}</th>
                                 @foreach($dataField as $column)
-                                <th>{{$data->$column['field']}}</th>
+                                    @if($column['field']=="scope")
+                                        <th>{{ strip_tags($data->$column['field'])}}</th>
+                                    @else
+                                        <th>{{ $data->$column['field']}}</th>
+                                    @endif
                                 @endforeach
                             </tr>
                             @endforeach

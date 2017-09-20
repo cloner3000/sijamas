@@ -10,10 +10,10 @@
                               <label>Periode Pencarian</label>
                               <div class="row">
                                   <div class="col-md-12">
-                                      <select class="form-control">
+                                      <!-- <select class="form-control">
                                         <option value=""> -- Pilih Jenis Periode -- </option>
                                         <option value="">Tanggal Terbaru</option>
-                                      </select>
+                                      </select> -->
                                   </div>
                                   <div class="col-md-5 col-sm-5 col-xs-6">
                                       <div class="inner-addon right-addon">
@@ -32,6 +32,9 @@
                                   </div>
                               </div>
                             </div><!--end.form-group-->
+
+                            <div class="row">
+                            <div class="col-md-6">
                             <div class="form-group">
                               <label>Kategori Kerjasama</label>
                               <select class="form-control" name="kategori">
@@ -40,6 +43,8 @@
                                 <option value="dn">Kerjasama Dalam Negeri</option>
                               </select>
                             </div><!--end.form-group-->
+                            </div>
+                            <div class="col-md-6">
                             <div class="form-group">
                               <label>Jenis Kerjasama</label>
                               <select class="form-control" name="jenis">
@@ -49,6 +54,10 @@
                               @endforeach
                               </select>
                             </div><!--end.form-group-->
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-md-6">
                             <div class="form-group">
                               <label>Status Kerjasama</label>
                               <select class="form-control" name="status">
@@ -57,6 +66,8 @@
                                 <option value="lanjutan">Lanjutan</option>
                               </select>
                             </div><!--end.form-group-->
+                            </div>
+                            <div class="col-md-6">
                             <div class="form-group">
                               <label>Bidang Fokus</label>
                               <select class="form-control" name="bidang">
@@ -65,6 +76,8 @@
                                 <option value="">Pendidikan</option>
                               </select>
                             </div><!--end.form-group-->
+                            </div>
+                            </div>
                             <!-- <div class="form-group">
                               <label>Tahun Penandatanganan</label>
                               <select class="form-control" name="start_year">
