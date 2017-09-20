@@ -29,15 +29,18 @@ class CooperationController extends TrinataController
 
     public function getData(Request $request)
     {
-
+        // dd($request->all());
     	$model = $this->model->select('id','title','cooperation_number','cooperation_category','cooperation_status', 'approval');
         if (\Auth::user()->role_id != 1) $model->whereOwnerId(\Auth::user()->id);
         
         if ($request->approval) $model->where('approval', $request->approval);
         if ($request->cooperation_category) $model->where('cooperation_category', $request->cooperation_category);
-        if ($request->start) $model->where('cooperation_signed', '>=',\Carbon\Carbon::CreateFromFormat('d/m/Y', $request->start)->format('Y-m-d'));
-        if ($request->end) $model->where('cooperation_signed', '<=',\Carbon\Carbon::CreateFromFormat('d/m/Y', $request->end)->format('Y-m-d'));
-        // dd($model->toSql());
+        $start = ($request->start) ? \Carbon\Carbon::CreateFromFormat('d/m/Y', $request->start)->format('Y-m-d') : date('Y-m-d');
+        $end = ($request->end) ? \Carbon\Carbon::CreateFromFormat('d/m/Y', $request->end)->format('Y-m-d') : date('Y-m-d');
+        // dd($start, $end);
+        $model = $model->whereBetween('cooperation_signed',[$start, $end]);
+        // if ($request->end) $model->where('cooperation_signed', '<=',\Carbon\Carbon::CreateFromFormat('d/m/Y', $request->end)->format('Y-m-d'));
+        // dd($start, $end,$model->toSql());
     	$data = Table::of($model)
     		->addColumn('moderation',function($model){
                 $status = true;
