@@ -146,6 +146,7 @@ class UsulanController extends TrinataController
 
     public function getExportExcel()
     {
+        $data= [];
 
         $model = $this->model->orderBy('id','asc')->get();
 

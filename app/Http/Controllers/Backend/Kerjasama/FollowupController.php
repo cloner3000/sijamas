@@ -223,6 +223,7 @@ class FollowupController extends TrinataController
     public function getExportExcel($id, Request $request)
     {
 
+        $data= [];
         $model = $this->model->where('cooperation_id',$id)->where('category','perencanaan')->orderBy('id','asc')->get();
 
         foreach ($model as $key => $value) {

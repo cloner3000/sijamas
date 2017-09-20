@@ -280,7 +280,7 @@ class CooperationController extends TrinataController
 
     public function getExportExcel()
     {
-
+        $data= [];
         $model = $this->model->orderBy('id','asc')->get();
 
         foreach ($model as $key => $value) {

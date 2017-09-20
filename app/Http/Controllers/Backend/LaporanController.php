@@ -64,6 +64,7 @@ class LaporanController extends TrinataController
 
     public function getExportExcel(Request $request)
     {
+        $data= [];
     	$start = $request->get('start');
 		$end = $request->get('end');
 		$field = $request->get('report');
