@@ -61,7 +61,7 @@
               <div class="col-md-12 fadeIn animated">
                 <button type="submit" class="btn btn-primary btn-3d"><i class="fa fa-eye"></i> Lihat</button>
 
-                <a href="{{urlBackend('usulan-kerjasama/export-excel')}}" class="btn btn-danger btn-3d"> <i class="fa fa-download"></i> Ekspor</a>
+                <a href="{{urlBackend('usulan-kerjasama/'.$parameter)}}" class="btn btn-danger btn-3d"> <i class="fa fa-download"></i> Ekspor</a>
                 <!-- <a href="#" class="btn btn-danger btn-3d confirm"> <i class="fa fa-download"></i> Ekspor</a> -->
               </div>
                 {!! Form::close() !!}

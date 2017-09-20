@@ -278,10 +278,25 @@ class CooperationController extends TrinataController
         return response()->json(['status' => $status, 'res'=>$model]);
     }
 
-    public function getExportExcel()
+    public function getExportExcel(Request $request)
     {
         $data= [];
-        $model = $this->model->orderBy('id','asc')->get();
+
+        $model = $this->model;
+        if (\Auth::user()->role_id != 1) $model->whereOwnerId(\Auth::user()->id);
+        
+        if ($request->approval) $model = $model->where('approval', $request->approval);
+        if ($request->cooperation_category)  $model = $model->where('cooperation_category', $request->cooperation_category);
+        if ($request->startdate || $request->enddate) {
+            // dd($request->start);
+            $start = ($request->startdate) ? \Carbon\Carbon::CreateFromFormat('d/m/Y', $request->startdate)->format('Y-m-d') : date('Y-m-d');
+            $end = ($request->enddate) ? \Carbon\Carbon::CreateFromFormat('d/m/Y', $request->enddate)->format('Y-m-d') : date('Y-m-d');
+            // dd($start, $end);
+            $model = $model->whereBetween('cooperation_signed',[$start, $end]);
+            // if ($request->end) $model->where('cooperation_signed', '<=',\Carbon\Carbon::CreateFromFormat('d/m/Y', $request->end)->format('Y-m-d'));
+        }
+        
+        $model = $model->orderBy('id','asc')->get();
 
         foreach ($model as $key => $value) {
             $to = \Carbon\Carbon::createFromFormat('Y-m-d', $value->cooperation_signed);

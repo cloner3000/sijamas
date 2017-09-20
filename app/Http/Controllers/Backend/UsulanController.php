@@ -48,6 +48,7 @@ class UsulanController extends TrinataController
 		$data = ['proposed' => ProposedCooperation::get(), 'type'=> ProposedCooperationType::get()];
         $param = [];
         $url = 'data';
+        $parameter = 'export-excel';
         $model = $this->model;
 
         if ($request->approval) $param[] = 'approval='.$request->approval;
@@ -57,9 +58,10 @@ class UsulanController extends TrinataController
         // dd($model);
         if (count($param) > 0) {
             $url = $url.'?'.implode('&', $param);
+            $parameter = $parameter.'?'.implode('&', $param);
         }
 
-	   	return view('backend.usulan.index', compact('data', 'url', 'request'));
+	   	return view('backend.usulan.index', compact('data', 'url', 'request','parameter'));
 	}
 
 	public function getCreate()
@@ -144,11 +146,23 @@ class UsulanController extends TrinataController
     }
 
 
-    public function getExportExcel()
+    public function getExportExcel(Request $request)
     {
         $data= [];
 
-        $model = $this->model->orderBy('id','asc')->get();
+        $model = $this->model;
+
+        if ($request->approval) $model = $model->where('approval', $request->approval);
+        if ($request->startdate || $request->enddate) {
+            // dd($request->start);
+            $start = ($request->startdate) ? \Carbon\Carbon::CreateFromFormat('d/m/Y', $request->startdate)->format('Y-m-d') : date('Y-m-d');
+            $end = ($request->enddate) ? \Carbon\Carbon::CreateFromFormat('d/m/Y', $request->enddate)->format('Y-m-d') : date('Y-m-d');
+            // dd($start, $end);
+            $model = $model->whereBetween('created_at',[$start, $end]);
+            // if ($request->end) $model->where('cooperation_signed', '<=',\Carbon\Carbon::CreateFromFormat('d/m/Y', $request->end)->format('Y-m-d'));
+        }
+
+        $model = $model->orderBy('id','asc')->get();
 
         foreach ($model as $key => $value) {
 
