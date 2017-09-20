@@ -307,10 +307,10 @@ class CooperationController extends TrinataController
             $data[$key]['Tanggal Berakhir'] = $value->cooperation_ended ;
             $data[$key]['Lamanya [Bulan]'] = $diff_in_months ;
             $data[$key]['Lamanya [Tahun]'] = $diff_in_years ;
-            $data[$key]['Nama Penanda Tangan Pihak I'] = '-' ;
-            $data[$key]['Jabatan Penanda Tangan Pihak I'] = '-' ;
-            $data[$key]['Nama Penanda Tangan Pihak II'] = '-' ;
-            $data[$key]['Jabatan Penanda Tangan Pihak II'] = '-' ;
+            $data[$key]['Nama Penanda Tangan Pihak I'] = $value->first_sign ;
+            $data[$key]['Jabatan Penanda Tangan Pihak I'] = $value->first_sign_position ;
+            $data[$key]['Nama Penanda Tangan Pihak II'] = $value->second_sign ;
+            $data[$key]['Jabatan Penanda Tangan Pihak II'] = $value->second_sign_position ;
             $data[$key]['Status'] = ucfirst($value->cooperation_status) ;
             $data[$key]['Alamat Dokumen'] = 'BSN' ;
         }
