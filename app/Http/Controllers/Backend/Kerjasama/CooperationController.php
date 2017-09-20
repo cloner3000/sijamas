@@ -289,17 +289,20 @@ class CooperationController extends TrinataController
             $diff_in_months = $to->diffInMonths($from);
             $diff_in_years = $to->diffInYears($from);
             // dd($diff_in_years); // Output: 1
+            $city = $value->city()->first()->name;
+            $province = $value->province()->first()->name;
+
             $data[$key]['No.Urut'] = $key+1;
             $data[$key]['Judul Kerja Sama'] = $value->about;
             $data[$key]['Nomor Kerja Sama'] = $value->cooperation_number ;
-            $data[$key]['Kata Kunci Pencarian'] = $value->phone ;
+            $data[$key]['Kata Kunci Pencarian'] = 'Standardisasi dan Penilaian Kesesuaian' ;
             $data[$key]['Nama Mitra'] = $value->partners;
             $data[$key]['Kategori'] = strtoupper($value->cooperation_category) ;
-            $data[$key]['Unit Kerja Terkait'] = '-' ;
+            $data[$key]['Unit Kerja Terkait'] = 'BSN' ;
             $data[$key]['Ruang Lingkup'] = strip_tags($value->scope) ;
             $data[$key]['Fokus Bidang'] = '-' ;
-            $data[$key]['Fokus Bidang Lainnya'] = 'Lainnya' ;
-            $data[$key]['Tempat'] = $value->message ;
+            $data[$key]['Fokus Bidang Lainnya'] = 'Standardisasi dan Penilaian Kesesuaian' ;
+            $data[$key]['Tempat'] = $city.", ".$province ;
             $data[$key]['Tanggal Mulai'] = $value->cooperation_signed ;
             $data[$key]['Tanggal Berakhir'] = $value->cooperation_ended ;
             $data[$key]['Lamanya [Bulan]'] = $diff_in_months ;
@@ -308,7 +311,7 @@ class CooperationController extends TrinataController
             $data[$key]['Jabatan Penanda Tangan Pihak I'] = '-' ;
             $data[$key]['Nama Penanda Tangan Pihak II'] = '-' ;
             $data[$key]['Jabatan Penanda Tangan Pihak II'] = '-' ;
-            $data[$key]['Status'] = $value->cooperation_status ;
+            $data[$key]['Status'] = ucfirst($value->cooperation_status) ;
             $data[$key]['Alamat Dokumen'] = 'BSN' ;
         }
 
