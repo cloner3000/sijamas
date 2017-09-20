@@ -80,16 +80,18 @@ class KategoriController extends Controller {
 	{
 		// dd('masuk');
 		$model = $this->model->whereApproval('approved');
-
+		
 		$get['start_date'] = $request->start_date;
 		$get['end_date'] 	= $request->end_date;
 		$get['kategori'] 	= $request->kategori;
 		$get['jenis']		= $request->jenis;
 		$get['bidang'] 	= $request->bidang;
 		$get['status'] 	= $request->status;
-		$get['start_year']	= $request->start_year;
-		$get['end_year'] 	= $request->end_year;
-
+		$get['keyword'] 	= $request->keyword;
+		// $get['start_year']	= $request->start_year;
+		// $get['end_year'] 	= $request->end_year;
+		$search = $get['keyword'];
+        
 		if($get['kategori']){
 			if($get['kategori']=="ln" || $get['kategori'] =="dn"){
 				$model = $model->whereCooperationCategory($get['kategori']);
@@ -106,9 +108,37 @@ class KategoriController extends Controller {
 				$model = $model->whereCooperationCategory($get['kategori']);
 			}
 		}
+		if($search){
+			$model = $model->where(function($query) use ($search) {
+		                    return $query
+		                            ->where('title','like','%'.$search.'%')
+		                            ->orWhere('cooperation_number','like','%'.$search.'%')
+		                            ->orWhere('about','like','%'.$search.'%')
+		                            ->orWhere('partners','like','%'.$search.'%')
+		                            ->orWhere('address','like','%'.$search.'%')
+		                            ->orWhere('scope','like','%'.$search.'%')
+		                            ->orWhere('first_sign','like','%'.$search.'%')
+		                            ->orWhere('second_sign','like','%'.$search.'%');
+		                });
+		}
+		if ($get['start_date'] || $get['end_date']) {
+            // dd($request->start);
+            $start = ($get['start_date']) ? \Carbon\Carbon::CreateFromFormat('d/m/Y', $get['start_date'])->format('Y-m-d') : date('Y-m-d');
+            $end = ($get['end_date']) ? \Carbon\Carbon::CreateFromFormat('d/m/Y', $get['end_date'])->format('Y-m-d') : date('Y-m-d');
+            // dd($start, $end);
+            $model = $model->whereBetween('cooperation_signed',[$start, $end]);
+            // if ($request->end) $model->where('cooperation_signed', '<=',\Carbon\Carbon::CreateFromFormat('d/m/Y', $request->end)->format('Y-m-d'));
+        }
 
-
-		$model = $model->paginate($this->paging);
+		$model = $model->paginate($this->paging)->appends([
+													'start_date' => $get['start_date'] ,
+													'end_date' => $get['end_date'],
+													'kategori' => $get['kategori'],
+													'jenis' => $get['jenis'],
+													'bidang' => $get['bidang'],
+													'status' => $get['status'],
+													'keyword' => $get['keyword'],
+													]);
 		
 		return view('frontend.pencarian', compact('model', 'get'));
 	}

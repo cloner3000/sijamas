@@ -72,8 +72,9 @@
                               <label>Bidang Fokus</label>
                               <select class="form-control" name="bidang">
                                 <option value=""> -- Pilih Bidang Fokus -- </option>
-                                <option value="">Teknologi Informasi</option>
-                                <option value="">Pendidikan</option>
+                              @foreach($CooperationFocus as $focus)
+                                <option value="{{$focus->id}}">{{$focus->name}}</option>
+                              @endforeach
                               </select>
                             </div><!--end.form-group-->
                             </div>
