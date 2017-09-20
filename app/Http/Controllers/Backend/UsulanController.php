@@ -19,26 +19,47 @@ class UsulanController extends TrinataController
 		$this->model = $proposed;
 	}
 
-	public function getData()
+	public function getData(Request $request)
     {
-    	$model = $this->model->select('id','name' ,'title', 'status')->first();
-
+    	$model = $this->model->select('id','name' ,'title', 'approval', 'created_at');
+        if ($request->approval) $model->where('approval', $request->approval);
+        if ($request->startdate || $request->enddate) {
+            // dd($request->start);
+            $start = ($request->startdate) ? \Carbon\Carbon::CreateFromFormat('d/m/Y', $request->startdate)->format('Y-m-d') : date('Y-m-d');
+            $end = ($request->enddate) ? \Carbon\Carbon::CreateFromFormat('d/m/Y', $request->enddate)->format('Y-m-d') : date('Y-m-d');
+            // dd($start, $end);
+            $model = $model->whereBetween('created_at',[$start, $end]);
+            // if ($request->end) $model->where('cooperation_signed', '<=',\Carbon\Carbon::CreateFromFormat('d/m/Y', $request->end)->format('Y-m-d'));
+        }
+        // dd($request->all());
     	$data = Table::of($model)
-    		
-    		->addColumn('action',function($model){
+            ->addColumn('action',function($model){
                 $status = true;
-    			return trinata::buttons($model->id , [] , $status);
-    		})
-    		
-    		->make(true);
+                return trinata::buttons($model->id , [] , $status);
+            })
+            
+            ->make(true);
 
-    	return $data;
+        return $data;
     }
 
-	public function getIndex()
+	public function getIndex(Request $request)
 	{	
-		$data = ['proposed' => ProposedCooperation::get()];
-	   	return view('backend.usulan.index', compact('data'));
+		$data = ['proposed' => ProposedCooperation::get(), 'type'=> ProposedCooperationType::get()];
+        $param = [];
+        $url = 'data';
+        $model = $this->model;
+
+        if ($request->approval) $param[] = 'approval='.$request->approval;
+        if ($request->cooperation_category) $param[] = 'cooperation_category='.$request->cooperation_category;
+        if ($request->startdate) $param[] = 'startdate='.$request->startdate;
+        if ($request->enddate) $param[] = 'enddate='.$request->enddate;
+        // dd($model);
+        if (count($param) > 0) {
+            $url = $url.'?'.implode('&', $param);
+        }
+
+	   	return view('backend.usulan.index', compact('data', 'url', 'request'));
 	}
 
 	public function getCreate()

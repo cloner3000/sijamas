@@ -35,11 +35,14 @@ class CooperationController extends TrinataController
         
         if ($request->approval) $model->where('approval', $request->approval);
         if ($request->cooperation_category) $model->where('cooperation_category', $request->cooperation_category);
-        $start = ($request->start) ? \Carbon\Carbon::CreateFromFormat('d/m/Y', $request->start)->format('Y-m-d') : date('Y-m-d');
-        $end = ($request->end) ? \Carbon\Carbon::CreateFromFormat('d/m/Y', $request->end)->format('Y-m-d') : date('Y-m-d');
-        // dd($start, $end);
-        $model = $model->whereBetween('cooperation_signed',[$start, $end]);
-        // if ($request->end) $model->where('cooperation_signed', '<=',\Carbon\Carbon::CreateFromFormat('d/m/Y', $request->end)->format('Y-m-d'));
+        if ($request->startdate || $request->enddate) {
+            // dd($request->start);
+            $start = ($request->startdate) ? \Carbon\Carbon::CreateFromFormat('d/m/Y', $request->startdate)->format('Y-m-d') : date('Y-m-d');
+            $end = ($request->enddate) ? \Carbon\Carbon::CreateFromFormat('d/m/Y', $request->enddate)->format('Y-m-d') : date('Y-m-d');
+            // dd($start, $end);
+            $model = $model->whereBetween('cooperation_signed',[$start, $end]);
+            // if ($request->end) $model->where('cooperation_signed', '<=',\Carbon\Carbon::CreateFromFormat('d/m/Y', $request->end)->format('Y-m-d'));
+        }
         // dd($start, $end,$model->toSql());
     	$data = Table::of($model)
     		->addColumn('moderation',function($model){
@@ -64,8 +67,8 @@ class CooperationController extends TrinataController
 
         if ($request->approval) $param[] = 'approval='.$request->approval;
         if ($request->cooperation_category) $param[] = 'cooperation_category='.$request->cooperation_category;
-        if ($request->start) $param[] = 'start='.$request->start;
-        if ($request->end) $param[] = 'end='.$request->end;
+        if ($request->startdate) $param[] = 'startdate='.$request->startdate;
+        if ($request->enddate) $param[] = 'enddate='.$request->enddate;
         // dd($model);
         if (count($param) > 0) {
             $url = $url.'?'.implode('&', $param);

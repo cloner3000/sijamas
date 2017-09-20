@@ -43,7 +43,7 @@
                         <label class="col-sm-4 control-label">Dari Tanggal :</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                              {!! Form::text('start' , $request->start ? $request->start : null ,['class' => 'form-control']) !!}
+                              {!! Form::text('startdate' , $request->startdate ? $request->startdate : null ,['class' => 'form-control']) !!}
                               <span class="input-group-btn">
                                 <button type="button" class="btn"><i class="fa fa-calendar"></i></button>
                               </span>
@@ -56,7 +56,7 @@
                         <label class="col-sm-4 control-label">Sampai Tanggal :</label>
                         <div class="col-sm-8">                  
                             <div class="input-group m-b-2">
-                              {!! Form::text('end' , $request->end ? $request->end : null ,['class' => 'form-control']) !!}
+                              {!! Form::text('enddate' , $request->enddate ? $request->enddate : null ,['class' => 'form-control']) !!}
                               <span class="input-group-btn">
                                 <button type="button" class="btn"><i class="fa fa-calendar"></i></button>
                               </span>

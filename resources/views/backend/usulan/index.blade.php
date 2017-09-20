@@ -17,17 +17,14 @@
                 <a href="{{ urlBackend('usulan-kerjasama/create')}}" class="btn btn-info btn-3d"> <i class="fa fa-plus"></i> Tambah</a> 
               </div>
               <div class="col-md-7 fadeIn animated">
-                <form action="#" method="post" class="panel-body p-y-1">
+                {!! Form::open(['class'=>'panel-body p-y-1', 'url'=>urlBackend('usulan-kerjasama/index'), 'method'=>'get']) !!} 
                   <div class="form-group">
                     <div class="row">
                       <label class="col-sm-4 control-label">Status Data :</label>
                       <div class="col-sm-8">
-                        <select class="form-control select2-example" style="width: 100%" data-allow-clear="true">
-                          <option>Pilih Status Data</option>
-                          <option value="AK">Approved</option>
-                          <option value="AK">Reject</option>
-                          <option value="AK">Draft</option>
-                        </select>
+                        
+                          {!! Form::select('approval' , ['', 'approved'=>'Approved', 'draft'=>'Draft'], $request->approval ? $request->approval : null ,['class' => 'form-control select2-example', 'style'=>'width:100%', 'data-allow-clear'=>true]) !!}
+                        
                       </div>
                     </div>
                   </div>
@@ -38,7 +35,7 @@
                         <label class="col-sm-4 control-label">Dari Tanggal :</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                              <input type="text" class="form-control" name="start">
+                              {!! Form::text('startdate' , $request->startdate ? $request->startdate : null ,['class' => 'form-control']) !!}
                               <span class="input-group-btn">
                                 <button type="button" class="btn"><i class="fa fa-calendar"></i></button>
                               </span>
@@ -51,7 +48,7 @@
                         <label class="col-sm-4 control-label">Sampai Tanggal :</label>
                         <div class="col-sm-8">                  
                             <div class="input-group m-b-2">
-                              <input type="text" class="form-control" name="end">
+                              {!! Form::text('enddate' , $request->enddate ? $request->enddate : null ,['class' => 'form-control']) !!}
                               <span class="input-group-btn">
                                 <button type="button" class="btn"><i class="fa fa-calendar"></i></button>
                               </span>
@@ -62,12 +59,12 @@
                   </div>
 
               <div class="col-md-12 fadeIn animated">
-                <a href="tambah-event-calendar.php" class="btn btn-primary btn-3d"> <i class="fa fa-eye"></i> Lihat</a> 
+                <button type="submit" class="btn btn-primary btn-3d"><i class="fa fa-eye"></i> Lihat</button>
 
                 <a href="{{urlBackend('usulan-kerjasama/export-excel')}}" class="btn btn-danger btn-3d"> <i class="fa fa-download"></i> Ekspor</a>
                 <!-- <a href="#" class="btn btn-danger btn-3d confirm"> <i class="fa fa-download"></i> Ekspor</a> -->
               </div>
-                </form>
+                {!! Form::close() !!}
               </div>
             </div>
             <div class="row">
@@ -76,41 +73,16 @@
                   <table class="table table-striped table-bordered" id="datatables">
                               <thead>
                                 <tr>
-                                  <th>No</th>
-                                  <th>Nama Pengusul</th>
+                                  <th>Nama</th>
                                   <th>Judul Usulan</th>
+                                  <th>Status</th>
                                   <th>Tanggal Upload</th>
                                   <!-- <th>Approved/Reject</th> -->
                                   <th>Aksi</th>
                                 </tr>
                               </thead>
                               <tbody>
-                              @if($data['proposed'])
-                                @foreach($data['proposed'] as $proposed)
-                                <tr class="odd gradeX">
-                                  <td>
-                                    1
-                                  </td>
-                                  <td>{{$proposed->name}}</td>
-                                  <td class="center"><a href="{{urlBackend('usulan-kerjasama/update/'.$proposed->id)}}">{{$proposed->title}}</a></td>
-                                  <td class="center">{{$proposed->created_at}}</td>
-                                  <!-- <td class="center">
-                                    <label for="switcher-rounded" class="switcher switcher-primary">&nbsp;
-                                      <input type="checkbox" id="switcher-rounded" class="editData">
-                                      <div class="switcher-indicator">
-                                        <div class="switcher-yes">Yes</div>
-                                        <div class="switcher-no">No</div>
-                                      </div>
-                                    </label>   
-                                  </td> -->
-                                  <td class="center">
-                                    <a href="{{urlBackend('usulan-kerjasama/update/'.$proposed->id)}}" class="btn btn-success"><i class="fa fa-pencil"></i></a> 
-                                    <a href="{{urlBackend('usulan-kerjasama/delete/'.$proposed->id)}}" class="btn btn-danger confirm"><i class="fa fa-trash"></i></a> 
-                                  </td>
-                                </tr>
-
-                                @endforeach
-                              @endif 
+                             
                               </tbody>
                             </table>
                 </div>
@@ -129,6 +101,22 @@
 
   $(document).ready(function() {
     
+    $.fn.dataTable.ext.errMode = 'none';
+    $('#datatables').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: '{!! urlBackendAction($url) !!}',
+        columns: [
+            { data: 'name', name: 'name' },
+            { data: 'title', name: 'title' },
+            { data: 'approval', name: 'approval' },
+            { data: 'created_at', name: 'created_at' },
+            // { data: 'moderation', name: 'moderation' , searchable: false, "orderable":false},
+            { data: 'action', name: 'action' , searchable: false, "orderable":false},
+            
+        ]
+    });
+
     $('#datatables').dataTable();    
     $('#datepicker-range').datepicker();
     $('#datatables_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
