@@ -30,7 +30,25 @@
                                 <th>{{$key+1}}</th>
                                 @foreach($dataField as $column)
                                     @if($column['field']=="scope")
+
                                         <th>{{ strip_tags($data->$column['field'])}}</th>
+
+                                    @elseif($column['field']=="cooperation_type_id")
+                                        <?php
+
+                                        $cooperation_type_id = $data->cooperationtype()->first();
+                                        
+                                        ?>
+                                        <th>{{ $cooperation_type_id->name }}</th>
+
+                                    @elseif($column['field']=="cooperation_fokus_id")
+                                        <?php
+
+                                        $cooperation_fokus_id = $data->cooperationfocus()->first();
+
+                                        ?>
+                                        <th>{{ $cooperation_fokus_id->name }}</th>
+
                                     @else
                                         <th>{{ $data->$column['field']}}</th>
                                     @endif

@@ -60,6 +60,7 @@ class CooperationController extends TrinataController
     {
         $param = [];
         $url = 'data';
+        $parameter = 'export-excel';
         $model = $this->model;
 
         if ($request->approval) $param[] = 'approval='.$request->approval;
@@ -69,9 +70,10 @@ class CooperationController extends TrinataController
         // dd($model);
         if (count($param) > 0) {
             $url = $url.'?'.implode('&', $param);
+            $parameter = $parameter.'?'.implode('&', $param);
         }
         // dd($url);
-    	return view('backend.kerjasama.daftar.index', compact('model', 'url', 'request'));
+    	return view('backend.kerjasama.daftar.index', compact('model', 'url', 'request','parameter'));
     }
 
     public function getCreate()

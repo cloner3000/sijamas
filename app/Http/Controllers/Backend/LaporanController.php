@@ -71,7 +71,10 @@ class LaporanController extends TrinataController
 		$dataField = $this->toName($fieldarray);
 
 
-    	$model = $this->model->select()->whereBetween('cooperation_signed', [\Carbon\Carbon::CreateFromFormat('d/m/Y', $start)->format('Y-m-d')." 00:00:00", \Carbon\Carbon::CreateFromFormat('d/m/Y', $end)->format('Y-m-d')." 23:59:59"])->get();
+    	$model = $this->model
+    			->select()
+    			->whereBetween('cooperation_signed', [\Carbon\Carbon::CreateFromFormat('d/m/Y', $start)->format('Y-m-d')." 00:00:00", \Carbon\Carbon::CreateFromFormat('d/m/Y', $end)->format('Y-m-d')." 23:59:59"])
+    			->get();
         // $model = $this->model->orderBy('id','asc')->get();
 
                                 
@@ -80,6 +83,16 @@ class LaporanController extends TrinataController
 			foreach($dataField as $column){	
 				if($column['field']=="scope"){
                 $data[$key][$column['name']] = strip_tags($value->$column['field']);
+
+				}elseif($column['field']=="cooperation_type_id"){
+
+                    $cooperation_type_id = $value->cooperationtype()->first();
+                	$data[$key][$column['name']] = $cooperation_type_id->name;
+
+				}elseif($column['field']=="cooperation_fokus_id"){
+
+                    $cooperation_fokus_id = $value->cooperationfocus()->first();
+                	$data[$key][$column['name']] = $cooperation_fokus_id->name;
 
 				}else{
                 $data[$key][$column['name']] = $value->$column['field'];
