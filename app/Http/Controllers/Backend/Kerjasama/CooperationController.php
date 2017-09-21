@@ -269,6 +269,26 @@ class CooperationController extends TrinataController
         return response()->json(['status' => $status]);
     }
 
+    public function postUploadFile(Request $request)
+    {
+        $inputs = $request->all();
+        $model = $this->model->findOrFail($request->cooperation_id);
+
+        $status= false;
+        if (isset($inputs['image']) && $model->id) {
+            $repo = new CooperationFile;
+            $repo->cooperation_id = $model->id;
+            $repo->filename = trinata::globalUpload($request, 'image')['filename'];
+            $repo->type = 'photo';
+
+            $repo->save();
+            
+            $status= true;
+        }
+
+        return response()->json(['status' => $status]);
+    }
+
     public function getCity(Request $request)
     {
         $status = false;

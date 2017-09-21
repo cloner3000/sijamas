@@ -186,7 +186,7 @@
                   <div class="form-group">
                     <div class="row">
                       <label class="col-sm-4 control-label">Foto Dokumen Kerjasama :</label>
-                      <div class="col-sm-8">
+                      <div class="col-sm-6">
                         <label class="custom-file px-file">
                           <input type="file" class="custom-file-input" name="image">
                           <span class="custom-file-control form-control">
@@ -197,6 +197,7 @@
                             <button type="button" class="btn btn-primary btn-xs px-file-browse">Browse</button>
                           </div>
                            @if($model->cooperationfile)
+                          
                           @foreach($model->cooperationfoto as $file)
                             @if ($file->type == 'photo') <label class="file_{{$file->id}}">{{ $file->filename }}</label> 
                             <button type="button" class="btn btn-danger px-file-browse deleteFile file_{{$file->id}}" data-id="{{$file->id}}">Hapus</button>
@@ -205,6 +206,11 @@
                           @endforeach
                           @endif 
                         </label>
+                      </div>
+                      <div class="col-sm-2">
+                        @if($model->cooperationfile)
+                         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Tambah Foto</button>
+                        @endif
                       </div>
                     </div>
                   </div>
@@ -267,13 +273,62 @@
               </div>
             </div>
     </div>
+
+    <!-- Trigger the modal with a button -->
+    
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Tambah Foto</h4>
+          </div>
+          {!! Form::open(['url'=>urlBackendAction('upload-file'), 'class'=>'panel-body p-y-1', 'files'=>true, 'id'=>'myForm', 'method'=>'post']) !!} 
+          <div class="modal-body">
+            <label class="custom-file px-file">
+            <input type="file" class="custom-file-input image" name="image">
+            <span class="custom-file-control form-control">
+            Pilih Foto Dokumen...
+            </span>
+            <div class="px-file-buttons">
+              {!! Form::hidden('cooperation_id' , isset($model->id) ? $model->id : null) !!}
+              <button type="button" class="btn btn-xs px-file-clear">Clear</button>
+              <button type="submit" class="btn btn-primary btn-xs px-file-browse uploadimage">Mulai Upload</button>
+            </div>
+          </div>
+          {!! Form::close() !!}
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default closemodal" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
 @endsection
 
 @push('script-js')
 
 <script type="text/javascript" src="assets/clockpicker/dist/bootstrap-clockpicker.min.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script> 
 <script type="text/javascript">  
+
     $(function() {
+
+      $('#myForm').ajaxForm(function(data) { 
+        console.log(data);
+        if (data.status == true) {
+          alert('Foto berhasil diupload');
+        } else {
+          alert('Foto gagal diupload');
+        }
+
+        location.reload();
+      }); 
+
       $('#datepicker-range').datepicker({
         format:'dd/mm/yyyy'
       });
