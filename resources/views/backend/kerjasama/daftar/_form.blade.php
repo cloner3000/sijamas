@@ -163,8 +163,8 @@
                       <label class="col-sm-4 control-label">File Dokumen :</label>
                       <div class="col-sm-8">
                         <label class="custom-file px-file">
-                          <input type="file" class="custom-file-input" name="file">
-                          <span class="custom-file-control form-control">
+                          <input type="file" class="custom-file-input file" name="file">
+                          <span class="custom-file-control form-control uploadFile">
                           Pilih File Dokumen...
                           </span>
                           <div class="px-file-buttons">
@@ -185,8 +185,8 @@
                   </div>
                   <div class="form-group">
                     <div class="row">
-                      <label class="col-sm-4 control-label">Foto Dokumen Kerjasama :</label>
-                      @if(!$model->cooperationfile)
+                      @if(count($model->cooperationfile) < 1)
+                      <!-- <label class="col-sm-4 control-label">Foto Dokumen Kerjasama :</label>
                       <div class="col-sm-6">
                         <label class="custom-file px-file">
                           <input type="file" class="custom-file-input" name="image">
@@ -199,8 +199,9 @@
                           </div>
                            
                         </label>
-                      </div>
+                      </div> -->
                       @else
+                      <label class="col-sm-4 control-label">Foto Dokumen Kerjasama :</label>
                       <div class="col-sm-2">
                         @if($model->cooperationfile)
                          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Tambah Foto</button>
@@ -335,6 +336,10 @@
         $('.captionfile').html($(this).val());
       })
 
+      $(document).on('change', '.file', function(){
+        $('.uploadFile').html($(this).val());
+      })
+      
       $('#myForm').ajaxForm(function(data) { 
         
         if (data.status == true) {

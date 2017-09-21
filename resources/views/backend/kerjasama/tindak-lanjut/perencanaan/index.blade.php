@@ -17,7 +17,7 @@
                 
               </div>
               <div class="col-md-7 fadeIn animated">
-                {!! Form::open(['class'=>'panel-body p-y-1', 'url'=>urlBackend('cooperation-category/index'), 'method'=>'get']) !!} 
+                {!! Form::open(['class'=>'panel-body p-y-1', 'url'=>urlBackend('cooperation-followup/index'), 'method'=>'get']) !!} 
 
                   <div class="form-group">
                     <div class="row">

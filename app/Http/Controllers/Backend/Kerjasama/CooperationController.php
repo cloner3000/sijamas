@@ -130,7 +130,7 @@ class CooperationController extends TrinataController
         
         $lastId = $model->create($inputs); 
         
-        if ($inputsCoop['file']) {
+        if (isset($inputsCoop['file'])) {
             $repo = new CooperationFile;
             $repo->cooperation_id = $lastId->id;
             $repo->filename = trinata::globalUpload($request, 'file')['filename'];
@@ -139,7 +139,7 @@ class CooperationController extends TrinataController
             $repo->save();
         } 
 
-        if ($inputsCoop['image']) {
+        if (isset($inputsCoop['image'])) {
             $repo = new CooperationFile;
             $repo->cooperation_id = $lastId->id;
             $repo->filename = trinata::globalUpload($request, 'image')['filename'];
