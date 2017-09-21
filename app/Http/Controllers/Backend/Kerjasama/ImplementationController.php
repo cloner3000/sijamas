@@ -69,6 +69,11 @@ class ImplementationController extends TrinataController
         if ($request->start) $model->where('cooperation_signed', $request->start);
         if ($request->end) $model->where('cooperation_ended', $request->end);
 
+        $model = $model->get();
+        foreach ($model as $key => $value) {
+            $value->implementationDateAttribute($value->implementation_date);
+        }
+
         $data = Table::of($model)
             ->addColumn('moderation',function($model){
                 $status = true;
@@ -141,12 +146,16 @@ class ImplementationController extends TrinataController
     {
         $model = $this->model;
 
+        // $inputs = $request->except('image');
         $inputs = $request->all();
         
-        $inputs['implementation_date'] = \Carbon\Carbon::createFromFormat('d/m/Y', $request->implementation_date)->format('Y-m-d');
+        $inputs['implementation_date'] = \Carbon\Carbon::createFromFormat('d/m/Y', $request->implementation_date)->format('Y-m-d H:i:s');
         $inputs['description'] = $request->description;
         $inputs['category'] = 'implementation';
         
+        if (isset($inputs['image'])) {
+            $inputs['image'] = trinata::globalUpload($request, 'image')['filename'];
+        } 
         // dd($inputs);
         $model->create($inputs); 
         
@@ -172,11 +181,15 @@ class ImplementationController extends TrinataController
         $inputs = $request->all();
         $model->cooperation_id = $request->cooperation_id;
         $model->activity_type = $request->activity_type;
-        $model->implementation_date = \Carbon\Carbon::createFromFormat('d/m/Y', $request->implementation_date)->format('Y-m-d');
+        $model->implementation_date = \Carbon\Carbon::createFromFormat('d/m/Y', $request->implementation_date)->format('Y-m-d H:i:s');
         $model->description = $request->description;
         
-        $model->save(); 
+        if (isset($inputs['image'])) {
+            $model->image = trinata::globalUpload($request, 'image')['filename'];
+        } 
         
+        $model->save(); 
+
         return redirect(urlBackendAction('view/'.$request->cooperation_id))->withSuccess('data has been updated');
     }
 

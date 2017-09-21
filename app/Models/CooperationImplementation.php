@@ -17,5 +17,8 @@ class CooperationImplementation extends Model
     // {
 		// return $this->belongsTo(Cooperation::class, 'cooperation_id');
     // }
-	
+	public function implementationDateAttribute($value)
+    {
+        $this->attributes['implementation_date'] = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('j F Y');
+    }
 }

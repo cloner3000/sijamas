@@ -36,9 +36,12 @@
 									<div class="col-md-9">
 										<div class="bx-main">
 											<ul id="bxslider">
-												@if($model->cooperationFoto)
-												@foreach ($model->cooperationFoto as $foto)
-												<li><img src="{{ asset(null) }}contents/file/{{$foto->filename}}" alt="" title="Lorem Ipsum dolor sit amet"></li>
+												@if($image)
+												@foreach ($image as $foto)
+												<?php 
+												$file = isset($foto->filename) ? $foto->filename : $foto->image;
+												?>
+												<li><img src="{{ asset(null) }}contents/file/{{$file}}" alt="" title="Lorem Ipsum dolor sit amet"></li>
 												@endforeach
 												@endif
 												
@@ -50,9 +53,12 @@
     							<div class="col-md-3">
 	    							<div class="carousel-bx-main">
 		    							<ul id="bxslider-pager">
-											@if($model->cooperationFoto)
-											@foreach ($model->cooperationFoto as $key => $foto)
-											<li data-slideIndex="{{$key}}"><a href=""><img src="{{ asset(null) }}contents/file/{{$foto->filename}}" alt=""></a></li>
+											@if($image)
+											@foreach ($image as $key => $foto)
+											<?php 
+											$file = isset($foto->filename) ? $foto->filename : $foto->image;
+											?>
+											<li data-slideIndex="{{$key}}"><a href=""><img src="{{ asset(null) }}contents/file/{{$file}}" alt=""></a></li>
 											@endforeach
 											@endif
 
@@ -125,7 +131,7 @@
 											<div class="profile-info-name"> Tanggal Berakhir Kerjasama :</div>
 
 											<div class="profile-info-value">
-												<span @if(!$end) style="color: green" @else style="color: red" @endif>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $model->cooperation_ended)->format('j F Y')}}</span>
+												<span style="{{$end}}">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $model->cooperation_ended)->format('j F Y')}}</span>
 											</div>
 										</div><!--.profile-info-row-->
 										<div class="profile-info-row">
