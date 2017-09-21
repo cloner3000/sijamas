@@ -55,10 +55,23 @@ class ImplementationController extends TrinataController
 
     public function getIndex(Request $request)
     {
-        // return view('backend.kategori.index');
-        // dd($request->all());
+        $param = [];
+        $url = 'data';
+        $parameter = 'export-excel';
         $model = $this->cooperation;
-        return view('backend.kerjasama.tindak-lanjut.implementasi.index', compact('model'));
+
+        if ($request->approval) $param[] = 'approval='.$request->approval;
+        if ($request->cooperation_category) $param[] = 'cooperation_category='.$request->cooperation_category;
+        if ($request->startdate) $param[] = 'startdate='.$request->startdate;
+        if ($request->enddate) $param[] = 'enddate='.$request->enddate;
+        // dd($model);
+        if (count($param) > 0) {
+            $url = $url.'?'.implode('&', $param);
+            $parameter = $parameter.'?'.implode('&', $param);
+        }
+
+        
+        return view('backend.kerjasama.tindak-lanjut.implementasi.index', compact('model','url','request'));
     }
 
     public function getDataimplementation(Request $request)
