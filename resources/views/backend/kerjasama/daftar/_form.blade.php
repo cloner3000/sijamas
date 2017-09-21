@@ -186,6 +186,7 @@
                   <div class="form-group">
                     <div class="row">
                       <label class="col-sm-4 control-label">Foto Dokumen Kerjasama :</label>
+                      @if(!$model->cooperationfile)
                       <div class="col-sm-6">
                         <label class="custom-file px-file">
                           <input type="file" class="custom-file-input" name="image">
@@ -196,22 +197,25 @@
                             <button type="button" class="btn btn-xs px-file-clear">Clear</button>
                             <button type="button" class="btn btn-primary btn-xs px-file-browse">Browse</button>
                           </div>
-                           @if($model->cooperationfile)
-                          
-                          @foreach($model->cooperationfoto as $file)
-                            @if ($file->type == 'photo') <label class="file_{{$file->id}}">{{ $file->filename }}</label> 
-                            <button type="button" class="btn btn-danger px-file-browse deleteFile file_{{$file->id}}" data-id="{{$file->id}}">Hapus</button>
-                            <br>
-                            @endif
-                          @endforeach
-                          @endif 
+                           
                         </label>
                       </div>
+                      @else
                       <div class="col-sm-2">
                         @if($model->cooperationfile)
                          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Tambah Foto</button>
+
+                         @if($model->cooperationfile)
+                          
+                          @foreach($model->cooperationfoto as $file)
+                            <img src="{{url('contents/file/'.$file->filename)}}" width="100px" class="file_{{$file->id}}">
+                            <button type="button" class="btn btn-danger px-file-browse deleteFile file_{{$file->id}}" data-id="{{$file->id}}">Hapus</button>
+                            
+                          @endforeach
+                          @endif 
                         @endif
                       </div>
+                      @endif
                     </div>
                   </div>
                   
@@ -289,9 +293,18 @@
           </div>
           {!! Form::open(['url'=>urlBackendAction('upload-file'), 'class'=>'panel-body p-y-1', 'files'=>true, 'id'=>'myForm', 'method'=>'post']) !!} 
           <div class="modal-body">
+            <div class="form-group">
+              <div class="row">
+                <label class="col-sm-4 control-label">Judul Gambar :</label>
+                <div class="col-sm-8">
+                  {!! Form::text('title' , null ,['class' => 'form-control']) !!}
+                </div>
+              </div>
+            </div>
+
             <label class="custom-file px-file">
             <input type="file" class="custom-file-input image" name="image">
-            <span class="custom-file-control form-control">
+            <span class="custom-file-control form-control captionfile">
             Pilih Foto Dokumen...
             </span>
             <div class="px-file-buttons">
@@ -318,8 +331,12 @@
 
     $(function() {
 
+      $(document).on('change', '.image', function(){
+        $('.captionfile').html($(this).val());
+      })
+
       $('#myForm').ajaxForm(function(data) { 
-        console.log(data);
+        
         if (data.status == true) {
           alert('Foto berhasil diupload');
         } else {

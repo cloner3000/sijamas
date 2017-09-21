@@ -280,6 +280,7 @@ class CooperationController extends TrinataController
             $repo->cooperation_id = $model->id;
             $repo->filename = trinata::globalUpload($request, 'image')['filename'];
             $repo->type = 'photo';
+            $repo->title = $inputs['title'];
 
             $repo->save();
             

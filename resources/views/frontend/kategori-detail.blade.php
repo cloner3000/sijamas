@@ -41,7 +41,7 @@
 												<?php 
 												$file = isset($foto->filename) ? $foto->filename : $foto->image;
 												?>
-												<li><img src="{{ asset(null) }}contents/file/{{$file}}" alt="" title="Lorem Ipsum dolor sit amet"></li>
+												<li><img src="{{ asset(null) }}contents/file/{{$file}}" alt="" title="{{ $foto->title }}"></li>
 												@endforeach
 												@endif
 												
