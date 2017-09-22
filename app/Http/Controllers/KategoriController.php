@@ -104,7 +104,7 @@ class KategoriController extends Controller {
 			$model = $model->whereCooperationFocusId($get['bidang']);
 		}
 		if($get['status']){
-			if($get['kategori']=="baru" || $get['kategori'] =="lanjutan"){
+			if($get['status']=="baru" || $get['status'] =="lanjutan"){
 				$model = $model->whereCooperationCategory($get['kategori']);
 			}
 		}
