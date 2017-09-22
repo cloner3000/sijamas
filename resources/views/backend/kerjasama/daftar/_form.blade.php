@@ -163,8 +163,8 @@
                       <label class="col-sm-4 control-label">File Dokumen :</label>
                       <div class="col-sm-8">
                         <label class="custom-file px-file">
-                          <input type="file" class="custom-file-input" name="file">
-                          <span class="custom-file-control form-control">
+                          <input type="file" class="custom-file-input file" name="file">
+                          <span class="custom-file-control form-control uploadFile">
                           Pilih File Dokumen...
                           </span>
                           <div class="px-file-buttons">
@@ -185,8 +185,9 @@
                   </div>
                   <div class="form-group">
                     <div class="row">
-                      <label class="col-sm-4 control-label">Foto Dokumen Kerjasama :</label>
-                      <div class="col-sm-8">
+                      @if(count($model->cooperationfile) < 1)
+                      <!-- <label class="col-sm-4 control-label">Foto Dokumen Kerjasama :</label>
+                      <div class="col-sm-6">
                         <label class="custom-file px-file">
                           <input type="file" class="custom-file-input" name="image">
                           <span class="custom-file-control form-control">
@@ -196,16 +197,26 @@
                             <button type="button" class="btn btn-xs px-file-clear">Clear</button>
                             <button type="button" class="btn btn-primary btn-xs px-file-browse">Browse</button>
                           </div>
-                           @if($model->cooperationfile)
+                           
+                        </label>
+                      </div> -->
+                      @else
+                      <label class="col-sm-4 control-label">Foto Dokumen Kerjasama :</label>
+                      <div class="col-sm-2">
+                        @if($model->cooperationfile)
+                         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Tambah Foto</button>
+
+                         @if($model->cooperationfile)
+                          
                           @foreach($model->cooperationfoto as $file)
-                            @if ($file->type == 'photo') <label class="file_{{$file->id}}">{{ $file->filename }}</label> 
+                            <img src="{{url('contents/file/'.$file->filename)}}" width="100px" class="file_{{$file->id}}">
                             <button type="button" class="btn btn-danger px-file-browse deleteFile file_{{$file->id}}" data-id="{{$file->id}}">Hapus</button>
-                            <br>
-                            @endif
+                            
                           @endforeach
                           @endif 
-                        </label>
+                        @endif
                       </div>
+                      @endif
                     </div>
                   </div>
                   
@@ -267,13 +278,79 @@
               </div>
             </div>
     </div>
+
+    <!-- Trigger the modal with a button -->
+    
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Tambah Foto</h4>
+          </div>
+          {!! Form::open(['url'=>urlBackendAction('upload-file'), 'class'=>'panel-body p-y-1', 'files'=>true, 'id'=>'myForm', 'method'=>'post']) !!} 
+          <div class="modal-body">
+            <div class="form-group">
+              <div class="row">
+                <label class="col-sm-4 control-label">Judul Gambar :</label>
+                <div class="col-sm-8">
+                  {!! Form::text('title' , null ,['class' => 'form-control']) !!}
+                </div>
+              </div>
+            </div>
+
+            <label class="custom-file px-file">
+            <input type="file" class="custom-file-input image" name="image">
+            <span class="custom-file-control form-control captionfile">
+            Pilih Foto Dokumen...
+            </span>
+            <div class="px-file-buttons">
+              {!! Form::hidden('cooperation_id' , isset($model->id) ? $model->id : null) !!}
+              <button type="button" class="btn btn-xs px-file-clear">Clear</button>
+              <button type="submit" class="btn btn-primary btn-xs px-file-browse uploadimage">Mulai Upload</button>
+            </div>
+          </div>
+          {!! Form::close() !!}
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default closemodal" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
 @endsection
 
 @push('script-js')
 
 <script type="text/javascript" src="assets/clockpicker/dist/bootstrap-clockpicker.min.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script> 
 <script type="text/javascript">  
+
     $(function() {
+
+      $(document).on('change', '.image', function(){
+        $('.captionfile').html($(this).val());
+      })
+
+      $(document).on('change', '.file', function(){
+        $('.uploadFile').html($(this).val());
+      })
+      
+      $('#myForm').ajaxForm(function(data) { 
+        
+        if (data.status == true) {
+          alert('Foto berhasil diupload');
+        } else {
+          alert('Foto gagal diupload');
+        }
+
+        location.reload();
+      }); 
+
       $('#datepicker-range').datepicker({
         format:'dd/mm/yyyy'
       });

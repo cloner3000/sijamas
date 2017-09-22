@@ -1,6 +1,8 @@
 <?php namespace App\Http\Controllers;
 
 use App\Models\Cooperation;
+use App\Models\CooperationFile;
+use App\Models\CooperationImplementation;
 use Illuminate\Http\Request;
 use View;
 class KategoriController extends Controller {
@@ -65,15 +67,22 @@ class KategoriController extends Controller {
 
 		$model = $this->model->whereSlug($slug)->first();
 
-		// dd($model->cooperation_signed);
-		$end_date = \Carbon\Carbon::CreateFromFormat('Y-m-d', $model->cooperation_ended)->diff(\Carbon\Carbon::now())->format("%y,%m");
-		$end = false;
+		$end_date = \Carbon\Carbon::CreateFromFormat('Y-m-d', $model->cooperation_ended)->diff(\Carbon\Carbon::now())->format("%y,%m,%d");
+		$end = 'color:green';
 		if ($end_date) {
 			$ends = explode(',', $end_date);
-			if ($ends[0] < 1 && $ends[1] <= 3) $end = true;
+			// dd($ends);
+			if ($ends[0] < 1 && $ends[1] <= 3 && $ends[2] > 0) $end = 'color:#e57f19';
+			if ($ends[0] < 1 && $ends[1] <= 0 && $ends[2] <= 0) $end = 'color:red';
 		}
+
+		$cooperationImg = CooperationFile::whereCooperationId($model->id)->whereType('photo')->get();
+		$impImg = CooperationImplementation::whereCooperationId($model->id)->whereNotNull('image')->get();
+		$image = $cooperationImg->merge($impImg);
+
+		// dd($image);
 		// dd($model->cooperationimplementation);
-		return view('frontend.kategori-detail', compact('model','end'));
+		return view('frontend.kategori-detail', compact('model','end', 'image'));
 	}
 
 	public function getPencarian(Request $request)

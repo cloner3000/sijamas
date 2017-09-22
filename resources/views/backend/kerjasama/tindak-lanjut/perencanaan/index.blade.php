@@ -17,7 +17,7 @@
                 
               </div>
               <div class="col-md-7 fadeIn animated">
-                {!! Form::open(['class'=>'panel-body p-y-1', 'url'=>urlBackend('cooperation-category/index'), 'method'=>'get']) !!} 
+                {!! Form::open(['class'=>'panel-body p-y-1', 'url'=>urlBackend('cooperation-followup/index'), 'method'=>'get']) !!} 
 
                   <div class="form-group">
                     <div class="row">
@@ -43,7 +43,7 @@
                         <label class="col-sm-4 control-label">Dari Tanggal :</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                              <input type="text" class="form-control" name="start">
+                              <input type="text" class="form-control" name="startdate">
                               <span class="input-group-btn">
                                 <button type="button" class="btn"><i class="fa fa-calendar"></i></button>
                               </span>
@@ -56,7 +56,7 @@
                         <label class="col-sm-4 control-label">Sampai Tanggal :</label>
                         <div class="col-sm-8">                  
                             <div class="input-group m-b-2">
-                              <input type="text" class="form-control" name="end">
+                              <input type="text" class="form-control" name="enddate">
                               <span class="input-group-btn">
                                 <button type="button" class="btn"><i class="fa fa-calendar"></i></button>
                               </span>

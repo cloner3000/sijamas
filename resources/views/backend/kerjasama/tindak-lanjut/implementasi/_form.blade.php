@@ -52,6 +52,27 @@
                   
                   <div class="form-group">
                     <div class="row">
+                      <label class="col-sm-4 control-label">Foto :</label>
+                      <div class="col-sm-8">
+                        <label class="custom-file px-file">
+                          <input type="file" class="custom-file-input" name="image">
+                          <span class="custom-file-control form-control">
+                          Pilih Foto ...
+                          </span>
+                          <!-- <div class="px-file-buttons">
+                            <button type="button" class="btn btn-xs px-file-clear">Clear</button>
+                            <button type="button" class="btn btn-primary btn-xs px-file-browse">Browse</button>
+                          </div> -->
+                          @if($model->image)
+                            <img src="{{ url('contents/file/'.$model->image)}}" width="300px">
+                          @endif 
+                        </label>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
                       <label class="col-sm-4 control-label">
                         <button type="submit" class="btn btn-primary btn-3d">Save</button>
                       </label>
