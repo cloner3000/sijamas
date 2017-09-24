@@ -3,7 +3,7 @@
 	<div class="wrapper">
 		<div class="row">
 			<div class="col-md-6">
-				<div class="logo-bsn"><img src="images/material/logo_bsn.png"></div>
+				<div class="logo-bsn"><img src="{{ asset(null) }}frontend/images/material/logo_bsn.png"></div>
 				<div class="text-logo">
 					<span class="text-l1">Sistem Informasi Kerjasama Standarisasi dan Penilaian Kesesuaian (SIJAMAS)</span>
 					<span class="text-l2">Badan Strandarisasi Nasional</span>

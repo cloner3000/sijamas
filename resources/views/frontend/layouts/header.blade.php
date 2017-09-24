@@ -17,6 +17,8 @@
 <!--link rel="stylesheet" href="css/reset.css"-->
 <!-- <link rel="stylesheet" type="text/css" href="{{ asset(null) }}css/all.css"> -->
 <!--link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"-->
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <link href="{{ asset(null) }}frontend/css/jquery-ui.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="{{ asset(null) }}frontend/js/source/jquery.fancybox.css?v=2.1.5" media="screen" />
 <link rel="stylesheet" href="{{ asset(null) }}frontend/css/camera.css">
@@ -97,13 +99,7 @@
         </ul>
         <div class="search-mobile">
           <div class="login-mn-row">
-            <a href="#login" class="login popup">Login</a>
-            <a href="#forgot" class="blue_ref popup">Lupa Password?</a>
             <a href="#pencarianLanjut" class="blue_ref popup">Pencarian Lanjutan</a>
-          </div>
-          <div class="search-row">
-            <input type="text" id="search" class="form-control" name="" placeholder="Search">
-            <a href="#" class="searchTrigger"><i class="fa fa-search" aria-hidden="true"></i></a>
           </div>
         </div>
       </div>

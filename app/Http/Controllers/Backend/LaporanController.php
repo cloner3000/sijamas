@@ -28,14 +28,16 @@ class LaporanController extends TrinataController
 	public function getIndex()
 	{	
 		$model = $this->model;
-	   	return view('backend.laporan.index',compact('model'));
+		$province = CooperationProvince::lists('name','id');
+		// dd($province);
+	   	return view('backend.laporan.index',compact('model','province'));
 	}
 
 	public function postIndex(Request $request)
 	{
 		$inputs = $request->all();
 
-		return redirect(urlBackendAction('preview?start='.$inputs['start'].'&end='.$inputs['end'].'&report='.serialize($inputs['to'])));
+		return redirect(urlBackendAction('preview?start='.$inputs['start'].'&end='.$inputs['end'].'&category='.$inputs['category'].'&province='.$inputs['province'].'&report='.serialize($inputs['to'])));
 	}
 
 	public function getPreview(Request $request)
@@ -43,23 +45,25 @@ class LaporanController extends TrinataController
 		// \Carbon\Carbon::createFromFormat('Y-m-d', $value->start_date)->format('d/m/Y')
 		$start = $request->get('start');
 		$end = $request->get('end');
+		$category = $request->get('category');
+		$province = $request->get('province');
 		$field = $request->get('report');
 		$fieldarray = unserialize($request->get('report'));
 		$dataField = $this->toName($fieldarray);
 
 
-    	$model = $this->model->select()->whereBetween('cooperation_signed', [\Carbon\Carbon::CreateFromFormat('d/m/Y', $start)->format('Y-m-d')." 00:00:00", \Carbon\Carbon::CreateFromFormat('d/m/Y', $end)->format('Y-m-d')." 23:59:59"])->get();
-// dd($model->get(),$request->all());
-        // if (\Auth::user()->role_id != 1) $model->whereOwnerId(\Auth::user()->id);
-        
-        // if ($start) $model->where('cooperation_signed', '>=',\Carbon\Carbon::CreateFromFormat('d/m/Y', $start)->format('Y-m-d'));
-        // if ($end) $model->where('cooperation_signed', '<=',\Carbon\Carbon::CreateFromFormat('d/m/Y', $end)->format('Y-m-d'));
-
-		// ->whereBetween('cooperation_signed', [$start." 00:00:00", $end." 23:59:59"]);
-
-        // $model = $model->get();
-        // dd($model);
-	   	return view('backend.laporan.view',compact('model','dataField','start','end','field'));
+    	$model = $this->model->select()->whereBetween('cooperation_signed', [\Carbon\Carbon::CreateFromFormat('d/m/Y', $start)->format('Y-m-d')." 00:00:00", \Carbon\Carbon::CreateFromFormat('d/m/Y', $end)->format('Y-m-d')." 23:59:59"]);
+    	if($category){
+    		if($category=="ln" || $category=="dn"){
+    			$model = $model->where('cooperation_category',$category);
+    		}
+    	}
+    	if($province){    		
+    		$model = $model->where('cooperation_province_id',$province);
+    	}
+    	$model = $model->get();
+    	
+	   	return view('backend.laporan.view',compact('model','dataField','start','end','category','province','field'));
 	}
 
     public function getExportExcel(Request $request)
@@ -67,6 +71,8 @@ class LaporanController extends TrinataController
         $data= [];
     	$start = $request->get('start');
 		$end = $request->get('end');
+		$category = $request->get('category');
+		$province = $request->get('province');
 		$field = $request->get('report');
 		$fieldarray = unserialize($request->get('report'));
 		$dataField = $this->toName($fieldarray);
@@ -74,10 +80,19 @@ class LaporanController extends TrinataController
 
     	$model = $this->model
     			->select()
-    			->whereBetween('cooperation_signed', [\Carbon\Carbon::CreateFromFormat('d/m/Y', $start)->format('Y-m-d')." 00:00:00", \Carbon\Carbon::CreateFromFormat('d/m/Y', $end)->format('Y-m-d')." 23:59:59"])
-    			->get();
-        // $model = $this->model->orderBy('id','asc')->get();
+    			->whereBetween('cooperation_signed', [\Carbon\Carbon::CreateFromFormat('d/m/Y', $start)->format('Y-m-d')." 00:00:00", \Carbon\Carbon::CreateFromFormat('d/m/Y', $end)->format('Y-m-d')." 23:59:59"]);
 
+    	if($category){
+    		if($category=="ln" || $category=="dn"){
+    			$model = $model->where('cooperation_category',$category);
+    		}
+    	}
+
+    	if($province){    		
+    		$model = $model->where('cooperation_province_id',$province);
+    	}
+    	
+    	$model = $model->get();
                                 
         foreach ($model as $key => $value) {				
             $data[$key]['No'] = $key+1;
@@ -94,6 +109,11 @@ class LaporanController extends TrinataController
 
                     $cooperation_fokus_id = $value->cooperationfocus()->first();
                 	$data[$key][$column['name']] = $cooperation_fokus_id->name;
+
+				}elseif($column['field']=="province"){
+
+            		$province = $value->province()->first()->name;
+                	$data[$key][$column['name']] = $province;
 
 				}else{
                 $data[$key][$column['name']] = $value->$column['field'];
@@ -135,12 +155,12 @@ class LaporanController extends TrinataController
 					[
 					 'key'=>2,
 					 'field'=>'cooperation_category',
-					 'name'=>'Kategori Kerjasama'
+					 'name'=>'Kategori'
 					],
 					[
 					 'key'=>3,
 					 'field'=>'cooperation_status',
-					 'name'=>'Kategori Status Kerjasama'
+					 'name'=>'Status'
 					],
 					[
 					 'key'=>4,
@@ -150,12 +170,12 @@ class LaporanController extends TrinataController
 					[
 					 'key'=>5,
 					 'field'=>'about',
-					 'name'=>'Tentang Kerjasama'
+					 'name'=>'Judul Kerja Sama'
 					],
 					[
 					 'key'=>6,
 					 'field'=>'partners',
-					 'name'=>'Mitra Kerjasama'
+					 'name'=>'Nama Mitra'
 					],
 					[
 					 'key'=>7,
@@ -166,6 +186,36 @@ class LaporanController extends TrinataController
 					 'key'=>8,
 					 'field'=>'scope',
 					 'name'=>'Ruang Lingkup'
+					],
+					[
+					 'key'=>9,
+					 'field'=>'cooperation_number',
+					 'name'=>'Nomor Kerja Sama'
+					],
+					[
+					 'key'=>10,
+					 'field'=>'province',
+					 'name'=>'Province'
+					],
+					[
+					 'key'=>11,
+					 'field'=>'first_sign',
+					 'name'=>'Nama Penanda Tangan Pihak I'
+					],
+					[
+					 'key'=>12,
+					 'field'=>'first_sign_position',
+					 'name'=>'Jabatan Penanda Tangan Pihak I'
+					],
+					[
+					 'key'=>13,
+					 'field'=>'second_sign',
+					 'name'=>'Nama Penanda Tangan Pihak II'
+					],
+					[
+					 'key'=>14,
+					 'field'=>'second_sign_position',
+					 'name'=>'Jabatan Penanda Tangan Pihak II'
 					],
 		];
 
