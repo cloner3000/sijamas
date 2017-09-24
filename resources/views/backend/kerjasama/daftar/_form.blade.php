@@ -173,7 +173,8 @@
                           </div>
                           @if($model->cooperationfile)
                           @foreach($model->cooperationfile as $file)
-                            @if ($file->type == 'document') <label class="file_{{$file->id}}">{{ $file->filename }}</label> 
+                            @if ($file->type == 'document') 
+                            <label class="file_{{$file->id}}">{{ $file->filename }}</label> 
                             <button type="button" class="btn btn-danger px-file-browse deleteFile file_{{$file->id}}" data-id="{{$file->id}}">Hapus</button>
                             <br>
                              @endif
@@ -202,17 +203,51 @@
                       </div> -->
                       @else
                       <label class="col-sm-4 control-label">Foto Dokumen Kerjasama :</label>
-                      <div class="col-sm-2">
+                      <div class="col-sm-8">
                         @if($model->cooperationfile)
                          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Tambah Foto</button>
+                         <p>&nbsp;</p>
 
                          @if($model->cooperationfile)
-                          
+
+                          <style>
+                          table {
+                              border-collapse: collapse;
+                              width: 100%;
+                          }
+
+                          th, td {
+                              text-align: left;
+                              padding: 8px;
+                          }
+
+                          tr:nth-child(even){background-color: #f2f2f2}
+
+                          th {
+                              background-color: #3D4A5D;
+                              color: white;
+                          }
+                          </style>
+                          <table border="0" cellpadding="1">
+                          <tr>
+                            <th width="150px">Thumbnail Image</th>
+                            <th>Caption</th>
+                            <th width="10%">Aksi</th>
+                          </tr>
                           @foreach($model->cooperationfoto as $file)
-                            <img src="{{url('contents/file/'.$file->filename)}}" width="100px" class="file_{{$file->id}}">
-                            <button type="button" class="btn btn-danger px-file-browse deleteFile file_{{$file->id}}" data-id="{{$file->id}}">Hapus</button>
-                            
+                            <tr>
+                                <td>
+                                    <img src="{{url('contents/file/'.$file->filename)}}" width="100px" class="file_{{$file->id}}">
+                                </td>
+                                <td align="left">
+                                  {{$file->title}}
+                                </td>
+                                <td>
+                                  <button type="button" class="btn btn-danger px-file-browse deleteFile file_{{$file->id}}" data-id="{{$file->id}}"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
                           @endforeach
+                          </table>
                           @endif 
                         @endif
                       </div>
