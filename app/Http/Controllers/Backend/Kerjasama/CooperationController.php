@@ -360,4 +360,50 @@ class CooperationController extends TrinataController
             });
         })->download('xlsx');
     }
+
+    public function getReadExcel()
+    {
+        # code...
+                
+        $model = $this->model;
+
+
+        $pathFile = public_path().'/data/listmou.xlsx';
+
+        
+        $dataexcel = \Excel::load($pathFile, function($reader) {
+            // reader methods
+        })->get();
+        // dd($dataexcel->first()->toArray());
+        foreach ($dataexcel->first()->toArray() as $key => $value) {
+            # code...
+            if(!empty($value['nourut']) && !empty($value['nomor_kerja_sama'])){
+
+                $kat = explode('-', $value['kategori']);
+                $data[$key]['title'] =$value['judul_kerja_sama'];
+                $data[$key]['about'] =$value['judul_kerja_sama'];
+                $data[$key]['cooperation_number'] =$value['nomor_kerja_sama'];
+                $data[$key]['partners'] =$value['nama_mitra'];
+                $data[$key]['cooperation_category'] = strtolower($kat[0]);
+                $data[$key]['scope'] =$value['ruang_lingkup'];
+                $data[$key]['address'] =$value['tempat'];
+                $data[$key]['cooperation_signed'] =$value['tanggal_mulai'];
+                $data[$key]['cooperation_ended'] = '2017-09-25';
+                $data[$key]['first_sign'] =$value['nama_penanda_tangan_pihak_i'];
+                $data[$key]['first_sign_position'] =$value['jabatan_penanda_tangan_pihak_i'];
+                $data[$key]['second_sign'] =$value['nama_penanda_tangan_pihak_ii'];
+                $data[$key]['second_sign_position'] =$value['jabatan_penanda_tangan_pihak_ii'];
+                $data[$key]['cooperation_status'] = strtolower($value['status']);
+                $data[$key]['cooperation_focus_id'] = 2;
+                $data[$key]['cooperation_type_id'] = 2;
+                $data[$key]['cooperation_province_id'] = 1;
+                $data[$key]['cooperation_city_id'] = 1;
+                $data[$key]['owner_id'] = 6;
+
+                
+                $model->create($data[$key]); 
+            }
+        }
+        dd($data,'success');
+    }
 }
