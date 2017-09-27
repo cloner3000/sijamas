@@ -5,16 +5,6 @@
 
             @yield('content')
 
-@if(Session::has('infos'))
-<script type="text/javascript">
-    swal({
-        type: 'warning',
-        title : 'Warning',
-        text : '{{ Session::get("infos") }}',
-    });
-</script>
-
-@endif
 @include('frontend.layouts.footer')
 @include('frontend.layouts.popup')
 
@@ -36,6 +26,7 @@
 <script src="{{ asset(null) }}frontend/js/js_lib.js"></script>
 <script src="{{ asset(null) }}frontend/js/js_run.js"></script>
 <script src="{{ asset(null) }}frontend/js/apps.js"></script>
+  <script src="{{ asset(null) }}frontend/assets/js/sweetalert.min.js"></script>
 <script type="text/javascript">
 	 $(document).ready(function() {
 	 	//windowHeight();
@@ -52,5 +43,15 @@
 		
 	});
 </script>
+@if(Session::has('success'))
+<script type="text/javascript">
+    swal({
+        type: 'success',
+        title : 'success',
+        text : '{{ Session::get("success") }}',
+    });
+</script>
+
+@endif
 @stack('script-js')
 </html>

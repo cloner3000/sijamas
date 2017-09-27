@@ -364,7 +364,7 @@ class CooperationController extends TrinataController
     public function getReadExcel()
     {
         # code...
-                
+                dd('#code');
         $model = $this->model;
 
 
@@ -377,18 +377,58 @@ class CooperationController extends TrinataController
         // dd($dataexcel->first()->toArray());
         foreach ($dataexcel->first()->toArray() as $key => $value) {
             # code...
-            if(!empty($value['nourut']) && !empty($value['nomor_kerja_sama'])){
+            if(!empty($value['nourut'])){
+
+                if(!empty($value['tanggal_berakhir'])){
+                    if($value['nomor_kerja_sama']=="510/012/INDAG/2013"){
+                            $cooperation_ended = "2018-10-17";
+
+                    }else{
+                            $cooperation_ended = $value['tanggal_berakhir'];
+
+                    }
+                }else{
+                    $cooperation_ended = '0000-00-00';
+                }
+                if(!empty($value['tanggal_mulai'])){
+                    $cooperation_signed = $value['tanggal_mulai'];
+                }else{
+                    $cooperation_signed = '0000-00-00';
+                }
+ 
+                if(!empty($value['nomor_kerja_sama'])){
+                    $nomor_kerja_sama = $value['nomor_kerja_sama'];
+                }else{
+                    $nomor_kerja_sama = 'MOU/09/2017/'.$key.'/TEMP';
+                }
+
+                if(!empty($value['judul_kerja_sama'])){
+                    $judul_kerja_sama = $value['judul_kerja_sama'];
+                }else{
+                    $judul_kerja_sama = '-';
+                }
+                if(!empty($value['ruang_lingkup'])){
+                    $scope = $value['ruang_lingkup'];
+                }else{
+                    $scope = '-';
+                }
+                if(!empty($value['tempat'])){
+                    $address = $value['tempat'];
+                }else{
+                    $address = '-';
+                }
+                
 
                 $kat = explode('-', $value['kategori']);
-                $data[$key]['title'] =$value['judul_kerja_sama'];
-                $data[$key]['about'] =$value['judul_kerja_sama'];
-                $data[$key]['cooperation_number'] =$value['nomor_kerja_sama'];
+                $data[$key]['title'] =$judul_kerja_sama;
+                $data[$key]['about'] =$judul_kerja_sama;
+                $data[$key]['cooperation_number'] =$nomor_kerja_sama;
                 $data[$key]['partners'] =$value['nama_mitra'];
                 $data[$key]['cooperation_category'] = strtolower($kat[0]);
-                $data[$key]['scope'] =$value['ruang_lingkup'];
-                $data[$key]['address'] =$value['tempat'];
-                $data[$key]['cooperation_signed'] =$value['tanggal_mulai'];
-                $data[$key]['cooperation_ended'] = '2017-09-25';
+                $data[$key]['scope'] =$scope;
+                $data[$key]['address'] =$address;
+                $data[$key]['cooperation_signed'] =$cooperation_signed;
+                $data[$key]['cooperation_ended'] = $cooperation_ended;
                 $data[$key]['first_sign'] =$value['nama_penanda_tangan_pihak_i'];
                 $data[$key]['first_sign_position'] =$value['jabatan_penanda_tangan_pihak_i'];
                 $data[$key]['second_sign'] =$value['nama_penanda_tangan_pihak_ii'];
@@ -404,6 +444,8 @@ class CooperationController extends TrinataController
                 $model->create($data[$key]); 
             }
         }
+
+        print_r($data);
         dd($data,'success');
     }
 }

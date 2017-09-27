@@ -30,6 +30,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset(null) }}frontend/css/media768.css"/>
 <link rel="stylesheet" type="text/css" href="{{ asset(null) }}frontend/css/media480.css"/>
 <link rel="stylesheet" type="text/css" href="{{ asset(null) }}frontend/css/media320.css"/>
+<link href="{{ asset(null) }}frontend/assets/css/sweetalert.css" rel="stylesheet" type="text/css">
 <!--link rel="stylesheet" href="css/style-temp.css"-->
 
 
