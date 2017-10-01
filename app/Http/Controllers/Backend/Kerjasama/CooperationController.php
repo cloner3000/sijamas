@@ -436,8 +436,8 @@ class CooperationController extends TrinataController
                 $data[$key]['second_sign'] =$value['nama_penanda_tangan_pihak_ii'];
                 $data[$key]['second_sign_position'] =$value['jabatan_penanda_tangan_pihak_ii'];
                 $data[$key]['cooperation_status'] = strtolower($value['status']);
-                $data[$key]['cooperation_focus_id'] = 1;
-                $data[$key]['cooperation_type_id'] = 1;
+                $data[$key]['cooperation_focus_id'] = 2;
+                $data[$key]['cooperation_type_id'] = 2;
                 $data[$key]['cooperation_province_id'] = 1;
                 $data[$key]['cooperation_city_id'] = 1;
                 $data[$key]['owner_id'] = 6;
@@ -525,8 +525,8 @@ class CooperationController extends TrinataController
                 $data[$key]['second_sign'] =$value['nama_penanda_tangan_pihak_ii'];
                 $data[$key]['second_sign_position'] =$value['jabatan_penanda_tangan_pihak_ii'];
                 $data[$key]['cooperation_status'] = strtolower($value['status']);
-                $data[$key]['cooperation_focus_id'] = 2;
-                $data[$key]['cooperation_type_id'] = 2;
+                $data[$key]['cooperation_focus_id'] = 1;
+                $data[$key]['cooperation_type_id'] = 1;
                 $data[$key]['cooperation_province_id'] = 1;
                 $data[$key]['cooperation_city_id'] = 1;
                 $data[$key]['owner_id'] = 6;

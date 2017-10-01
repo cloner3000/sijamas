@@ -42,6 +42,8 @@
               <th>Nama Mitra</th>
               <th>Kategori</th>
               <th>Ruang Lingkup</th>
+              {{--<th>Provinsi/Negara</th>
+              <th>kota/kotamadya</th>--}}
               <th>Tempat</th>
               <th>Tanggal Mulai</th>
               <th>Tanggal Berakhir</th>
@@ -61,6 +63,8 @@
               <td>{{$preview['partners']}}</td>
               <td>{{$preview['cooperation_category']}}</td>
               <td>{{$preview['scope']}}</td>
+             {{-- <td>{{$preview['cooperation_province_id']}}</td>
+              <td>{{$preview['cooperation_city_id']}}</td>--}}
               <td>{{$preview['address']}}</td>
               <td>{{$preview['cooperation_signed']}}</td>
               <td>{{$preview['cooperation_ended']}}</td>
