@@ -70,6 +70,7 @@
                
                 <button type="submit" class="btn btn-primary btn-3d"><i class="fa fa-eye"></i> Lihat</button>
                 <a href="{{urlBackend('cooperation-category/'.$parameter)}}" class="btn btn-danger btn-3d"> <i class="fa fa-download"></i> Ekspor</a>
+                <a href="{{urlBackend('cooperation-category/import')}}" class="btn btn-info btn-3d"> <i class="fa fa-refresh"></i> Import</a>
               </div>
               {!! Form::close() !!}
               </div>
