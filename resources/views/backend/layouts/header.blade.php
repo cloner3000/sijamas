@@ -23,7 +23,6 @@
   <link href="{{ asset(null) }}backend/assets/css/animate.css" rel="stylesheet" type="text/css">
 
   <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/holder/2.9.0/holder.js"></script>
-<link rel="stylesheet" type="text/css" media="screen" href="{{ asset(null) }}backend//elfinder/css/elfinder.min.css">
 
 <link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 
@@ -45,7 +44,6 @@
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
   <script src="{{ asset(null) }}backend/assets/js/bootstrap.min.js"></script>
   <script src="{{ asset(null) }}backend/assets/js/admin.min.js"></script>
-<script type="text/javascript" src="{{ asset(null) }}backend/elfinder/js/elfinder.min.js"></script>
 <script src="{{ asset(null) }}backend/ckeditor/ckeditor.js"></script>
 
   <script type="text/javascript">

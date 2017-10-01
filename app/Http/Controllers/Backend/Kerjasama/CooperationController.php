@@ -17,6 +17,8 @@ use App\Models\CooperationFile;
 use Table;
 use Image;
 use trinata;
+use Session;
+use Carbon\Carbon;
 
 class CooperationController extends TrinataController
 {
@@ -448,4 +450,204 @@ class CooperationController extends TrinataController
         print_r($data);
         dd($data,'success');
     }
+
+    public function getImport()
+    {
+
+        // $this->layout->{'rightSection'} = view('custom.import');
+        return view('backend.kerjasama.import.import');
+    }
+    public function postImport(Request $request)
+    {
+        $inputs = $request->all();
+// dd($inputs['file']);
+
+        $dataexcel = \Excel::load($inputs['file'], function($reader) {
+
+        })->get();
+
+        foreach ($dataexcel->first()->toArray() as $key => $value) {
+            # code...
+            if(!empty($value['nourut'])){
+
+                if(!empty($value['tanggal_berakhir'])){
+                    if($value['nomor_kerja_sama']=="510/012/INDAG/2013"){
+                            $cooperation_ended = "2018-10-17";
+
+                    }else{
+                            $cooperation_ended = $value['tanggal_berakhir'];
+
+                    }
+                }else{
+                    $cooperation_ended = '0000-00-00';
+                }
+                if(!empty($value['tanggal_mulai'])){
+                    $cooperation_signed = $value['tanggal_mulai'];
+                }else{
+                    $cooperation_signed = '0000-00-00';
+                }
+ 
+                if(!empty($value['nomor_kerja_sama'])){
+                    $nomor_kerja_sama = $value['nomor_kerja_sama'];
+                }else{
+                    $nomor_kerja_sama = 'MOU/10/2017/'.$key.'/TEMP';
+                }
+
+                if(!empty($value['judul_kerja_sama'])){
+                    $judul_kerja_sama = $value['judul_kerja_sama'];
+                }else{
+                    $judul_kerja_sama = '-';
+                }
+                if(!empty($value['ruang_lingkup'])){
+                    $scope = $value['ruang_lingkup'];
+                }else{
+                    $scope = '-';
+                }
+                if(!empty($value['tempat'])){
+                    $address = $value['tempat'];
+                }else{
+                    $address = '-';
+                }
+                
+
+                $kat = explode('-', $value['kategori']);
+                $data[$key]['title'] =$judul_kerja_sama;
+                $data[$key]['about'] =$judul_kerja_sama;
+                $data[$key]['cooperation_number'] =$nomor_kerja_sama;
+                $data[$key]['partners'] =$value['nama_mitra'];
+                $data[$key]['cooperation_category'] = strtolower($kat[0]);
+                $data[$key]['scope'] =$scope;
+                $data[$key]['address'] =$address;
+                $data[$key]['cooperation_signed'] =$cooperation_signed;
+                $data[$key]['cooperation_ended'] = $cooperation_ended;
+                $data[$key]['first_sign'] =$value['nama_penanda_tangan_pihak_i'];
+                $data[$key]['first_sign_position'] =$value['jabatan_penanda_tangan_pihak_i'];
+                $data[$key]['second_sign'] =$value['nama_penanda_tangan_pihak_ii'];
+                $data[$key]['second_sign_position'] =$value['jabatan_penanda_tangan_pihak_ii'];
+                $data[$key]['cooperation_status'] = strtolower($value['status']);
+                $data[$key]['cooperation_focus_id'] = 2;
+                $data[$key]['cooperation_type_id'] = 2;
+                $data[$key]['cooperation_province_id'] = 1;
+                $data[$key]['cooperation_city_id'] = 1;
+                $data[$key]['owner_id'] = 6;
+
+                
+                // $model->create($data[$key]); 
+            }
+        }
+
+        // dd($data);
+        Session::set('preview', $data );
+        Session::set('width', 0 );
+
+// dd(json_encode($data));
+        return redirect('admin-cp/cooperation-category/preview');
+    }
+
+    public function getPreview()
+    {
+        // dd(Session::get('preview'));
+        return view('backend.kerjasama.import.import-list');
+    }
+
+    public function getProgress()
+    {
+
+        $model = $this->model;
+
+        header('Content-Type: text/event-stream');
+        // recommended to prevent caching of event data.
+        header('Cache-Control: no-cache'); 
+          
+        function send_message($id, $message, $progress) {
+            $d = array('message' => $message , 'progress' => $progress);
+              
+            echo "id: $id" . PHP_EOL;
+            echo "data: " . json_encode($d) . PHP_EOL;
+            echo PHP_EOL;
+              
+            ob_flush();
+            flush();
+        }
+          
+            $j= 2230;
+
+            $data = Session::get('preview');
+            $current = Carbon::now()->setTimezone('Asia/Jakarta');
+            $i=0;
+             foreach ($data as $key => $item) {   
+                
+                $checkNomor = $model->where('cooperation_number',$item['cooperation_number'])->first();
+
+                if(!empty($checkNomor->id)){
+                    $checkNomor->update($item);
+                }else{
+                    $model->create($item);
+                }
+
+                $i++;
+                $value= number_format(($i/count($data))*100);
+                send_message($i, 'on iteration ' . $i . ' of '.count($data) , $value); 
+
+                usleep(500);
+
+                
+            }
+        //LONG RUNNING TASK
+        // for($i = 1; $i <= $j ; $i++) {
+        //     send_message($i, 'on iteration ' . $i . ' of '.$j , number_format(($i/$j)*100)); 
+         
+        //     // sleep(1);
+        //     usleep(10000);
+        // }
+          // echo "<script>alert('masuk');</script>";
+        send_message('CLOSE', 'Process complete');
+    }
+    public function actionGetIndex()
+    {
+        $submit =request()->get('submit');
+        if(!empty($submit) && $submit=="data"){
+            $data = Session::get('preview');
+            // $percentage = Session::get('width');
+
+
+            $current = Carbon::now()->setTimezone('Asia/Jakarta');
+            $dataku = [];
+            $i=0;
+             foreach ($data as $key => $item) {   
+                $i++;
+                $value= number_format(($i/count($data))*100);
+                $productexist = Wa::model('product')->where('product_code',$item['product_code'])->first();
+                if(empty($productexist->id)){
+
+                    // $product = Wa::model('product');
+                    // $product->product_code        = $item['product_code'];
+                    // $product->product_name        = $item['product_name'];
+                    // $product->product_price       = $item['product_price'];
+                    // $product->permalink       = str_slug($item['product_code']);
+                    // $product->create_on           = $current;
+                    // $product->save();
+                $dataku[]=$item;
+
+                }else{
+
+                }
+
+                
+            }
+            // dd($dataku,Session::get('width'));
+            echo '<script  language="javascript" >alert("masuk");</script>';
+            flush();
+            sleep(1);
+            // return response()->json(['response' => 'This is method get ','data' => $dataku]);
+        }else{
+            $data =Session::get('width');
+            // $data =Session::get('width') + 4;
+            // Session::set('width', $data);
+
+            return response()->json(['response' => 'This is method get ','data' => $data]);
+
+        }
+    }
+
 }
