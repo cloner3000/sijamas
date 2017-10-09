@@ -16,9 +16,10 @@
 				<div class=" col-lg-8 col-md-8">
 					<div class="left-content">
 						<div class="inner-page-content">
+							@if($model)
 							<h3>{{ $model->title }}</h3>
 							<p>{!! $model->description !!}</p>
-
+							@endif
 						</div>
 					</div>
 				</div><!--end. col-lg-9 col-md-9-->
