@@ -31,19 +31,21 @@
 									<div class="meta-item herald-date"><span class="updated">{{ $model->about }}</span></div>
 								</div> 
 							</div><!--end.entry-hedaer-->
+							
+							@if(count($image) > 0)
 							<div class="slider-detail">
 								<div class="row">
 									<div class="col-md-9">
 										<div class="bx-main">
 											<ul id="bxslider">
-												@if($image)
+												
 												@foreach ($image as $foto)
 												<?php 
 												$file = isset($foto->filename) ? $foto->filename : $foto->image;
 												?>
 												<li><img src="{{ asset(null) }}contents/file/{{$file}}" alt="" title="{{ $foto->title }}"></li>
 												@endforeach
-												@endif
+												
 												
 			    							</ul>
 		    							</div>
@@ -67,6 +69,7 @@
 								</div>
 								</div><!--end.row-->
 							</div><!--end.slider-detail-->
+							@endif
 							<div class="isi-berita">
 								<div class="rows">
 									<div class="profile-user-info">
