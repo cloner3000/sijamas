@@ -23,26 +23,26 @@
 					<div class="rows">
 						<div class="socmed-row">
 							<ul>
-								<li><a href="#" class="insta-sos"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-								<li><a href="#" class="fb-sos"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="#" class="tw-sos"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-								<li><a href="#" class="yt-sos"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+								<li><a href="http://www.instagram.com/bsn_sni" class="insta-sos"><i class="fa fa-instagram" aria-hidden="true" target="_blank"></i></a></li>
+								<li><a href="http://www.facebook.com/BadanStandardisasiNasional" class="fb-sos"><i class="fa fa-facebook" aria-hidden="true" target="_blank"></i></a></li>
+								<li><a href="http://www.twitter.com/bsn_sni" class="tw-sos"><i class="fa fa-twitter" aria-hidden="true" target="_blank"></i></a></li>
+								<li><a href="http://www.youtube.com/user/snibsn?feature=mhum" class="yt-sos"><i class="fa fa-youtube" aria-hidden="true" target="_blank"></i></a></li>
 							</ul>
 						</div>
 					</div><!--end.rows-->
 					<div class="rows">
 						<div class="address-row">
 							<div class="text-address">
-							Gedung I BPPT Jl. M.H. Thamrin No.8 Kebon Sirih, Jakarta Pusat 10340 </div>
+							Gedung I BPPT, Lantai 12 Jl. MH Thamrin No.8, Kebon Sirih, Jakarta Pusat 10340 </div>
 						</div>
 					</div><!--end.rows-->
 					<div class="rows">
 						<div class="call-row">
 							<div class="icon-call"></div>
-							<div class="text-call"><i class="fa fa-phone" aria-hidden="true"></i> +62-87829-0878</div>
+							<div class="text-call"><i class="fa fa-phone" aria-hidden="true"></i> 082122814646</div>
 						</div>
 						<div class="call-row">
-							<div class="text-call"><i class="fa fa-envelope" aria-hidden="true"></i> admin@gmail.com</div>
+							<div class="text-call"><i class="fa fa-envelope" aria-hidden="true"></i> albi@bsn.go.id</div>
 						</div>
 					</div><!--end-->
 				</div>
