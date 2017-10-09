@@ -29,7 +29,7 @@ class UsulanController extends Controller {
 	{
 		// $this->middleware('auth');
 		$this->model = $proposed;
-		$kerjasama = Cooperation::whereApproval('approved')->take(3)->get();
+		$kerjasama = Cooperation::whereApproval('approved')->take(3)->orderBy('created_at', 'desc')->get();
 		View::share('kerjasama', $kerjasama);
 
 		$this->recaptcha = ['key'=>'6Ld33zAUAAAAAEDZ-pq6TK5Dt3Uqw0Z9zWzGF0zn',

@@ -27,7 +27,7 @@ class KategoriController extends Controller {
 	{
 		// $this->middleware('auth');
 		$this->model = $model;
-		$kerjasama = Cooperation::whereApproval('approved')->take(3)->get();
+		$kerjasama = Cooperation::whereApproval('approved')->take(3)->orderBy('created_at', 'desc')->get();
 		View::share('kerjasama', $kerjasama);
 		$this->paging = 5;
 		parent::__construct();
