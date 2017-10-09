@@ -29,18 +29,24 @@
 				<div class=" col-lg-8 col-md-8">
 					<div class="left-content">
 						<div class="kerjasama-page">
-						@if(!empty($get['kategori']))
-							@if($get['kategori'] == 'ln')
-								<h3>Kategori Kerjasama Luar Negeri</h3>
-							@elseif($get['kategori'] == 'dn')
-								<h3>Kategori Kerjasama Dalam Negeri</h3>
-							@else 
-							  	<h3>Kategori Kerjasama Dalam/Luar Negeri</h3>
+						@if($model->total() > 0)
+							{{-- 
+							@if(!empty($get['kategori']))
+								@if($get['kategori'] == 'ln')
+									<h3>Kategori Kerjasama Luar Negeri</h3>
+								@elseif($get['kategori'] == 'dn')
+									<h3>Kategori Kerjasama Dalam Negeri</h3>
+								@else 
+								  	<h3>Kategori Kerjasama Dalam/Luar Negeri</h3>
+								@endif
+							@else
+								<h3>Kategori Kerjasama Dalam/Luar Negeri</h3>
 							@endif
+							--}}
+							<h3>{{ $model->total()}} Data tidak ditemukan</h3>
 						@else
-							<h3>Kategori Kerjasama Dalam/Luar Negeri</h3>
+							<h3>Maaf, Data tidak ditemukan</h3>
 						@endif
-							
 							<div class="rows">
 								<div class="list-berita">
 									@if($model)
