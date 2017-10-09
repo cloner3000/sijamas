@@ -23,20 +23,39 @@
 									<div class="col-md-6">
 										<div class="contact-info">
 											<h5>Pusat Kerjasama Standarisasi</h5>
+											<div class="text-address">
+												Gedung I BPPT, Lantai 12<br>
+												Jl. MH Thamrin No.8, Kebon Sirih,<br>
+												Jakarta Pusat 10340
+											</div>
+ 
+												
+											
 											<div class="rows">
+												Albi kusuma
 												<div class="call-row">
-													<div class="text-call"><i class="fa fa-phone" aria-hidden="true"></i> +62-87829-0878</div>
+													<div class="text-call"><i class="fa fa-phone" aria-hidden="true"></i> 082122814646</div>
 												</div>
 												<div class="call-row">
-													<div class="text-call"><i class="fa fa-envelope" aria-hidden="true"></i> admin@gmail.com</div>
+													<div class="text-call"><i class="fa fa-envelope" aria-hidden="true"></i> albi@bsn.go.id</div>
 												</div>
 											</div>
+											
 											<div class="rows">
+												Liswanto
+												<div class="call-row">
+													<div class="text-call"><i class="fa fa-phone" aria-hidden="true"></i> 081380432154</div>
+												</div>
+												<div class="call-row">
+													<div class="text-call"><i class="fa fa-envelope" aria-hidden="true"></i> liswanto@bsn.go.id</div>
+												</div>
+											</div>
+											<!-- <div class="rows">
 												<div class="address-row">
 													<div class="text-address">
 													Gedung I BPPT<br>Jl. M.H. Thamrin No.8<br>Kebon Sirih, Jakarta Pusat 10340 </div>
 												</div>
-											</div>
+											</div> -->
 										</div>
 									</div><!--end.col-md-6-->
 									<div class="col-md-6">
