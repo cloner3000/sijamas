@@ -31,10 +31,12 @@
                         {!! Form::text('email' , null ,['class' => 'form-control']) !!}
                       </div>
 
+                      {{--
                       <div class="form-group">
                         <label>Gender</label>
                         {!! Form::select('gender' , ['pria' => 'Pria','wanita'=>'Wanita'] , null ,['class' => 'form-control']) !!}
                       </div>
+                      --}}
 
                       <div class="form-group">
                         <label>Address</label>
@@ -43,7 +45,7 @@
 
                       <div class="form-group">
                         <label>Phone</label>
-                        {!! Form::text('phone' , null ,['class' => 'form-control']) !!}
+                        {!! Form::text('phone' , null ,['class' => 'form-control', 'placeholder'=>'08999999999']) !!}
                       </div>
 
                       <div class="form-group">

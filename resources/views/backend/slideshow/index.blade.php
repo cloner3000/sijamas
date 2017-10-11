@@ -19,6 +19,7 @@
                         <thead>
                             <tr>
                                 <th>Title</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -44,6 +45,7 @@
                 ajax: '{{ urlBackendAction("data") }}',
                 columns: [
                     { data: 'title', name: 'title' },
+                    { data: 'status', name: 'status' },
                     { data: 'action', name: 'action' , searchable: false},
                 ]
             });

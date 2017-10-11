@@ -110,14 +110,14 @@ class MenuSeed extends Seeder
                 'order'         => 3,
             ],['index','create','update','delete']);
 
-            \trinata::addMenu([
-                'parent_id'     => 'konten',
-                'title'         => 'Banner',
-                'controller'    => 'PageStatic\BannerController',
-                'slug'          => 'static-banner',
-                'order'         => 4
-                ],['index','create','update','delete']
-            ); 
+            // \trinata::addMenu([
+            //     'parent_id'     => 'konten',
+            //     'title'         => 'Banner',
+            //     'controller'    => 'PageStatic\BannerController',
+            //     'slug'          => 'static-banner',
+            //     'order'         => 4
+            //     ],['index','create','update','delete']
+            // ); 
             \trinata::addMenu([
                 'parent_id'     => 'konten',
                 'title'         => 'Profile',
