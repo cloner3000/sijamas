@@ -116,7 +116,9 @@ class FollowupController extends TrinataController
             $url = $url.'?'.implode('&', $param);
         }
 
-        return view('backend.kerjasama.tindak-lanjut.perencanaan.perencanaan', compact('model', 'cooperation_id', 'url', 'id'));
+        $cooperation = $this->cooperation->whereId($cooperation_id)->first();
+
+        return view('backend.kerjasama.tindak-lanjut.perencanaan.perencanaan', compact('model', 'cooperation_id', 'url', 'id', 'cooperation'));
     }
 
     public function getCreate($id=false)
