@@ -46,7 +46,7 @@
             <div id="navbar-messages" style="height: 200px; position: relative;">
               @if($notif)
               @foreach($notif as $event)
-              <div class="widget-messages-alt-item ">
+              <div class="widget-messages-alt-item " @if($event->read == 'read') style="background-color:#ccc" @endif>
                 <div class="widget-messages-alt-avatar font-size-24"><i class="fa fa-envelope"></i></div>
                 <?php
                 $detail = ($event->type == 'cooperation') ? 'cooperation-category' : 'usulan-kerjasama';
