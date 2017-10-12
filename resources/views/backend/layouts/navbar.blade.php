@@ -60,7 +60,7 @@
               
             </div>
 
-            <a href="#" class="widget-more-link">MORE MESSAGES</a>
+            <!-- <a href="#" class="widget-more-link">MORE MESSAGES</a> -->
           </div> <!-- / .dropdown-menu -->
         </li>
       </ul>
