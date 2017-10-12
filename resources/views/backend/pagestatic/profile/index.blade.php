@@ -32,7 +32,7 @@
                           
                            <div class="form-group">
                             <label>Description</label>
-                            {!! Form::textarea('description' , null ,['class' => 'form-control','id'=>'description']) !!}
+                            {!! Form::textarea('description' , null ,['class' => 'form-control', 'id'=>'description']) !!}
                           </div>
                           
 
@@ -63,14 +63,17 @@
 @push('script-js')
     
     <script type="text/javascript">
-        
-        $(document).ready(function(){
-
         window.onload = function()
         {
+          
           CKEDITOR.replace( 'description',{
           filebrowserBrowseUrl: '{{ urlBackend("image/lib")}}'});
         }
+
+        $(document).ready(function(){
+        
+
+        
             $.fn.dataTable.ext.errMode = 'none';
             $('#table').DataTable({
                 processing: true,

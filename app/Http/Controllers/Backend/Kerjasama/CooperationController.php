@@ -461,7 +461,7 @@ class CooperationController extends TrinataController
     {
         $inputs = $request->all();
 // dd($inputs['file']);
-
+        $data = [];
         $dataexcel = \Excel::load($inputs['file'], function($reader) {
 
         })->get();

@@ -75,11 +75,7 @@
         
         $(document).ready(function(){
 
-        window.onload = function()
-        {
-          CKEDITOR.replace( 'description',{
-          filebrowserBrowseUrl: '{{ urlBackend("image/lib")}}'});
-        }
+        
             $.fn.dataTable.ext.errMode = 'none';
             $('#table').DataTable({
                 processing: true,

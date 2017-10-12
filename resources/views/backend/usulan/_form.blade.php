@@ -78,7 +78,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Isi Pesan :</label>
                       <div class="col-sm-8">
-                        {!! Form::textarea('message' , null ,['class' => 'form-control']) !!}
+                        {!! Form::textarea('message' , null ,['class' => 'form-control', 'id'=>'summernote-base']) !!}
                       </div>
                     </div>
                   </div>

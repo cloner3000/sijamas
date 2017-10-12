@@ -41,4 +41,16 @@ class DashboardController extends TrinataController
 		
 	   	return view('backend.dashboard.update');
 	}
+
+	public function getOpenNotif(Request $request)
+	{
+		$id = $request->id;
+		$type = $request->type;
+		// dd($request->all());
+		$arrType = ['cooperation'=>'cooperation', 'proposed'=>'proposed'];
+		
+		$this->logNotif($id, $arrType[$type]);
+
+		return response()->json(['status' => true]);
+	}
 }
