@@ -18,6 +18,7 @@
                     <div class="panel-body">
 
                         @include('backend.common.errors')
+                        @include('backend.common.sweet_flashes')
 
                          {!! Form::model($model,['files' => true]) !!} 
 
