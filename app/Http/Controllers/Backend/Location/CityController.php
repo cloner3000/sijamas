@@ -62,8 +62,9 @@ class CityController extends TrinataController
 	public function getUpdate($id)
     {
         $model = $this->model->findOrFail($id);
-
-        return view('backend.location.city._form',compact('model'));
+        $data['province'] = CooperationProvince::lists('name','id');
+        
+        return view('backend.location.city._form',compact('model', 'data'));
     }
 
     public function postUpdate(Request $request,$id)
