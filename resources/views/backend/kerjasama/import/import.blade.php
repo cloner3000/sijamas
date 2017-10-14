@@ -153,6 +153,7 @@
 					<div class="box-footer">
 						<input type="submit" name="" id="btnSubmit" style="display: none">
 						<button type="button" id="toSubmit" class="btn btn-success">Preview List Excel</button>
+            <a href="{{ asset(null) }}data/listmounew.xlsx" class="btn btn-info">Download Template Excel</a>
 					</div>
 				</form>
             </div>
@@ -167,6 +168,9 @@
 @push('script-js')
 <script type="text/javascript">
     $(document).ready(function(){
+    $('#success-input-4').change(function(){
+        $('span.custom-file-control').html($(this).val());
+    });
 
 		$('#toSubmit').click(function(){
 			var file = $('#success-input-4').val();
