@@ -58,24 +58,53 @@ class UsulanController extends Controller {
 		$inputs = $request->except('g-recaptcha-response');
 		$inputs['owner_id'] = \App\User::whereRoleId(1)->first()->id;
 		
+<<<<<<< HEAD
 		// dd($inputs);
 		$filename = trinata::globalUpload($request, 'filename');
 		// dd($filename);
 		$inputs['filename'] = $filename['filename'];
 		$this->model->create($inputs);
 		return redirect('usulan-kerjasama')->withSuccess('data has been saved');
+=======
+
+		$validation = \Validator::make($request->all() , $this->rules());
+		if($validation->fails())
+        {
+            $status = 'failed';
+            $bags = $validation->getMessageBag();
+            $arrayErrors = array_flatten($bags->getMessages());
+            $errors = '<ul>';
+            foreach($arrayErrors as $key => $val)
+            {
+                $errors .= "<li>$val</li>";
+            }
+            $errors .= '</ul>';
+
+            return redirect()->back()->withInfo($errors); 
+
+
+        }else{
+
+        	$filename = trinata::globalUpload($request, 'filename');
+			// dd($filename);
+			$inputs['filename'] = $filename['filename'];
+			$this->model->create($inputs);
+			return redirect('usulan-kerjasama')->withSuccess('data has been saved');
+		}
+>>>>>>> f7db66adb5ffe0459c454a15489da5104d47233f
 	}
-	
+
     public function rules()
     {
         return [
-            'start_date'              => 'required',
-            'start_time'             => 'required',
-            'end_time'             => 'required',
-            'color'           => 'required',
-            'location'           => 'required',
-            'description'           => 'required',
-            'file'           => 'mimes:pdf',
+            'title'      => 'required',
+            'institute'  => 'required',
+            'position'   => 'required',
+            'address'    => 'required',
+            'phone'      => 'required',
+            'email'      => 'required',
+            'message'    => 'required',
+            'filename'   => 'required|mimes:pdf',
         ];
     }
 
