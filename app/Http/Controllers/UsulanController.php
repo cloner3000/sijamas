@@ -58,7 +58,7 @@ class UsulanController extends Controller {
 		$inputs = $request->except('g-recaptcha-response');
 		$inputs['owner_id'] = \App\User::whereRoleId(1)->first()->id;
 		
-		dd($inputs);
+		// dd($inputs);
 		$filename = trinata::globalUpload($request, 'filename');
 		// dd($filename);
 		$inputs['filename'] = $filename['filename'];
