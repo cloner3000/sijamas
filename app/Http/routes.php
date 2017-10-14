@@ -12,7 +12,9 @@
 */
 
 Route::get('/', 'HomeController@index');
-
+Route::get('auth/login' , function(){
+		return redirect('/');
+	});
 Route::get('home', 'HomeController@index');
 Route::get('profile', 'ProfileController@index');
 Route::get('usulan-kerjasama', 'UsulanController@index');
