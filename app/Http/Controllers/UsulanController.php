@@ -58,13 +58,26 @@ class UsulanController extends Controller {
 		$inputs = $request->except('g-recaptcha-response');
 		$inputs['owner_id'] = \App\User::whereRoleId(1)->first()->id;
 		
-		// dd($inputs);
+		dd($inputs);
 		$filename = trinata::globalUpload($request, 'filename');
 		// dd($filename);
 		$inputs['filename'] = $filename['filename'];
 		$this->model->create($inputs);
 		return redirect('usulan-kerjasama')->withSuccess('data has been saved');
 	}
+	
+    public function rules()
+    {
+        return [
+            'start_date'              => 'required',
+            'start_time'             => 'required',
+            'end_time'             => 'required',
+            'color'           => 'required',
+            'location'           => 'required',
+            'description'           => 'required',
+            'file'           => 'mimes:pdf',
+        ];
+    }
 
 
 
