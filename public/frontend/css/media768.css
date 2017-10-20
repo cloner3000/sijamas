@@ -36,6 +36,16 @@ Built       : Juli 2017
         font-size: 14px;
         border-radius: 10px;
     }
+    #logo-mobile{
+    display: block;
+}
+#logo-desktop{
+    display: none;
+}
+.top-header{
+    padding: 20px 0;
+    background: #fff;
+}
     /* middle homepage
 
     ================================================================================================================= */

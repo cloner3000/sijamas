@@ -101,7 +101,7 @@ class UsulanController extends TrinataController
 
     	$inputs = $request->all();
         $inputs['owner_id'] = \Auth::user()->id;
-        
+          
         $model->update($inputs);
 
         return redirect(urlBackendAction('index'))->withSuccess('data has been updated');
