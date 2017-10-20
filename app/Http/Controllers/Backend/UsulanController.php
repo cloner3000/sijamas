@@ -100,9 +100,28 @@ class UsulanController extends TrinataController
     	$model = $this->model->findOrFail($id);
 
     	$inputs = $request->all();
-        $inputs['owner_id'] = \Auth::user()->id;
-          
-        $model->update($inputs);
+
+        // dd($inputs);
+        $model->owner_id = \Auth::user()->id;
+        $model->name = $request->name;
+        $model->title = $request->title;
+        $model->institute = $request->institute;
+        $model->position = $request->position;
+        $model->address = $request->address;
+        $model->phone = $request->phone;
+        $model->email = $request->email;
+        $model->message = $request->message;
+        // $model->proposed_cooperation_type_id = $request->proposed_cooperation_type_id;
+        $model->approval = $request->approval;
+        // $model->save(); 
+
+        if (isset($inputs['filename'])) {
+            $model->filename = trinata::globalUpload($request, 'filename')['filename'];
+
+        //    $model->save();
+        }
+        // dd($model);
+        $model->save();
 
         return redirect(urlBackendAction('index'))->withSuccess('data has been updated');
 

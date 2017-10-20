@@ -58,7 +58,6 @@ class UsulanController extends Controller {
 		$inputs = $request->except('g-recaptcha-response');
 		$inputs['owner_id'] = \App\User::whereRoleId(1)->first()->id;
 		
-
 		$validation = \Validator::make($request->all() , $this->rules());
 		if($validation->fails())
         {
@@ -83,6 +82,7 @@ class UsulanController extends Controller {
 			$this->model->create($inputs);
 			return redirect('usulan-kerjasama')->withSuccess('data has been saved');
 		}
+
 	}
 
     public function rules()

@@ -16,13 +16,13 @@
               <div class="col-md-8">
 
                 @include('backend.common.errors')
-                {!! Form::model($model,['class'=>'panel-body p-y-1']) !!} 
+                {!! Form::model($model,['class'=>'panel-body p-y-1', 'files'=>true]) !!} 
 
                   <div class="form-group">
                     <div class="row">
                       <label class="col-sm-4 control-label">Nama Pengusul :</label>
                       <div class="col-sm-8">
-                        {!! Form::text('name' , null ,['class' => 'form-control', 'readonly']) !!}
+                        {!! Form::text('name' , null ,['class' => 'form-control', (!empty($model->id)) ? 'readonly' : '']) !!}
                       </div>
                     </div>
                   </div>
@@ -30,7 +30,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Judul Usulan :</label>
                       <div class="col-sm-8">
-                        {!! Form::text('title' , null ,['class' => 'form-control']) !!}
+                        {!! Form::text('title' , null ,['class' => 'form-control', (!empty($model->id)) ? 'readonly' : '']) !!}
                       </div>
                     </div>
                   </div>
@@ -38,7 +38,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Instansi :</label>
                       <div class="col-sm-8">
-                        {!! Form::text('institute' , null ,['class' => 'form-control']) !!}
+                        {!! Form::text('institute' , null ,['class' => 'form-control', (!empty($model->id)) ? 'readonly' : '']) !!}
                       </div>
                     </div>
                   </div>
@@ -46,7 +46,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Jabatan :</label>
                       <div class="col-sm-8">
-                        {!! Form::text('position' , null ,['class' => 'form-control']) !!}
+                        {!! Form::text('position' , null ,['class' => 'form-control', (!empty($model->id)) ? 'readonly' : '']) !!}
                       </div>
                     </div>
                   </div>
@@ -54,7 +54,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Alamat :</label>
                       <div class="col-sm-8">
-                        {!! Form::textarea('address' , null ,['class' => 'form-control', 'readonly']) !!}
+                        {!! Form::textarea('address' , null ,['class' => 'form-control', (!empty($model->id)) ? 'readonly' : '']) !!}
                       </div>
                     </div>
                   </div>
@@ -62,7 +62,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Telepon * :</label>
                       <div class="col-sm-8">
-                        {!! Form::text('phone' , null ,['class' => 'form-control', 'onkeypress' => 'return isNumberKey(event)']) !!}
+                        {!! Form::text('phone' , null ,['class' => 'form-control', 'onkeypress' => 'return isNumberKey(event)', (!empty($model->id)) ? 'readonly' : '']) !!}
                       </div>
                     </div>
                   </div>
@@ -70,7 +70,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Email * :</label>
                       <div class="col-sm-8">
-                        {!! Form::email('email' , null ,['class' => 'form-control']) !!}
+                        {!! Form::email('email' , null ,['class' => 'form-control', (!empty($model->id)) ? 'readonly' : '']) !!}
                       </div>
                     </div>
                   </div>
@@ -78,7 +78,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Isi Pesan :</label>
                       <div class="col-sm-8">
-                        {!! Form::textarea('message' , null ,['class' => 'form-control', 'id'=>'summernote-base']) !!}
+                        {!! Form::textarea('message' , null ,['class' => 'form-control', (!empty($model->id)) ? 'readonly' : '']) !!}
                       </div>
                     </div>
                   </div>
@@ -91,7 +91,7 @@
 
                           <!-- <div class="radio"> -->
                             <label class="custom-control custom-radio radio-inline">
-                                {!! Form::radio('proposed_cooperation_type_id' , $type->id ,null,['class' => 'custom-control-input']) !!}
+                                {!! Form::radio('proposed_cooperation_type_id' , $type->id ,null,['class' => 'custom-control-input' , (!empty($model->id)) ? 'disabled' : '']) !!}
                                 <span class="custom-control-indicator"></span>
                                 {{$type->name}}
                             </label><br/>
@@ -107,17 +107,27 @@
                       <label class="col-sm-4 control-label">Draft File Kerjasama :</label>
                       <div class="col-sm-8">
                         <label class="custom-file px-file">
-                          <input type="file" class="custom-file-input">
+                          <input type="file" class="custom-file-input" name="filename">
                           <span class="custom-file-control form-control">Choose file...</span>
                           
                           <div class="px-file-buttons">
                             <button type="button" class="btn px-file-clear">Clear</button>
                             <button type="button" class="btn btn-primary px-file-browse">Upload</button>
                           </div>
+
                           @if($model->filename)
                           <a href="{{url('contents/file/'.$model->filename)}}" target="_blank"> {{$model->filename}}</a>
                           @endif
                         </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <label class="col-sm-4 control-label">Persetujuan Usulan Kerjasama :</label>
+                      <div class="col-sm-8">                        
+                        
+                        {!! Form::select('approval', ['draft'=>'Draft', 'approved'=>'Approved', 'rejected'=>'Rejected'], null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!} 
                       </div>
                     </div>
                   </div>
@@ -146,22 +156,6 @@
       $('#datepicker-range').datepicker();
 
       $('#datepicker').datepicker();
-      $('#summernote-base').summernote({
-        height: 200,
-        toolbar: [
-          ['parastyle', ['style']],
-          ['fontstyle', ['fontname', 'fontsize']],
-          ['style', ['bold', 'italic', 'underline', 'clear']],
-          ['font', ['strikethrough', 'superscript', 'subscript']],
-          ['color', ['color']],
-          ['para', ['ul', 'ol', 'paragraph']],
-          ['height', ['height']],
-          ['insert', ['picture', 'link', 'video', 'table', 'hr']],
-          ['history', ['undo', 'redo']],
-          ['misc', ['codeview', 'fullscreen']],
-          ['help', ['help']]
-        ],
-      });
     });
 </script>
 @endpush
