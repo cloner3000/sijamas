@@ -23,6 +23,9 @@ Route::get('kategori-kerjasama/read/{id?}', 'KategoriController@read');
 Route::get('kategori-kerjasama/pencarian', 'KategoriController@getPencarian');
 Route::get('kontak-kami', 'KontakController@index');
 
+Route::get('404' , function(){
+		return view('errors.404');
+	});
 Route::controller('usulan-kerjasama','UsulanController');
 Route::controller('kategori-kerjasama','KategoriController');
 
