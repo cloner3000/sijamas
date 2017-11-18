@@ -14,7 +14,7 @@
               <div class="panel-body">
               <div class="row">
               <div class="col-md-12">
-                
+                @include('backend.common.flashes')
                 {!! Form::model($model, ['class'=>'panel-body p-y-1', 'files'=>true]) !!} 
                   <div class="form-group">
                     <div class="row">
