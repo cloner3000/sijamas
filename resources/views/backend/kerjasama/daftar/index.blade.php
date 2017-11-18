@@ -14,6 +14,7 @@
               <div class="panel-body">
               <div class="row">
               <div class="col-md-12 fadeIn animated">
+                @include('backend.common.flashes')
                 {!! trinata::buttonCreate() !!}
               </div>
               <div class="col-md-7 fadeIn animated">
