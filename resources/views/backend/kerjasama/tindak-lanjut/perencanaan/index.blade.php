@@ -9,7 +9,7 @@
     </ol>
             <div class="panel">
               <div class="panel-heading">
-                <div class="panel-title"><i class="fa fa-list"></i> List Kategory Kerjasama</div>
+                <div class="panel-title"><i class="fa fa-list"></i> List Tindak Lanjut Perencanaan Kerjasama</div>
               </div>
               <div class="panel-body">
               <div class="row">
