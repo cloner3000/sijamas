@@ -184,9 +184,11 @@ class CooperationController extends TrinataController
         $model->cooperation_city_id = $request->cooperation_city_id;
         $model->address = $request->address;
         $model->address = $request->address;
-        if (strlen (strtotime($request->cooperation_signed)) < 10 || strlen (strtotime($request->cooperation_ended)) < 10) {
+        
+        if (!\trinata::validateDate($request->cooperation_signed) || !\trinata::validateDate($request->cooperation_ended)) {
             return redirect(urlBackendAction('update/'.$id))->withInfo('Format Tanggal tidak valid');
         } 
+        
         $model->cooperation_signed = \Carbon\Carbon::createFromFormat('d/m/Y', $request->cooperation_signed)->format('Y-m-d');
         $model->cooperation_ended = \Carbon\Carbon::createFromFormat('d/m/Y', $request->cooperation_ended)->format('Y-m-d');
         $model->cooperation_focus_id = $request->cooperation_focus_id;

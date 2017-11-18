@@ -378,4 +378,18 @@ class Trinata
 		
 	}
 
+	public function validateDate($date=false)
+	{
+		if (!$date) return false;
+
+		try {
+			$date_format = \Carbon\Carbon::createFromFormat('d/m/Y', $date);
+			return true;
+		} catch (\Exception $e) {
+			return false;
+		}
+
+		return false;
+	}
+
 }
