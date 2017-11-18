@@ -33,6 +33,7 @@
             <span class="px-navbar-icon-label">Income messages</span>
             <?php
             $counter = 0;
+            
             if (count($notif) > 0) {
               foreach ($notif as $key => $value) {
                 if ($value->read == 'pending') $counter += 1;
@@ -44,7 +45,7 @@
           </a>
           <div class="dropdown-menu p-a-0">
             <div id="navbar-messages" style="height: 200px; position: relative;">
-              @if($notif)
+              @if(count($notif) > 0)
               @foreach($notif as $event)
               <div class="widget-messages-alt-item " @if($event->read == 'read') style="background-color:#ccc" @endif>
                 <div class="widget-messages-alt-avatar font-size-24"><i class="fa fa-envelope"></i></div>

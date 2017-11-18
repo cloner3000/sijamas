@@ -13,7 +13,7 @@ class TrinataController extends Controller
     {
     	if (\Auth::user()) {
             $notif = $this->getNotif();
-            // dd($notif);
+            
             \View::share('notif', $notif);  
         } 
     }

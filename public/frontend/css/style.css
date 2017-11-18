@@ -193,7 +193,8 @@ section {
 	clear: both;
 }
 .top-header{
-	padding: 15px 0;
+	background: #063664;
+	padding: 0px 0;
 }
 .main-logo,.text-logo{
 	display: inline-block;
@@ -202,6 +203,14 @@ section {
 .main-logo {
 	max-width: 325px;
 	padding-right: 10px;
+}
+.bottom-header .main-logo{
+	float: left;
+	padding: 10px 0;
+	max-width: 230px;
+}
+.bottom-header #menu-desktop{
+	float: right;
 }
 .text-logo span{
 	display: block;
@@ -223,23 +232,27 @@ section {
 	font-style: italic;
 }
 .login-mn-row{
-	display: block;
+	display: inline-block;
+	vertical-align: middle;
 	padding: 0px 0;
+	margin-right: 15px;
 }
 .login-mn-row a{
 	display: inline-block;
-	color: #777777;
+	color: #ddd;
 	border-right: 1px solid #ccc;
 	padding: 0 5px;
 }
 .login-mn-row a:last-child{
 	border-right: none;
 }
-.login-mn-row a.blue_ref{
-	color: #09355c;
+.login-mn-row a.blue_ref,.searchTrigger{
+	color: #ddd;
 }
 .search-row{
 	position: relative;
+	display: inline-block;
+	vertical-align: middle;
 }
 .form-group.is-focused .form-control{
 	background-image: linear-gradient(#09355c, #09355c), linear-gradient(#D2D2D2, #D2D2D2);
@@ -252,12 +265,26 @@ section {
 	display: inline-block;
 	margin: 0;
 }
+#logo-mobile{
+	display: none;
+}
+#logo-desktop{
+	display: block;
+}
 .bottom-header{
 	background:#93c1f5;
 	display: block;
 	width: 100%;
 	clear: both;
 	position: relative;
+}
+.bottom-header:after,.bottom-header:before{
+	content: '';
+	display: table;
+}
+.bottom-header:after{
+	content: '';
+	clear: both;
 }
 .main-menu ul{
 	padding: 0;
@@ -267,7 +294,7 @@ section {
 	display: inline-block;
 }
 .main-menu ul li a{
-	padding:15px 20px;
+	padding:25px 20px;
 	font-size: 14px;
 	color: #fff;
 	text-transform: uppercase;
@@ -352,7 +379,7 @@ section {
 /* style kontent
 ----------------------------------------------------------------------------------------------*/
 #middle-content{
-	margin-top: 150px;
+	margin-top: 120px;
 }
 #banner-home{
 	padding: 0;
@@ -580,6 +607,14 @@ section {
     height: 200px;
     margin-right: 20px;
     overflow: hidden;
+}
+.inline-float-news .isi-h-news .images-media{
+	width: 300px;
+	padding: 5px;
+	margin-right: 10px;
+}
+.isi-h-news .media-body{
+	float: left;
 }
 .inline-news .isi-h-news .media-body{
 	width:45%;

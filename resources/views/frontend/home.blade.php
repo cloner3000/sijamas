@@ -8,7 +8,7 @@
       @foreach($data['banner'] as $banner)
       <div data-src="{{ asset(null) }}contents/file/{{$banner->image}}">
   			<div class="camera_caption fadeFromBottom">
-    	     <a href="#"><p> {{ $banner->title }}</p></a>
+    	     <label><p>{{ $banner->title }}</p></label>>
         </div><!---end.caption-->
     	</div><!--end.banner-->
       @endforeach

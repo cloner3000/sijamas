@@ -44,7 +44,7 @@
   <div class="top-header">
     <div class="wrapper">
       <div class="left logo-top">
-        <div class="main-logo"><a href="{{url('/')}}"><img src="{{ asset(null) }}frontend/images/material/logo.png"></a></div>
+        <div  id="logo-mobile" class="main-logo"><a href="{{url('/')}}"><img src="{{ asset(null) }}frontend/images/material/logo.png"></a></div>
         <!-- <div class="text-logo">
           <span class="text-l1">Sistem Informasi Kerjasama Standarisasi dan Penilaian Kesesuaian (SIJAMAS)</span>
           <span class="text-l2">Badan Strandarisasi Nasional</span>
@@ -67,7 +67,8 @@
     </div>
   </div><!--end.top-header-->
   <div class="bottom-header">
-    <div class="wrapper">
+    <div class="wrapper">    
+      <div id="logo-desktop" class="main-logo"><a href="{{url('/')}}"><img src="{{ asset(null) }}frontend/images/material/logo.png"></a></div>
       <a href="#" id="trigger-menu">Menu</a>
       <div id="menu-desktop" class="main-menu">
         <ul>

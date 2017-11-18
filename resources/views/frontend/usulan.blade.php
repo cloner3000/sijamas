@@ -1,5 +1,11 @@
 @extends('frontend.layouts.layout')
-
+@push('style-css')
+<style type="text/css">
+	p ul li{
+		list-style: none;
+	}
+</style>
+@endpush
 @section('content')
 <!-- middle -->
 <div id="middle-content">

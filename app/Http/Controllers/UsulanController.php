@@ -58,13 +58,46 @@ class UsulanController extends Controller {
 		$inputs = $request->except('g-recaptcha-response');
 		$inputs['owner_id'] = \App\User::whereRoleId(1)->first()->id;
 		
-		// dd($inputs);
-		$filename = trinata::globalUpload($request, 'filename');
-		// dd($filename);
-		$inputs['filename'] = $filename['filename'];
-		$this->model->create($inputs);
-		return redirect('usulan-kerjasama')->withSuccess('data has been saved');
+		$validation = \Validator::make($request->all() , $this->rules());
+		if($validation->fails())
+        {
+            $status = 'failed';
+            $bags = $validation->getMessageBag();
+            $arrayErrors = array_flatten($bags->getMessages());
+            $errors = '<ul>';
+            foreach($arrayErrors as $key => $val)
+            {
+                $errors .= "<li>$val</li>";
+            }
+            $errors .= '</ul>';
+
+            return redirect()->back()->withInfo($errors); 
+
+
+        }else{
+
+        	$filename = trinata::globalUpload($request, 'filename');
+			// dd($filename);
+			$inputs['filename'] = $filename['filename'];
+			$this->model->create($inputs);
+			return redirect('usulan-kerjasama')->withSuccess('data has been saved');
+		}
+
 	}
+
+    public function rules()
+    {
+        return [
+            'title'      => 'required',
+            'institute'  => 'required',
+            'position'   => 'required',
+            'address'    => 'required',
+            'phone'      => 'required',
+            'email'      => 'required',
+            'message'    => 'required',
+            'filename'   => 'required|mimes:pdf',
+        ];
+    }
 
 
 

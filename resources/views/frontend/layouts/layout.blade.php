@@ -43,15 +43,31 @@
 		
 	});
 </script>
-@if(Session::has('success'))
-<script type="text/javascript">
-    swal({
-        type: 'success',
-        title : 'success',
-        text : '{{ Session::get("success") }}',
-    });
-</script>
+<?php
+    $div = function($class,$msg){
+        return '
+            <script>
+                swal({
+                    title : "'.ucfirst($class).'",
+                    type : "'.$class.'",
+                    text : "'.$msg.'",
+                    html : true
+                });
+            </script>
 
-@endif
+        ';
+    };
+
+    $actions = ['success','info','danger','warning'];
+
+    foreach($actions as $row)
+    {
+        if(Session::has($row))
+        {
+            echo $div($row , Session::get($row));
+        }
+    }
+
+?>
 @stack('script-js')
 </html>
