@@ -13,6 +13,11 @@ class Trinata
 		return 'TRINATA';
 	}
 
+	public function user()
+	{
+		return getUser();
+	}
+
 	public function config($config)
 	{
 		return config('trinata.'.$config);
@@ -137,6 +142,19 @@ class Trinata
 		$permalink = \Request::segment(2);
 
 		$model = injectModel('Menu')->whereSlug($permalink)->first();
+		
+		return $model;
+	}
+
+	public function getListMenu()
+	{
+		$ignoreMenu = ['development', 'media-library'];
+		
+		if (getUser()->username != 'trinata') {
+			$model = injectModel('Menu')->whereParentId(null)->orderBy('order','asc')->whereNotIn('slug',$ignoreMenu)->get();
+		} else {
+			$model = injectModel('Menu')->whereParentId(null)->orderBy('order','asc')->get();
+		}
 		
 		return $model;
 	}

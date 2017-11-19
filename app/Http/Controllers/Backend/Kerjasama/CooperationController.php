@@ -91,8 +91,11 @@ class CooperationController extends TrinataController
                     'city' => [],
                 ];
         
-        // dd($cooperationType);
-    	return view('backend.kerjasama.daftar._form',compact('model', 'data'));
+        $status = ['draft'=>'Draft', 'rejected'=>'Rejected', 'deleted'=>'Deleted'];
+        if (\Auth::user()->role_id == 1) $status['approved'] = 'Approved';
+        
+        // dd($status);
+    	return view('backend.kerjasama.daftar._form',compact('model', 'data', 'status'));
     }
 
     public function handleUpload($request,$model)
@@ -163,7 +166,10 @@ class CooperationController extends TrinataController
                     'city' => CooperationCity::where('cooperation_province_id', $model->cooperation_province_id)->lists('name','id'),
                 ];
 
-        return view('backend.kerjasama.daftar._form',compact('model', 'data'));
+        $status = ['draft'=>'Draft', 'rejected'=>'Rejected', 'deleted'=>'Deleted'];
+        if (\Auth::user()->role_id == 1) $status['approved'] = 'Approved';
+
+        return view('backend.kerjasama.daftar._form',compact('model', 'data', 'status'));
     }
 
     public function postUpdate(Request $request,$id)
