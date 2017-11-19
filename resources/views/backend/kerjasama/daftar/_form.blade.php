@@ -174,7 +174,7 @@
                           @if($model->cooperationfile)
                           @foreach($model->cooperationfile as $file)
                             @if ($file->type == 'document') 
-                            <label class="file_{{$file->id}}">{{ $file->filename }}</label> 
+                            <a href="{{asset('contents/file/'.$file->filename)}}" target="_blank"><label class="file_{{$file->id}}">{{ $file->filename }}</label> </a>
                             <button type="button" class="btn btn-danger px-file-browse deleteFile file_{{$file->id}}" data-id="{{$file->id}}">Hapus</button>
                             <br>
                              @endif
