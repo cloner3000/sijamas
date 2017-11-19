@@ -95,7 +95,8 @@ class CooperationController extends TrinataController
         if (\Auth::user()->role_id == 1) $status = true;
         
         // dd($status);
-    	return view('backend.kerjasama.daftar._form',compact('model', 'data', 'status'));
+        $disabled = '';
+    	return view('backend.kerjasama.daftar._form',compact('model', 'data', 'status','disabled'));
     }
 
     public function handleUpload($request,$model)
