@@ -91,8 +91,8 @@ class CooperationController extends TrinataController
                     'city' => [],
                 ];
         
-        $status = ['draft'=>'Draft', 'rejected'=>'Rejected', 'deleted'=>'Deleted'];
-        if (\Auth::user()->role_id == 1) $status['approved'] = 'Approved';
+        $status = false;
+        if (\Auth::user()->role_id == 1) $status = true;
         
         // dd($status);
     	return view('backend.kerjasama.daftar._form',compact('model', 'data', 'status'));
@@ -166,8 +166,8 @@ class CooperationController extends TrinataController
                     'city' => CooperationCity::where('cooperation_province_id', $model->cooperation_province_id)->lists('name','id'),
                 ];
 
-        $status = ['draft'=>'Draft', 'rejected'=>'Rejected', 'deleted'=>'Deleted'];
-        if (\Auth::user()->role_id == 1) $status['approved'] = 'Approved';
+        $status = false;
+        if (\Auth::user()->role_id == 1) $status = true;
 
         return view('backend.kerjasama.daftar._form',compact('model', 'data', 'status'));
     }

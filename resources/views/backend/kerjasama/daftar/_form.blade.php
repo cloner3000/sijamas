@@ -289,15 +289,17 @@
                       </div>
                     </div>
                   </div>
+                  @if($status)
                   <div class="form-group">
                     <div class="row">
                       <label class="col-sm-4 control-label">Persetujuan Kerjasama :</label>
                       <div class="col-sm-8">                        
                         
-                        {!! Form::select('approval', $status, null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!} 
+                        {!! Form::select('approval', ['draft'=>'Draft', 'approved'=>'Approved','rejected'=>'Rejected', 'deleted'=>'Deleted'], null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!} 
                       </div>
                     </div>
                   </div>
+                  @endif
                   <div class="form-group">
                     <div class="row">
                       <label class="col-sm-4 control-label">
