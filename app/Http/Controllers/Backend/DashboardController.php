@@ -24,7 +24,7 @@ class DashboardController extends TrinataController
 
 	public function getIndex()
 	{	
-		$model = $this->model->whereApproval('draft')->paginate($this->paging);
+		$model = $this->model->whereApproval('draft')->whereOwnerId(\Auth::user()->id)->paginate($this->paging);
 
 	   	return view('backend.dashboard.index', compact('model'));
 	}
