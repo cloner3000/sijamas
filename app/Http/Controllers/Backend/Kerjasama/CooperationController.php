@@ -167,9 +167,17 @@ class CooperationController extends TrinataController
                 ];
 
         $status = false;
-        if (\Auth::user()->role_id == 1) $status = true;
+        $disabled = 'disabled';
 
-        return view('backend.kerjasama.daftar._form',compact('model', 'data', 'status'));
+        if (\Auth::user()->role_id == 1) {
+            $status = true;
+            $disabled = '';
+        } else {
+            if ($model->approval == 'draft') $disabled = '';
+        }
+        
+
+        return view('backend.kerjasama.daftar._form',compact('model', 'data', 'status', 'disabled'));
     }
 
     public function postUpdate(Request $request,$id)
