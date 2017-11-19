@@ -37,12 +37,12 @@
                       <label class="col-sm-4 control-label">Kategori Kerjasama :</label>
                       <div class="col-sm-8">
                         <label class="custom-control custom-radio radio-inline">
-                          {!! Form::radio('cooperation_category' , 'dn' ,null, ['class' => 'custom-control-input']) !!}
+                          {!! Form::radio('cooperation_category' , 'dn' ,null, ['class' => 'custom-control-input formid']) !!}
                           <span class="custom-control-indicator"></span>
                           DN
                         </label>
                         <label class="custom-control custom-radio radio-inline">
-                          {!! Form::radio('cooperation_category' , 'ln' ,null, ['class' => 'custom-control-input']) !!}
+                          {!! Form::radio('cooperation_category' , 'ln' ,null, ['class' => 'custom-control-input formid']) !!}
                           <span class="custom-control-indicator"></span>
                           LN
                         </label>
@@ -55,12 +55,12 @@
                       <div class="col-sm-8">
                         <label class="custom-control custom-radio radio-inline">
                           
-                          {!! Form::radio('cooperation_status' , 'baru' ,null, ['class' => 'custom-control-input']) !!}
+                          {!! Form::radio('cooperation_status' , 'baru' ,null, ['class' => 'custom-control-input formid']) !!}
                           <span class="custom-control-indicator"></span>
                           Baru
                         </label>
                         <label class="custom-control custom-radio radio-inline">
-                          {!! Form::radio('cooperation_status' , 'lanjutan' ,null, ['class' => 'custom-control-input']) !!}
+                          {!! Form::radio('cooperation_status' , 'lanjutan' ,null, ['class' => 'custom-control-input formid']) !!}
                           <span class="custom-control-indicator"></span>
                           Lanjutan
                         </label>
@@ -374,6 +374,14 @@
       $(document).on('change', '.file', function(){
         $('.uploadFile').html($(this).val());
       })
+
+      $('input.formid').on('keyup keypress', function(e) {
+        var keyCode = e.keyCode || e.which;
+        if (keyCode === 13) { 
+          e.preventDefault();
+          return false;
+        }
+      });
       
       $('#myForm').ajaxForm(function(data) { 
         

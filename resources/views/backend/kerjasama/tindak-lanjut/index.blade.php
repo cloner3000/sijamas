@@ -9,7 +9,7 @@
     </ol>
             <div class="panel">
               <div class="panel-heading">
-                <div class="panel-title"><i class="fa fa-list"></i> List Kategory Kerjasama</div>
+                <div class="panel-title"><i class="fa fa-list"></i> List Kategori Kerjasama</div>
               </div>
               <div class="panel-body">
               <div class="row">
@@ -29,7 +29,7 @@
                   </div>
                   <div class="form-group">
                     <div class="row">
-                      <label class="col-sm-4 control-label">Kategory Kerjasama :</label>
+                      <label class="col-sm-4 control-label">Kategori Kerjasama :</label>
                       <div class="col-sm-8">
                         
                         {!! Form::select('cooperation_category', ['' => 'All Data','dn'=>'Dalam Negeri', 'ln'=>'Luar Negeri'], null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!} 

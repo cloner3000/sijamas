@@ -19,20 +19,22 @@
               <div class="col-md-7 fadeIn animated">
                 {!! Form::open(['class'=>'panel-body p-y-1', 'url'=>urlBackend('cooperation-followup/index'), 'method'=>'get']) !!} 
 
+                  {{--
                   <div class="form-group">
                     <div class="row">
                       <label class="col-sm-4 control-label">Status Data Kerjasama :</label>
                       <div class="col-sm-8">
-                        {!! Form::select('approval', [''=>'Pilih Status Kerjasama', 'draft'=>'Draft', 'approved'=>'Approved', 'rejected'=>'Rejected', 'deleted'=>'Deleted'], $request->approval ? $request->approval : null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!} 
+                        {!! Form::select('approval', [''=>'All Data', 'draft'=>'Draft', 'approved'=>'Approved', 'rejected'=>'Rejected', 'deleted'=>'Deleted'], $request->approval ? $request->approval : null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!} 
                       </div>
                     </div>
                   </div>
+                  --}}
                   <div class="form-group">
                     <div class="row">
-                      <label class="col-sm-4 control-label">Kategory Kerjasama :</label>
+                      <label class="col-sm-4 control-label">Kategori Kerjasama :</label>
                       <div class="col-sm-8">
                         
-                        {!! Form::select('cooperation_category', ['' => 'Pilih Kategori Kerjasama','dn'=>'Dalam Negeri', 'ln'=>'Luar Negeri'], $request->cooperation_category ? $request->cooperation_category : null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!} 
+                        {!! Form::select('cooperation_category', ['' => 'All Data','dn'=>'Dalam Negeri', 'ln'=>'Luar Negeri'], $request->cooperation_category ? $request->cooperation_category : null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!} 
                         
                       </div>
                     </div>
