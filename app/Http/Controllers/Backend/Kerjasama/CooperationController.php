@@ -207,7 +207,7 @@ class CooperationController extends TrinataController
         $model->cooperation_ended = \Carbon\Carbon::createFromFormat('d/m/Y', $request->cooperation_ended)->format('Y-m-d');
         $model->cooperation_focus_id = $request->cooperation_focus_id;
         $model->scope = $request->scope;
-        $model->approval = $request->approval;
+        if (\Auth::user()->role_id == 1) $model->approval = $request->approval;
         $model->save(); 
         
         if (isset($inputs['file'])) {
