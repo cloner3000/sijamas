@@ -207,6 +207,14 @@ class CooperationController extends TrinataController
         $model->cooperation_ended = \Carbon\Carbon::createFromFormat('d/m/Y', $request->cooperation_ended)->format('Y-m-d');
         $model->cooperation_focus_id = $request->cooperation_focus_id;
         $model->scope = $request->scope;
+        
+        $model->first_sign = $request->first_sign;
+        $model->first_sign_position = $request->first_sign_position;
+        $model->second_sign = $request->second_sign;
+        $model->second_sign_position = $request->second_sign_position;
+        $model->third_sign = $request->third_sign;
+        $model->third_sign_position = $request->third_sign_position;
+
         if (\Auth::user()->role_id == 1) $model->approval = $request->approval;
         $model->save(); 
         
