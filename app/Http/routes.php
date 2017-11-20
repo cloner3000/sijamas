@@ -15,6 +15,9 @@ Route::get('/', 'HomeController@index');
 Route::get('auth/login' , function(){
 		return redirect('/');
 	});
+Route::get('manual' , function(){
+		return redirect('404');
+	});
 Route::get('home', 'HomeController@index');
 Route::get('profile', 'ProfileController@index');
 Route::get('usulan-kerjasama', 'UsulanController@index');
