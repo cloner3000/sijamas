@@ -83,6 +83,6 @@
 
 
 <script type='text/javascript'>
-function init_map(){var myOptions = {zoom:10,center:new google.maps.LatLng(-6.17511,106.86503949999997),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(-6.17511,106.86503949999997)});infowindow = new google.maps.InfoWindow({content:'<strong>Title</strong><br>jakarta, indonesia<br>'});google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);
+function init_map(){var myOptions = {zoom:10,center:new google.maps.LatLng(-6.17511,106.86503949999997),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(-6.17511,106.86503949999997)});infowindow = new google.maps.InfoWindow({content:'<strong>Pusat Kerjasama Standarisasi Kami</strong><br>Gedung I BPPT, Lantai 12<br>Jl. MH Thamrin No.8,Kebon Sirih,<br>Jakarta Pusat 10340<br>'});google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);
 </script>
 @endpush

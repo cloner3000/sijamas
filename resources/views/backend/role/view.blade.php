@@ -36,7 +36,6 @@
               <table class = 'table table-bordered'>
                 
                   @foreach($menu->whereParentId(null)->orderBy('order','asc')->get() as $parent)
-                    @if($parent->title!="Media Library" && $parent->title!="Development" && $parent->title != "Dashboard")
                       @if($parent->childs->count() > 0)
                         <thead>
                           <tr class = 'danger'>
@@ -78,7 +77,6 @@
                         </tbody>
 
                       @endif
-                    @endif
                   @endforeach
                 
               

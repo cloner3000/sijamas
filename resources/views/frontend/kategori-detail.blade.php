@@ -170,7 +170,7 @@
 												<table class="table">
 													<thead>
 														<tr>
-															<th>Tangal Implementasi</th>
+															<th>Tanggal Implementasi</th>
 															<th>Jenis Kegiatan</th>
 															<th>Keterangan</th>
 														</tr>

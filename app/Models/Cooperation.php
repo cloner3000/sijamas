@@ -35,7 +35,7 @@ class Cooperation extends Model
 	
 	public function cooperationimplementation()
     {
-        return $this->hasMany(new CooperationImplementation , 'cooperation_id');
+        return $this->hasMany(new CooperationImplementation , 'cooperation_id')->orderBy('implementation_date','desc');
     }
 	
 	public function cooperationfocus()

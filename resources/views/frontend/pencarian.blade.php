@@ -43,7 +43,7 @@
 								<h3>Kategori Kerjasama Dalam/Luar Negeri</h3>
 							@endif
 							--}}
-							<h3>{{ $model->total()}} Data tidak ditemukan</h3>
+							<h3>{{ $model->total()}} Data ditemukan</h3>
 						@else
 							<h3>Maaf, Data tidak ditemukan</h3>
 						@endif
@@ -52,7 +52,7 @@
 									@if($model)
 									@foreach($model as $val)
 									
-									<div class="rows-berita inline-news">
+									<div class="rows-berita inline-float-news">
 										<div class="box-news">
 						  					<div class="title-h-news">
 						  						<h3><a href="{{url('kategori-kerjasama/read/'.$val->slug)}}">{{ $val->title }}</a></h3>
@@ -63,7 +63,7 @@
 												  @if($val->cooperationfile)
 												  @if(isset($val->cooperationfoto[0]))
 												  
-												  <div class="media-left">
+												  <div class="left images-media">
 												    <a href="#">
 												      <img class="media-object" src="{{ asset('contents/file/'.$val->cooperationfoto[0]->filename)}}" alt="berita">
 												    </a>
@@ -71,21 +71,21 @@
 												  
 												  @endif
 												  @endif
-												  <div class="media-body">
-												  	<span class="fontBlue1">
+												  <!-- <div class="media-body"> -->
+												  	<span class="fontBlue">
 												  		@if($val->cooperation_category == 'ln')
 												  		Kerjasama Luar negeri
 												  		@else
 												  		Kerjasama Dalam negeri
 												  		@endif
 												  	</span><br>
-												  	<span class="fontGreen1">{{ $val->cooperation_number}}</span><br>
-												  	<span class="fontBlue1">{{ $val->cooperationtype->name }}</span><br>
-												  	<span class="fontGreen1">Status: {{ $val->cooperation_status }}</span><br>
-												  	<span class="fontGreen1">Tahun Penandatanganan : {{ \Carbon\Carbon::createFromFormat('Y-m-d', $val->cooperation_signed)->format('Y')}}</span><br>
-												  	<span class="fontGreen1">Tahun Berakhir : {{ \Carbon\Carbon::createFromFormat('Y-m-d', $val->cooperation_ended)->format('Y')}}</span><br><br>
-												  </div>
-												    <p>{!! $val->scope !!}</p>
+												  	<span class="fontGreen">{{ $val->cooperation_number}}</span><br>
+												  	<span class="fontBlue">{{ $val->cooperationtype->name }}</span><br>
+												  	<span class="fontGreen">Status: {{ $val->cooperation_status }}</span><br>
+												  	<span class="fontGreen">Tahun Penandatanganan : {{ \Carbon\Carbon::createFromFormat('Y-m-d', $val->cooperation_signed)->format('Y')}}</span><br>
+												  	<span class="fontGreen">Tahun Berakhir : {{ \Carbon\Carbon::createFromFormat('Y-m-d', $val->cooperation_ended)->format('Y')}}</span><br><br>
+												  <!-- </div> -->
+												    <p align="justify">{!! $val->scope !!}</p>
 												</div>
 						  					</div><!--en.isi-h-news-->
 						  				</div><!--end.box-news-->
