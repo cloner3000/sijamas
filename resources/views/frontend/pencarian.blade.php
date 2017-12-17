@@ -74,9 +74,9 @@
 												  <!-- <div class="media-body"> -->
 												  	<span class="fontBlue">
 												  		@if($val->cooperation_category == 'ln')
-												  		Kerjasama Luar negeri
+												  		Kerjasama Luar Negeri
 												  		@else
-												  		Kerjasama Dalam negeri
+												  		Kerjasama Dalam Negeri
 												  		@endif
 												  	</span><br>
 												  	<span class="fontGreen">{{ $val->cooperation_number}}</span><br>
