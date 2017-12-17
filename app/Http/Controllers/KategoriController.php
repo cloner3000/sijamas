@@ -100,7 +100,7 @@ class KategoriController extends Controller {
 		// $get['start_year']	= $request->start_year;
 		// $get['end_year'] 	= $request->end_year;
 		$search = $get['keyword'];
-        
+        // dd($get);
 		if($get['kategori']){
 			if($get['kategori']=="ln" || $get['kategori'] =="dn"){
 				$model = $model->whereCooperationCategory($get['kategori']);
@@ -114,9 +114,10 @@ class KategoriController extends Controller {
 		}
 		if($get['status']){
 			if($get['status']=="baru" || $get['status'] =="lanjutan"){
-				$model = $model->whereCooperationCategory($get['kategori']);
+				$model = $model->whereCooperationStatus($get['status']);
 			}
 		}
+
 		if($search){
 			$model = $model->where(function($query) use ($search) {
 		                    return $query
