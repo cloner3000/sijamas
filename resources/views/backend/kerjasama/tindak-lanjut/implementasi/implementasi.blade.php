@@ -49,7 +49,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                       <div class="row">
                         <label class="col-sm-4 control-label">Dari Tanggal :</label>
                         <div class="col-sm-8">
@@ -74,12 +74,12 @@
                             </div>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
 
               <div class="col-md-12 fadeIn animated">
                
-                <button type="submit" class="btn btn-primary btn-3d"><i class="fa fa-eye"></i>Lihat</button> 
+                <!-- <button type="submit" class="btn btn-primary btn-3d"><i class="fa fa-eye"></i>Lihat</button>  -->
                 <a href="{{urlBackend('cooperation-implementation/export-excel/'.$cooperation_id)}}" class="btn btn-danger btn-3d"> <i class="fa fa-download"></i> Ekspor</a>
               </div>
               {!! Form::close() !!}
