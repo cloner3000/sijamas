@@ -31,9 +31,11 @@ class FollowupController extends TrinataController
 
     public function getData(Request $request)
     {
-
+        // dd($request->all());
         $model = $this->cooperation->select('id','title','cooperation_number','cooperation_category','cooperation_status', 'approval')->whereApproval('approved');
-        // if ($request->approval) $model->where('approval', $request->approval);
+        
+        // if (\Auth::user()->role_id != 1) $model->whereOwnerId(\Auth::user()->id);
+        
         if ($request->cooperation_category) $model->where('cooperation_category', $request->cooperation_category);
         if ($request->start) $model->where('cooperation_signed', $request->start);
         if ($request->end) $model->where('cooperation_ended', $request->end);
@@ -71,7 +73,8 @@ class FollowupController extends TrinataController
             $url = $url.'?'.implode('&', $param);
             $parameter = $parameter.'?'.implode('&', $param);
         }
-        return view('backend.kerjasama.tindak-lanjut.perencanaan.index', compact('model', 'url', 'request'));
+        // dd($url);
+        return view('backend.kerjasama.tindak-lanjut.perencanaan.index', compact('model', 'url', 'request','parameter'));
     }
 
     public function getDataimplementation(Request $request)

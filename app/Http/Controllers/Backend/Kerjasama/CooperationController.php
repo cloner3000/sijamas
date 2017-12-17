@@ -91,8 +91,12 @@ class CooperationController extends TrinataController
                     'city' => [],
                 ];
         
-        // dd($cooperationType);
-    	return view('backend.kerjasama.daftar._form',compact('model', 'data'));
+        $status = false;
+        if (\Auth::user()->role_id == 1) $status = true;
+        
+        // dd($status);
+        $disabled = '';
+    	return view('backend.kerjasama.daftar._form',compact('model', 'data', 'status','disabled'));
     }
 
     public function handleUpload($request,$model)
@@ -163,7 +167,18 @@ class CooperationController extends TrinataController
                     'city' => CooperationCity::where('cooperation_province_id', $model->cooperation_province_id)->lists('name','id'),
                 ];
 
-        return view('backend.kerjasama.daftar._form',compact('model', 'data'));
+        $status = false;
+        $disabled = 'disabled';
+
+        if (\Auth::user()->role_id == 1) {
+            $status = true;
+            $disabled = '';
+        } else {
+            if ($model->approval == 'draft') $disabled = '';
+        }
+        
+
+        return view('backend.kerjasama.daftar._form',compact('model', 'data', 'status', 'disabled'));
     }
 
     public function postUpdate(Request $request,$id)
@@ -184,11 +199,24 @@ class CooperationController extends TrinataController
         $model->cooperation_city_id = $request->cooperation_city_id;
         $model->address = $request->address;
         $model->address = $request->address;
+        
+        if (!\trinata::validateDate($request->cooperation_signed) || !\trinata::validateDate($request->cooperation_ended)) {
+            return redirect(urlBackendAction('update/'.$id))->withInfo('Format Tanggal tidak valid');
+        } 
+        
         $model->cooperation_signed = \Carbon\Carbon::createFromFormat('d/m/Y', $request->cooperation_signed)->format('Y-m-d');
         $model->cooperation_ended = \Carbon\Carbon::createFromFormat('d/m/Y', $request->cooperation_ended)->format('Y-m-d');
         $model->cooperation_focus_id = $request->cooperation_focus_id;
         $model->scope = $request->scope;
-        $model->approval = $request->approval;
+        
+        $model->first_sign = $request->first_sign;
+        $model->first_sign_position = $request->first_sign_position;
+        $model->second_sign = $request->second_sign;
+        $model->second_sign_position = $request->second_sign_position;
+        $model->third_sign = $request->third_sign;
+        $model->third_sign_position = $request->third_sign_position;
+
+        if (\Auth::user()->role_id == 1) $model->approval = $request->approval;
         $model->save(); 
         
         if (isset($inputs['file'])) {

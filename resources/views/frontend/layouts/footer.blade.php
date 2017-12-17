@@ -5,8 +5,8 @@
 			<div class="col-md-6">
 				<div class="logo-bsn"><img src="{{ asset(null) }}frontend/images/material/logo_bsn.png"></div>
 				<div class="text-logo">
-					<span class="text-l1">Sistem Informasi Kerjasama Standarisasi dan Penilaian Kesesuaian (SIJAMAS)</span>
-					<span class="text-l2">Badan Strandarisasi Nasional</span>
+					<span class="text-l1">Sistem Informasi Kerjasama Standardisasi dan Penilaian Kesesuaian (SIJAMAS)</span>
+					<span class="text-l2">Badan Standardisasi Nasional</span>
 					<span class="text-l3">National Standardization Agency of Indonesia</span>
 				</div>
 				<!-- <ul class="nav nav-pills">

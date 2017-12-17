@@ -9,11 +9,12 @@
     </ol>
             <div class="panel">
               <div class="panel-heading">
-                <div class="panel-title"><i class="fa fa-list"></i> List Kategory Kerjasama</div>
+                <div class="panel-title"><i class="fa fa-list"></i> List Kategori Kerjasama</div>
               </div>
               <div class="panel-body">
               <div class="row">
               <div class="col-md-12 fadeIn animated">
+                @include('backend.common.flashes')
                 {!! trinata::buttonCreate() !!}
               </div>
               <div class="col-md-7 fadeIn animated">

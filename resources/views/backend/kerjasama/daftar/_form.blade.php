@@ -14,13 +14,13 @@
               <div class="panel-body">
               <div class="row">
               <div class="col-md-12">
-                
+                @include('backend.common.flashes')
                 {!! Form::model($model, ['class'=>'panel-body p-y-1', 'files'=>true]) !!} 
                   <div class="form-group">
                     <div class="row">
                       <label class="col-sm-4 control-label">Judul :</label>
                       <div class="col-sm-8">
-                        {!! Form::text('title' , null ,['class' => 'form-control']) !!}
+                        {!! Form::text('title' , null ,['class' => 'form-control', $disabled]) !!}
                       </div>
                     </div>
                   </div>
@@ -28,7 +28,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Nomor Kerjasama :</label>
                       <div class="col-sm-8">
-                        {!! Form::text('cooperation_number' , null ,['class' => 'form-control']) !!}
+                        {!! Form::text('cooperation_number' , null ,['class' => 'form-control' , $disabled]) !!}
                       </div>
                     </div>
                   </div>
@@ -37,12 +37,12 @@
                       <label class="col-sm-4 control-label">Kategori Kerjasama :</label>
                       <div class="col-sm-8">
                         <label class="custom-control custom-radio radio-inline">
-                          {!! Form::radio('cooperation_category' , 'dn' ,null, ['class' => 'custom-control-input']) !!}
+                          {!! Form::radio('cooperation_category' , 'dn' ,null, ['class' => 'custom-control-input formid', $disabled]) !!}
                           <span class="custom-control-indicator"></span>
                           DN
                         </label>
                         <label class="custom-control custom-radio radio-inline">
-                          {!! Form::radio('cooperation_category' , 'ln' ,null, ['class' => 'custom-control-input']) !!}
+                          {!! Form::radio('cooperation_category' , 'ln' ,null, ['class' => 'custom-control-input formid', $disabled]) !!}
                           <span class="custom-control-indicator"></span>
                           LN
                         </label>
@@ -55,12 +55,12 @@
                       <div class="col-sm-8">
                         <label class="custom-control custom-radio radio-inline">
                           
-                          {!! Form::radio('cooperation_status' , 'baru' ,null, ['class' => 'custom-control-input']) !!}
+                          {!! Form::radio('cooperation_status' , 'baru' ,null, ['class' => 'custom-control-input formid', $disabled]) !!}
                           <span class="custom-control-indicator"></span>
                           Baru
                         </label>
                         <label class="custom-control custom-radio radio-inline">
-                          {!! Form::radio('cooperation_status' , 'lanjutan' ,null, ['class' => 'custom-control-input']) !!}
+                          {!! Form::radio('cooperation_status' , 'lanjutan' ,null, ['class' => 'custom-control-input formid', $disabled]) !!}
                           <span class="custom-control-indicator"></span>
                           Lanjutan
                         </label>
@@ -71,7 +71,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Jenis Kerjasama :</label>
                       <div class="col-sm-8">
-                        {!! Form::select('cooperation_type_id', $data['cooperationType'], null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!} 
+                        {!! Form::select('cooperation_type_id', $data['cooperationType'], null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true, $disabled]) !!} 
                       </div>
                     </div>
                   </div>
@@ -79,7 +79,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Tentang Kerjasama :</label>
                       <div class="col-sm-8">
-                        {!! Form::text('about' , null ,['class' => 'form-control']) !!}
+                        {!! Form::text('about' , null ,['class' => 'form-control', $disabled]) !!}
                       </div>
                     </div>
                   </div>
@@ -87,7 +87,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Mitra Kerjasama :</label>
                       <div class="col-sm-8">
-                        {!! Form::text('partners' , null ,['class' => 'form-control']) !!}
+                        {!! Form::text('partners' , null ,['class' => 'form-control', $disabled]) !!}
                       </div>
                     </div>
                   </div>
@@ -98,15 +98,15 @@
                         <div class="row">
                           <div class="col-md-6">                            
                             
-                            {!! Form::select('cooperation_province_id', $data['province'], null ,['class' => 'form-control select2-example province', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!}  
+                            {!! Form::select('cooperation_province_id', $data['province'], null ,['class' => 'form-control select2-example province', 'style' => 'width: 100%', 'data-allow-clear'=>true, $disabled]) !!}  
                           </div>
                           <div class="col-md-6">                        
-                            {!! Form::select('cooperation_city_id', $data['city'], $model->cooperation_city_id ? $model->cooperation_city_id : null ,['class' => 'form-control select2-example city', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!} 
+                            {!! Form::select('cooperation_city_id', $data['city'], $model->cooperation_city_id ? $model->cooperation_city_id : null ,['class' => 'form-control select2-example city', 'style' => 'width: 100%', 'data-allow-clear'=>true, $disabled]) !!} 
                           </div>
                         </div>
                         <div class="row p-y-2">
                             <div class="col-md-12">
-                              {!! Form::text('address' , null ,['class' => 'form-control']) !!}
+                              {!! Form::text('address' , null ,['class' => 'form-control', $disabled]) !!}
                             </div>
                         </div>
                       </div>
@@ -118,7 +118,7 @@
                         <label class="col-sm-4 control-label">Dari Tanggal :</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                              {!! Form::text('cooperation_signed' , isset($model->cooperation_signed) ? \Carbon\Carbon::createFromFormat('Y-m-d', $model->cooperation_signed)->format('d/m/Y') : null ,['class' => 'form-control']) !!}
+                              {!! Form::text('cooperation_signed' , isset($model->cooperation_signed) ? \Carbon\Carbon::createFromFormat('Y-m-d', $model->cooperation_signed)->format('d/m/Y') : null ,['class' => 'form-control', $disabled]) !!}
                               <span class="input-group-btn">
                                 <button type="button" class="btn"><i class="fa fa-calendar"></i></button>
                               </span>
@@ -131,7 +131,7 @@
                         <label class="col-sm-4 control-label">Sampai Tanggal :</label>
                         <div class="col-sm-8">                  
                             <div class="input-group m-b-2">
-                              {!! Form::text('cooperation_ended' , isset($model->cooperation_ended) ? \Carbon\Carbon::createFromFormat('Y-m-d', $model->cooperation_ended)->format('d/m/Y') : null ,['class' => 'form-control']) !!}
+                              {!! Form::text('cooperation_ended' , isset($model->cooperation_ended) ? \Carbon\Carbon::createFromFormat('Y-m-d', $model->cooperation_ended)->format('d/m/Y') : null ,['class' => 'form-control', $disabled]) !!}
                               <span class="input-group-btn">
                                 <button type="button" class="btn"><i class="fa fa-calendar"></i></button>
                               </span>
@@ -145,7 +145,7 @@
                       <label class="col-sm-4 control-label">Bidang Fokus :</label>
                       <div class="col-sm-8">                        
                         
-                        {!! Form::select('cooperation_focus_id', $data['cooperationFocus'], null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!} 
+                        {!! Form::select('cooperation_focus_id', $data['cooperationFocus'], null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true, $disabled]) !!} 
                       </div>
                     </div>
                   </div>
@@ -153,7 +153,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Ruang Lingkup :</label>
                       <div class="col-sm-8">
-                        {!! Form::textarea('scope' , null ,['id' => 'summernote-base']) !!}
+                        {!! Form::textarea('scope' , null ,['id' => 'summernote-base', $disabled]) !!}
                         
                       </div>
                     </div>
@@ -174,7 +174,7 @@
                           @if($model->cooperationfile)
                           @foreach($model->cooperationfile as $file)
                             @if ($file->type == 'document') 
-                            <label class="file_{{$file->id}}">{{ $file->filename }}</label> 
+                            <a href="{{asset('contents/file/'.$file->filename)}}" target="_blank"><label class="file_{{$file->id}}">{{ $file->filename }}</label> </a>
                             <button type="button" class="btn btn-danger px-file-browse deleteFile file_{{$file->id}}" data-id="{{$file->id}}">Hapus</button>
                             <br>
                              @endif
@@ -260,10 +260,10 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Penandatangan 1 :</label>
                       <div class="col-sm-4">
-                        {!! Form::text('first_sign' , null ,['class' => 'form-control', 'placeholder'=>'Nama']) !!}
+                        {!! Form::text('first_sign' , null ,['class' => 'form-control', 'placeholder'=>'Nama', $disabled]) !!}
                       </div>
                       <div class="col-sm-4">
-                        {!! Form::text('first_sign_position' , null ,['class' => 'form-control', 'placeholder'=>'Jabatan']) !!}
+                        {!! Form::text('first_sign_position' , null ,['class' => 'form-control', 'placeholder'=>'Jabatan', $disabled]) !!}
                       </div>
                     </div>
                   </div>
@@ -271,10 +271,10 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Penandatangan 2 :</label>
                       <div class="col-sm-4">
-                        {!! Form::text('second_sign' , null ,['class' => 'form-control', 'placeholder'=>'Nama']) !!}
+                        {!! Form::text('second_sign' , null ,['class' => 'form-control', 'placeholder'=>'Nama', $disabled]) !!}
                       </div>
                       <div class="col-sm-4">
-                        {!! Form::text('second_sign_position' , null ,['class' => 'form-control', 'placeholder'=>'Jabatan']) !!}
+                        {!! Form::text('second_sign_position' , null ,['class' => 'form-control', 'placeholder'=>'Jabatan', $disabled]) !!}
                       </div>
                     </div>
                   </div>
@@ -282,26 +282,28 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Penandatangan 3 :</label>
                       <div class="col-sm-4">
-                        {!! Form::text('third_sign' , null ,['class' => 'form-control', 'placeholder'=>'Nama']) !!}
+                        {!! Form::text('third_sign' , null ,['class' => 'form-control', 'placeholder'=>'Nama', $disabled]) !!}
                       </div>
                       <div class="col-sm-4">
-                        {!! Form::text('third_sign_position' , null ,['class' => 'form-control', 'placeholder'=>'Jabatan']) !!}
+                        {!! Form::text('third_sign_position' , null ,['class' => 'form-control', 'placeholder'=>'Jabatan', $disabled]) !!}
                       </div>
                     </div>
                   </div>
+                  @if($status)
                   <div class="form-group">
                     <div class="row">
                       <label class="col-sm-4 control-label">Persetujuan Kerjasama :</label>
                       <div class="col-sm-8">                        
                         
-                        {!! Form::select('approval', ['draft'=>'Draft', 'approved'=>'Approved', 'rejected'=>'Rejected', 'deleted'=>'Deleted'], null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!} 
+                        {!! Form::select('approval', ['draft'=>'Draft', 'approved'=>'Approved','rejected'=>'Rejected', 'deleted'=>'Deleted'], null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true, $disabled]) !!} 
                       </div>
                     </div>
                   </div>
+                  @endif
                   <div class="form-group">
                     <div class="row">
                       <label class="col-sm-4 control-label">
-                        <button type="submit" class="btn btn-primary btn-3d">Save</button>
+                        <button type="submit" class="btn btn-primary btn-3d" {{$disabled}} >Save</button>
                       </label>
                       <div class="col-sm-8">                  
                           &nbsp;
@@ -374,6 +376,14 @@
       $(document).on('change', '.file', function(){
         $('.uploadFile').html($(this).val());
       })
+
+      $('input.formid').on('keyup keypress', function(e) {
+        var keyCode = e.keyCode || e.which;
+        if (keyCode === 13) { 
+          e.preventDefault();
+          return false;
+        }
+      });
       
       $('#myForm').ajaxForm(function(data) { 
         

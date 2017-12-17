@@ -38,7 +38,7 @@
         </div>
       </li>
 
-      @foreach(injectModel('Menu')->whereParentId(null)->orderBy('order','asc')->get() as $row)
+      @foreach(trinata::getListMenu() as $row)
         @if(!empty($row->childs->first()->id))
           <li class="px-nav-item px-nav-dropdown {{ $search($row->id,'px-open active') }}">
         @else

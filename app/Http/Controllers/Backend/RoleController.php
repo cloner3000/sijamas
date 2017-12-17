@@ -76,11 +76,17 @@ class RoleController extends TrinataController
 
 	public function getDelete($id)
     {
-        $model = $this->model->findOrFail($id);
+        if ($id != 1) {
+            $model = $this->model->findOrFail($id);
 
-        $model->delete();
+            $model->delete();
+            $message = 'Data has been deleted';
+        } else {
+            $message = 'Failed to delete superadmin role';
+        }
+        
 
-        return redirect(urlBackendAction('index'))->withSuccess('Data has been deleted');
+        return redirect(urlBackendAction('index'))->withSuccess($message);
 
     }
 
