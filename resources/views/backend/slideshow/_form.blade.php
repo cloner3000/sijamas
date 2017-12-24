@@ -26,6 +26,7 @@
                       <div class="form-group">
                         <label>File</label>
                         {!! Form::file('image' , null ,['class' => 'form-control']) !!}
+                        <em>Please use image in 1598px X 500px dimension,</em>
                       </div>
 
                       @if(!empty($model->image))

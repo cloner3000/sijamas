@@ -58,6 +58,7 @@
                           <span class="custom-file-control form-control">
                           Pilih Foto ...
                           </span>
+                          <em>Please use image in 700px X 525px dimension</em>
                           <!-- <div class="px-file-buttons">
                             <button type="button" class="btn btn-xs px-file-clear">Clear</button>
                             <button type="button" class="btn btn-primary btn-xs px-file-browse">Browse</button>

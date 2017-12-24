@@ -345,6 +345,7 @@
             <span class="custom-file-control form-control captionfile">
             Pilih Foto Dokumen...
             </span>
+            <em>Please use image in 700px X 525px dimension</em>
             <div class="px-file-buttons">
               {!! Form::hidden('cooperation_id' , isset($model->id) ? $model->id : null) !!}
               <button type="button" class="btn btn-xs px-file-clear">Clear</button>
