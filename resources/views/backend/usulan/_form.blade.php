@@ -22,7 +22,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Nama Pengusul :</label>
                       <div class="col-sm-8">
-                        {!! Form::text('name' , null ,['class' => 'form-control', (!empty($model->id)) ? 'readonly' : '']) !!}
+                        {!! Form::text('name' , (!empty($model->id)) ? null : \Auth::user()->name ,['class' => 'form-control', 'readonly' => 'readonly']) !!}
                       </div>
                     </div>
                   </div>
@@ -38,7 +38,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Instansi :</label>
                       <div class="col-sm-8">
-                        {!! Form::text('institute' , null ,['class' => 'form-control', (!empty($model->id)) ? 'readonly' : '']) !!}
+                        {!! Form::text('institute' , (!empty($model->id)) ? null : 'BSN' ,['class' => 'form-control',  'readonly' => 'readonly']) !!}
                       </div>
                     </div>
                   </div>
@@ -54,7 +54,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Alamat :</label>
                       <div class="col-sm-8">
-                        {!! Form::textarea('address' , null ,['class' => 'form-control', (!empty($model->id)) ? 'readonly' : '']) !!}
+                        {!! Form::textarea('address' , (!empty($model->id)) ? null : \Auth::user()->address ,['class' => 'form-control',  'readonly' => 'readonly']) !!}
                       </div>
                     </div>
                   </div>
@@ -62,7 +62,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Telepon * :</label>
                       <div class="col-sm-8">
-                        {!! Form::text('phone' , null ,['class' => 'form-control', 'onkeypress' => 'return isNumberKey(event)', (!empty($model->id)) ? 'readonly' : '']) !!}
+                        {!! Form::text('phone' , (!empty($model->id)) ? null : \Auth::user()->phone ,['class' => 'form-control', 'onkeypress' => 'return isNumberKey(event)',  'readonly' => 'readonly']) !!}
                       </div>
                     </div>
                   </div>
@@ -70,7 +70,7 @@
                     <div class="row">
                       <label class="col-sm-4 control-label">Email * :</label>
                       <div class="col-sm-8">
-                        {!! Form::email('email' , null ,['class' => 'form-control', (!empty($model->id)) ? 'readonly' : '']) !!}
+                        {!! Form::email('email' , (!empty($model->id)) ? null : \Auth::user()->email ,['class' => 'form-control',  'readonly' => 'readonly']) !!}
                       </div>
                     </div>
                   </div>
