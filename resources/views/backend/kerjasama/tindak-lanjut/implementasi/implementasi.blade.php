@@ -40,16 +40,17 @@
                     </div>
                   </div>
                   -->
-                  <div class="input-daterange" id="datepicker-range">
+                  <!-- <div class="input-daterange" id="datepicker-range"> -->
                     <div class="form-group">
-                      <div class="row">
-                        <label class="col-sm-12 control-label">Judul Kerjasama : {{$cooperation->title}}</label>
+                      <!-- <div class="row"> -->
+                        <label>Judul Kerjasama : </label>
+                        {{$cooperation->title}}
                        <!--  <div class="col-sm-10">                  
                             <div class="input-group m-b-2">
                               <label>{{$cooperation->title}}</label>
                             </div>
                         </div> -->
-                      </div>
+                      <!-- </div> -->
                     </div>
                     <!-- <div class="form-group">
                       <div class="row">
