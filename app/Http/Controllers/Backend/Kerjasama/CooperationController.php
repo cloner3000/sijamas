@@ -96,7 +96,7 @@ class CooperationController extends TrinataController
         
         // dd($status);
         $disabled = '';
-    	return view('backend.kerjasama.daftar._form',compact('model', 'data', 'status','disabled'));
+    	return view('backend.kerjasama.daftar._form',compact('model', 'data', 'status', 'disabled'));
     }
 
     public function handleUpload($request,$model)

@@ -4,12 +4,12 @@
   <div class="px-content">
     <ol class="breadcrumb page-breadcrumb">
       <li><a href="#">Dashboard</a></li>
-      <li>Kategory Kerjasama</li>
+      <li>Kategori Kerjasama</li>
       <li class="active">Tambah</li>
     </ol>
             <div class="panel">
               <div class="panel-heading">
-                <div class="panel-title"><i class="fa fa-plus"></i> Tambah Kategory Kerjasama</div>
+                <div class="panel-title"><i class="fa fa-plus"></i> Tambah Kategori Kerjasama</div>
               </div>
               <div class="panel-body">
               <div class="row">

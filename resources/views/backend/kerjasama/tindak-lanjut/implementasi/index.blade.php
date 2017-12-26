@@ -4,7 +4,7 @@
   <div class="px-content">
     <ol class="breadcrumb page-breadcrumb">
       <li><a href="#">Dashboard</a></li>
-      <li>Kategory Kerjasama</li>
+      <li>Kategori Kerjasama</li>
       <li class="active">List</li>
     </ol>
             <div class="panel">
@@ -133,17 +133,17 @@
    
     $('a.confirm').on('click',function() {
         swal({
-          title: "Hapus Kategory Kerjasama?",
-          text: "Anda tidak akan dapat memulihkan Kategory yang sudah dihapus",
+          title: "Hapus Kategori Kerjasama?",
+          text: "Anda tidak akan dapat memulihkan Kategori yang sudah dihapus",
           type: "warning",
           showCancelButton: true,
           confirmButtonColor: '#DD6B55',
-          confirmButtonText: 'Yes, Hapus Kategory!',
+          confirmButtonText: 'Yes, Hapus Kategori!',
           cancelButtonText: "No",
           closeOnConfirm: false
         },
         function(){
-          swal("Hapus Kategory!", "Kategory Anda telah dihapus!", "success");
+          swal("Hapus Kategori!", "Kategori Anda telah dihapus!", "success");
         });
       });
   });

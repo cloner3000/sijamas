@@ -4,7 +4,7 @@
   <div class="px-content">
     <ol class="breadcrumb page-breadcrumb">
       <li><a href="#">Dashboard</a></li>
-      <li>Kategory Kerjasama</li>
+      <li>Kategori Kerjasama</li>
       <li class="active">Tambah</li>
     </ol>
             <div class="panel">
