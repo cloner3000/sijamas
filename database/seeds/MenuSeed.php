@@ -39,7 +39,7 @@ class MenuSeed extends Seeder
             ],[]);
             \trinata::addMenu([
                 'parent_id'     => 'cooperation',
-                'title'         => 'Ketegori Kerjasama',
+                'title'         => 'Kategori Kerjasama',
                 'controller'    => 'Kerjasama\CooperationController',
                 'slug'          => 'cooperation-category',
                 'order'         => 1
