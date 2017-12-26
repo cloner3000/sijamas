@@ -18,7 +18,7 @@
                 &nbsp;&nbsp;
                 <a href="{{urlBackend('cooperation-followup/export-excel/'.$cooperation_id)}}" class="btn btn-danger btn-3d"> <i class="fa fa-download"></i> Ekspor</a>
               </div>
-              <div class="col-md-7 fadeIn animated">
+              <div class="col-md-12 fadeIn animated">
                 {!! Form::open(['class'=>'panel-body p-y-1', 'url'=>urlBackend('cooperation-followup/view/'.$id), 'method'=>'get']) !!} 
                 <!--
                   <div class="form-group">
@@ -40,18 +40,18 @@
                     </div>
                   </div>
                   -->
-                  <!-- <div class="input-daterange" id="datepicker-range">
+                   <div class="input-daterange" id="datepicker-range">
                     <div class="form-group">
                       <div class="row">
-                        <label class="col-sm-4 control-label">Judul Kerjasama :</label>
-                        <div class="col-sm-8">                  
+                        <label class="col-sm-3 control-label">Judul Kerjasama :</label>
+                        <div class="col-sm-9">                  
                             <div class="input-group m-b-2">
                               <label>{{$cooperation->title}}</label>
                             </div>
                         </div>
                       </div>
                     </div>
-                    <div class="form-group">
+                   <!-- <div class="form-group">
                       <div class="row">
                         <label class="col-sm-4 control-label">Dari Tanggal :</label>
                         <div class="col-sm-8">
