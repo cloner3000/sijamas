@@ -15,6 +15,8 @@
               <div class="row">
               <div class="col-md-12 fadeIn animated">
                 {!! trinata::buttonCreate($cooperation_id) !!}
+                &nbsp;&nbsp;
+                <a href="{{urlBackend('cooperation-implementation/export-excel/'.$cooperation_id)}}" class="btn btn-danger btn-3d"> <i class="fa fa-download"></i> Ekspor</a>
               </div>
               <div class="col-md-7 fadeIn animated">
                 {!! Form::open(['class'=>'panel-body p-y-1', 'url'=>urlBackend('cooperation-category/index'), 'method'=>'get']) !!} 
@@ -77,13 +79,12 @@
                     </div> -->
                   </div>
 
-              <div class="col-md-12 fadeIn animated">
-               
-                <!-- <button type="submit" class="btn btn-primary btn-3d"><i class="fa fa-eye"></i>Lihat</button>  -->
-                <a href="{{urlBackend('cooperation-implementation/export-excel/'.$cooperation_id)}}" class="btn btn-danger btn-3d"> <i class="fa fa-download"></i> Ekspor</a>
-              </div>
               {!! Form::close() !!}
               </div>
+              <!-- <div class="col-md-12 fadeIn animated">
+               
+                <button type="submit" class="btn btn-primary btn-3d"><i class="fa fa-eye"></i>Lihat</button> 
+              </div> -->
             </div>
             <div class="row">
               <div class="col-md-12 fadeIn animated">
