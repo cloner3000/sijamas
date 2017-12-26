@@ -4,7 +4,7 @@
   <div class="px-content">
     <ol class="breadcrumb page-breadcrumb">
       <li><a href="#">Dashboard</a></li>
-      <li>Kategory Kerjasama</li>
+      <li>Kategori Kerjasama</li>
       <li class="active">List</li>
     </ol>
             <div class="panel">
@@ -29,7 +29,7 @@
                   </div>
                   <div class="form-group">
                     <div class="row">
-                      <label class="col-sm-4 control-label">Kategory Kerjasama :</label>
+                      <label class="col-sm-4 control-label">Kategori Kerjasama :</label>
                       <div class="col-sm-8">
                         
                         {!! Form::select('cooperation_category', ['' => 'Pilih Kategori Kerjasama','dn'=>'Dalam Negeri', 'ln'=>'Luar Negeri'], null ,['class' => 'form-control select2-example', 'style' => 'width: 100%', 'data-allow-clear'=>true]) !!} 
@@ -138,17 +138,17 @@
    
     $('a.confirm').on('click',function() {
         swal({
-          title: "Hapus Kategory Kerjasama?",
-          text: "Anda tidak akan dapat memulihkan Kategory yang sudah dihapus",
+          title: "Hapus Kategori Kerjasama?",
+          text: "Anda tidak akan dapat memulihkan Kategori yang sudah dihapus",
           type: "warning",
           showCancelButton: true,
           confirmButtonColor: '#DD6B55',
-          confirmButtonText: 'Yes, Hapus Kategory!',
+          confirmButtonText: 'Yes, Hapus Kategori!',
           cancelButtonText: "No",
           closeOnConfirm: false
         },
         function(){
-          swal("Hapus Kategory!", "Kategory Anda telah dihapus!", "success");
+          swal("Hapus Kategori!", "Kategori Anda telah dihapus!", "success");
         });
       });
   });
