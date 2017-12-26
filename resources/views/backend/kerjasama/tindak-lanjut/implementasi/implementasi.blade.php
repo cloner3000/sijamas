@@ -43,8 +43,8 @@
                   <div class="input-daterange" id="datepicker-range">
                     <div class="form-group">
                       <div class="row">
-                        <label class="col-sm-3 control-label">Judul Kerjasama :</label>
-                        <div class="col-sm-9">                  
+                        <label class="col-sm-2 control-label">Judul Kerjasama :</label>
+                        <div class="col-sm-10">                  
                             <div class="input-group m-b-2">
                               <label>{{$cooperation->title}}</label>
                             </div>
