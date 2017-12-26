@@ -38,13 +38,19 @@
 					</div><!--end.rows-->
 					<div class="rows">
 						<div class="call-row">
-							<div class="icon-call"></div>
-							<div class="text-call"><i class="fa fa-phone" aria-hidden="true"></i> 082122814646</div>
+							<div class="text-call">
+						Liswanto / Ketty <i class="fa fa-user" aria-hidden="true"></i></div>
 						</div>
 						<div class="call-row">
-							<div class="text-call"><i class="fa fa-envelope" aria-hidden="true"></i> albi@bsn.go.id</div>
+							<div class="text-call"> 021 3927422 ext. 124,126 <i class="fa fa-phone" aria-hidden="true"></i></div>
 						</div>
-					</div><!--end-->
+						<div class="call-row">
+							<div class="text-call">021 3927528 <i class="fa fa-fax" aria-hidden="true"></i> </div>
+						</div>
+						<div class="call-row">
+							<div class="text-call">kerjasama@bsn.go.id <i class="fa fa-envelope" aria-hidden="true"></i> </div>
+						</div>
+					</div>
 				</div>
 			</div><!--end.col-md-6-->
 		</div>

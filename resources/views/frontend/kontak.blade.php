@@ -30,7 +30,7 @@
 											</div>
  
 												
-											
+										<!-- 	
 											<div class="rows">
 												Albi kusuma
 												<div class="call-row">
@@ -39,15 +39,18 @@
 												<div class="call-row">
 													<div class="text-call"><i class="fa fa-envelope" aria-hidden="true"></i> albi@bsn.go.id</div>
 												</div>
-											</div>
+											</div> -->
 											
 											<div class="rows">
-												Liswanto
+												Liswanto / Ketty
 												<div class="call-row">
-													<div class="text-call"><i class="fa fa-phone" aria-hidden="true"></i> 081380432154</div>
+													<div class="text-call"><i class="fa fa-phone" aria-hidden="true"></i> 021 3927422 ext. 124,126</div>
 												</div>
 												<div class="call-row">
-													<div class="text-call"><i class="fa fa-envelope" aria-hidden="true"></i> liswanto@bsn.go.id</div>
+													<div class="text-call"><i class="fa fa-fax" aria-hidden="true"></i> 021 3927528</div>
+												</div>
+												<div class="call-row">
+													<div class="text-call"><i class="fa fa-envelope" aria-hidden="true"></i> kerjasama@bsn.go.id</div>
 												</div>
 											</div>
 											<!-- <div class="rows">
