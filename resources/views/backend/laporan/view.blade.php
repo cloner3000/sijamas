@@ -10,7 +10,7 @@
           </div>   
                     
             <div class="row p-a-3">
-                <a href="{{urlBackend('laporan-kerjasama/export-excel?start='.$start.'&end='.$end.'&category='.$category.'&province='.$province.'&report='.$field)}}" class="btn btn-primary btn-3d"><i class="fa fa-file-excel-o"></i> Eksport Report</a>
+                <a href="{{urlBackend('laporan-kerjasama/export-excel?start='.$start.'&end='.$end.'&category='.$category.'&province='.$province.'&report='.$field)}}" class="btn btn-primary btn-3d"><i class="fa fa-file-excel-o"></i> Ekspor Report</a>
                 <div class="col-md-12 fadeIn animated"> 
                   @include('backend.common.flashes')
                     <p>&nbsp;</p>
