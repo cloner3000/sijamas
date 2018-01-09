@@ -18,7 +18,7 @@
 <!-- <link rel="stylesheet" type="text/css" href="{{ asset(null) }}css/all.css"> -->
 <!--link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"-->
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <link href="{{ asset(null) }}frontend/css/jquery-ui.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="{{ asset(null) }}frontend/js/source/jquery.fancybox.css?v=2.1.5" media="screen" />
 <link rel="stylesheet" href="{{ asset(null) }}frontend/css/camera.css">
