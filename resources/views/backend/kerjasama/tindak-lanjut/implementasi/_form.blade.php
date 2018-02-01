@@ -55,8 +55,8 @@
                       <label class="col-sm-4 control-label">Foto :</label>
                       <div class="col-sm-8">
                         <label class="custom-file px-file">
-                          <input type="file" class="custom-file-input" name="image">
-                          <span class="custom-file-control form-control">
+                          <input type="file" class="custom-file-input file" name="image">
+                          <span class="custom-file-control form-control uploadFile">
                           Pilih Foto ...
                           </span>
                           <em>Please use image in 700px X 525px dimension</em>
@@ -100,6 +100,22 @@
         format:'dd/mm/yyyy'
       });
 
+      $(document).on('change', '.file', function(){
+
+          var sizeFile = (this.files[0].size/1024/1024).toFixed(2);
+                
+          if(sizeFile>0.5){
+
+            alert('This file size is big: ' + (this.files[0].size/1024/1024).toFixed(2) + 'MB');
+            $('.uploadFile').html('This file size is big: ' + (this.files[0].size/1024/1024).toFixed(2) + 'MB');
+
+              this.value = '';
+          }else{
+            
+            $('.uploadFile').html($(this).val());
+          
+          }
+      })
       $('.datepicker').datepicker({
         format:'dd/mm/yyyy'
       });

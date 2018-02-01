@@ -169,7 +169,7 @@
                           </span>
                           <div class="px-file-buttons">
                             <button type="button" class="btn btn-xs px-file-clear">Clear</button>
-                            <button type="button" class="btn btn-primary btn-xs px-file-browse">Browse</button>
+                            <!-- <button type="button" class="btn btn-primary btn-xs px-file-browse">Browse</button> -->
                           </div>
                           @if($model->cooperationfile)
                           @foreach($model->cooperationfile as $file)
@@ -335,13 +335,13 @@
               <div class="row">
                 <label class="col-sm-4 control-label">Judul Gambar :</label>
                 <div class="col-sm-8">
-                  {!! Form::text('title' , null ,['class' => 'form-control']) !!}
+                  {!! Form::text('title' , null ,['class' => 'form-control','required'=>'required']) !!}
                 </div>
               </div>
             </div>
 
             <label class="custom-file px-file">
-            <input type="file" class="custom-file-input image" name="image">
+            <input type="file" class="custom-file-input image" name="image" required="required">
             <span class="custom-file-control form-control captionfile">
             Pilih Foto Dokumen...
             </span>
@@ -371,7 +371,21 @@
     $(function() {
 
       $(document).on('change', '.image', function(){
-        $('.captionfile').html($(this).val());
+        // $('.captionfile').html($(this).val());
+
+          var sizeFile = (this.files[0].size/1024/1024).toFixed(2);
+                
+          if(sizeFile>0.5){
+
+            alert('This file size is big: ' + (this.files[0].size/1024/1024).toFixed(2) + 'MB');
+            $('.captionfile').html('This file size is big: ' + (this.files[0].size/1024/1024).toFixed(2) + 'MB');
+
+              this.value = '';
+          }else{
+            
+            $('.captionfile').html($(this).val());
+          
+          }
       })
 
       $(document).on('change', '.file', function(){
