@@ -25,9 +25,9 @@
 						   
 						  @endif
 						  @endif
-						  <!-- <div class="media-body">
+						{{--  <!-- <div class="media-body">
 						    {!! $val->scope !!}	
-						  </div> -->
+						  </div> -->--}}
 						</div>
   					</div><!--en.isi-h-news-->
   				</div><!--end.box-news-->

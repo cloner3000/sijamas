@@ -107,7 +107,7 @@
                     <div class="row">
                       <label class="col-sm-12 control-label">
                         <button type="submit" class="btn btn-info btn-3d">Preview Report</button>
-                        <!-- <button type="button" class="btn btn-primary btn-3d">Eksport Report</button> -->
+                        <!-- <button type="button" class="btn btn-primary btn-3d">Ekspor Report</button> -->
                         <button type="reset" class="btn btn-deafult btn-3d">Cancel</button>
                       </label>
                     </div>
