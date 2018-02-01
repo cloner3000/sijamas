@@ -40,7 +40,7 @@ class Authenticate {
 			}
 			else
 			{
-				return redirect()->guest('admin-cp');
+				return redirect()->guest('pks-cp');
 			}
 		}
 

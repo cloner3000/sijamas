@@ -39,7 +39,7 @@ class ImplementationController extends TrinataController
         if ($request->cooperation_category) $model->where('cooperation_category', $request->cooperation_category);
         if ($request->start) $model->where('cooperation_signed', $request->start);
         if ($request->end) $model->where('cooperation_ended', $request->end);
-
+        $model = $model->orderBy('cooperation_signed','desc');
         $data = Table::of($model)
             ->addColumn('moderation',function($model){
                 $status = true;
@@ -90,6 +90,14 @@ class ImplementationController extends TrinataController
         }
 
         $data = Table::of($model)
+            ->addColumn('user_id',function($model){
+                $user = $model->user()->first();
+                if(!empty($user->name)){
+                    return $user->name;
+                }else{
+                    return "-";
+                }
+            })
             ->addColumn('moderation',function($model){
                 $status = true;
                 return trinata::buttonApprove($model->id, $status);
@@ -169,6 +177,7 @@ class ImplementationController extends TrinataController
         $inputs['implementation_date'] = \Carbon\Carbon::createFromFormat('d/m/Y', $request->implementation_date)->format('Y-m-d H:i:s');
         $inputs['description'] = $request->description;
         $inputs['category'] = 'implementation';
+        $inputs['user_id'] = \Auth::user()->id;
         
         if (isset($inputs['image'])) {
             $inputs['image'] = trinata::globalUpload($request, 'image')['filename'];

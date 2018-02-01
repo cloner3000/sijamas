@@ -45,6 +45,7 @@ class CooperationController extends TrinataController
             $model = $model->whereBetween('cooperation_signed',[$start, $end]);
             // if ($request->end) $model->where('cooperation_signed', '<=',\Carbon\Carbon::CreateFromFormat('d/m/Y', $request->end)->format('Y-m-d'));
         }
+        $model = $model->orderBy('cooperation_signed','desc');
         // dd($start, $end,$model->toSql());
     	$data = Table::of($model)
     		->addColumn('moderation',function($model){
@@ -84,10 +85,16 @@ class CooperationController extends TrinataController
     public function getCreate()
     {
     	$model = $this->model;
+        $province = [];
+        $province[''] = 'Pilih Province';
+        // $province = CooperationProvince::lists('name','id');
+        foreach (CooperationProvince::lists('name','id') as $key => $value) {
+            $province[$key] = $value;
+        }
         $data = [
                     'cooperationType' => CooperationType::lists('name','id'),
                     'cooperationFocus' => CooperationFocus::lists('name','id'),
-                    'province' => CooperationProvince::lists('name','id'),
+                    'province' => $province,
                     'city' => [],
                 ];
         
@@ -160,10 +167,16 @@ class CooperationController extends TrinataController
     public function getUpdate($id)
     {
         $model = $this->model->findOrFail($id);
+        $province = [];
+        $province[''] = 'Pilih Province';
+        // $province = CooperationProvince::lists('name','id');
+        foreach (CooperationProvince::lists('name','id') as $key => $value) {
+            $province[$key] = $value;
+        }
         $data = [
                     'cooperationType' => CooperationType::lists('name','id'),
                     'cooperationFocus' => CooperationFocus::lists('name','id'),
-                    'province' => CooperationProvince::lists('name','id'),
+                    'province' => $province,
                     'city' => CooperationCity::where('cooperation_province_id', $model->cooperation_province_id)->lists('name','id'),
                 ];
 
@@ -569,7 +582,7 @@ class CooperationController extends TrinataController
         Session::set('width', 0 );
 
 // dd(json_encode($data));
-        return redirect('admin-cp/cooperation-category/preview');
+        return redirect('pks-cp/cooperation-category/preview');
     }
 
     public function getPreview()

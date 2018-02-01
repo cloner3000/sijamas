@@ -47,7 +47,7 @@ class KategoriController extends Controller {
 
 	public function getLuarNegeri()
 	{
-		$model = $this->model->whereApproval('approved')->whereCooperationCategory('ln')->paginate($this->paging);
+		$model = $this->model->whereApproval('approved')->whereCooperationCategory('ln')->orderBy('cooperation_signed','desc')->paginate($this->paging);
 		// dd($model[1]->cooperationfile);
 		$flag = 1;
 		return view('frontend.kategori', compact('model', 'flag'));
@@ -55,7 +55,7 @@ class KategoriController extends Controller {
 
 	public function getDalamNegeri()
 	{
-		$model = $this->model->whereApproval('approved')->whereCooperationCategory('dn')->paginate($this->paging);
+		$model = $this->model->whereApproval('approved')->whereCooperationCategory('dn')->orderBy('cooperation_signed','desc')->paginate($this->paging);
 		// dd($model);
 		// dd($model[1]->cooperationfile);
 		$flag = 2;
@@ -140,7 +140,7 @@ class KategoriController extends Controller {
             // if ($request->end) $model->where('cooperation_signed', '<=',\Carbon\Carbon::CreateFromFormat('d/m/Y', $request->end)->format('Y-m-d'));
         }
 
-		$model = $model->paginate($this->paging)->appends([
+		$model = $model->orderBy('cooperation_signed','desc')->paginate($this->paging)->appends([
 													'start_date' => $get['start_date'] ,
 													'end_date' => $get['end_date'],
 													'kategori' => $get['kategori'],

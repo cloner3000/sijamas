@@ -234,7 +234,6 @@
 <script type="text/javascript">  
     $(function() {
       $('#datepicker-range').datepicker();
-
       $('#datepicker').datepicker();
       $('#summernote-base').summernote({
         height: 200,

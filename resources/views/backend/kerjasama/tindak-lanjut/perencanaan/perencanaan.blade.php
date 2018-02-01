@@ -98,6 +98,7 @@
                                   <th>Tanggal Implementasi</th>
                                   <th>Jenis Kegiatan</th>
                                   <th>Keterangan</th>
+                                  <th>created By</th>
                                   <th>Aksi</th>
                                 </tr>
                               </thead>
@@ -128,6 +129,7 @@
             { data: 'implementation_date', name: 'implementation_date' },
             { data: 'activity_type', name: 'activity_type' },
             { data: 'description', name: 'description' },
+            { data: 'user_id', name: 'user_id' },
             // { data: 'moderation', name: 'moderation' , searchable: false, "orderable":false},
             { data: 'action', name: 'action' , searchable: false, "orderable":false},
             

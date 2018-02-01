@@ -43,7 +43,7 @@ Route::controllers([
     
 	Route::controller('login','Backend\LoginController');
 
-	Route::get('admin-cp' , function(){
+	Route::get('pks-cp' , function(){
 		return redirect('login');
 	});
 

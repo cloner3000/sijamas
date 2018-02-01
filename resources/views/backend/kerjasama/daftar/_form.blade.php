@@ -98,10 +98,10 @@
                         <div class="row">
                           <div class="col-md-6">                            
                             
-                            {!! Form::select('cooperation_province_id', $data['province'], null ,['class' => 'form-control select2-example province', 'style' => 'width: 100%', 'data-allow-clear'=>true, $disabled]) !!}  
+                            {!! Form::select('cooperation_province_id', $data['province'], null ,['class' => 'form-control select2-example province', 'style' => 'width: 100%', 'data-allow-clear'=>true,'required'=>'required', $disabled]) !!}  
                           </div>
                           <div class="col-md-6">                        
-                            {!! Form::select('cooperation_city_id', $data['city'], $model->cooperation_city_id ? $model->cooperation_city_id : null ,['class' => 'form-control select2-example city', 'style' => 'width: 100%', 'data-allow-clear'=>true, $disabled]) !!} 
+                            {!! Form::select('cooperation_city_id', $data['city'], $model->cooperation_city_id ? $model->cooperation_city_id : null ,['class' => 'form-control select2-example city','required'=>'required', 'style' => 'width: 100%', 'data-allow-clear'=>true, $disabled]) !!} 
                           </div>
                         </div>
                         <div class="row p-y-2">
@@ -118,7 +118,7 @@
                         <label class="col-sm-4 control-label">Dari Tanggal :</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                              {!! Form::text('cooperation_signed' , isset($model->cooperation_signed) ? \Carbon\Carbon::createFromFormat('Y-m-d', $model->cooperation_signed)->format('d/m/Y') : null ,['class' => 'form-control', $disabled]) !!}
+                              {!! Form::text('cooperation_signed' , isset($model->cooperation_signed) ? \Carbon\Carbon::createFromFormat('Y-m-d', $model->cooperation_signed)->format('d/m/Y') : null ,['class' => 'form-control','required'=>'required', $disabled]) !!}
                               <span class="input-group-btn">
                                 <button type="button" class="btn"><i class="fa fa-calendar"></i></button>
                               </span>
@@ -131,7 +131,7 @@
                         <label class="col-sm-4 control-label">Sampai Tanggal :</label>
                         <div class="col-sm-8">                  
                             <div class="input-group m-b-2">
-                              {!! Form::text('cooperation_ended' , isset($model->cooperation_ended) ? \Carbon\Carbon::createFromFormat('Y-m-d', $model->cooperation_ended)->format('d/m/Y') : null ,['class' => 'form-control', $disabled]) !!}
+                              {!! Form::text('cooperation_ended' , isset($model->cooperation_ended) ? \Carbon\Carbon::createFromFormat('Y-m-d', $model->cooperation_ended)->format('d/m/Y') : null ,['class' => 'form-control','required'=>'required', $disabled]) !!}
                               <span class="input-group-btn">
                                 <button type="button" class="btn"><i class="fa fa-calendar"></i></button>
                               </span>

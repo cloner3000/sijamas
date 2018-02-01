@@ -43,7 +43,7 @@
 												<?php 
 												$file = isset($foto->filename) ? $foto->filename : $foto->image;
 												?>
-												<li><img src="{{ asset(null) }}contents/file/{{$file}}" alt="" title="{{ $foto->title }}"></li>
+												<li><img src="{{ asset(null) }}contents/file/{{$file}}" alt="" title="{{ (!empty($foto->activity_type)) ? $foto->activity_type : $foto->title }}"></li>
 												@endforeach
 												
 												
@@ -72,6 +72,7 @@
 							@endif
 							<div class="isi-berita">
 								<div class="rows">
+								<div class="col-lg-12">
 									<div class="profile-user-info">
 										<div class="profile-info-row">
 											<div class="profile-info-name"> Nomor Kerjasama : </div>
@@ -192,6 +193,7 @@
 											</div>
 										</div><!--.profile-info-row-->
 									</div><!--.profile-user-info-->
+								</div>
 								</div>
 							</div>
 						</div>

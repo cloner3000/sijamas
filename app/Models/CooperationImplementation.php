@@ -21,4 +21,9 @@ class CooperationImplementation extends Model
     {
         $this->attributes['implementation_date'] = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('j F Y');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User' , 'user_id');
+    }
 }

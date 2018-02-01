@@ -9,7 +9,7 @@
 				<div class="box-news bg-green">
   					<div class="title-h-news">
   						<h3><a href="{{ url('kategori-kerjasama/read/'.$val->slug)}}">{{ $val->title }} </a></h3>
-  						<span class="date-h">{{ $val->about }}</span>
+  						<p>{{ $val->about }}</p>
   					</div>
   					<div class="isi-h-news">
   						<div class="media">
