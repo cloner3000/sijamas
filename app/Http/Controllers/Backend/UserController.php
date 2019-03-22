@@ -8,13 +8,15 @@ use App\Http\Requests;
 use App\Http\Controllers\Backend\TrinataController;
 use App\User;
 use App\Models\Role;
+use App\Models\Cooperation;
 use Table;
 class UserController extends TrinataController
 {
 	public function __construct(User $model,Role $role)
 	{
         parent::__construct();
-		$this->model = $model;
+        $this->model = $model;
+		$this->cooperation = new Cooperation;
 		$this->role = $role;
 	}
 
@@ -94,11 +96,18 @@ class UserController extends TrinataController
 
     public function getDelete($id)
     {
-        $model = $this->model->findOrFail($id);
+        $Cooperation = $this->cooperation->whereOwnerId($id)->first();
+        if(empty($Cooperation)){
 
-        $model->delete();
+            $model = $this->model->findOrFail($id);
 
-        return redirect(urlBackendAction('index'))->withSuccess('Data has been deleted');
+            $model->delete();
+
+            return redirect(urlBackendAction('index'))->withSuccess('Data has been deleted');
+        }else{
+            return redirect(urlBackendAction('index'))->withInfos('Maaf, User ini masih mempunyai berkas kerjasama');
+
+        }
 
     }
 }
